@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>2026 현실 연봉·자산 시뮬레이터 | 내 소득으로 살 수 있는 차와 집, 갓생 등급 테스트</title>
-  <meta name="description" content="내 연봉과 모은 자산으로 탈 수 있는 현실적인 차, 살 수 있는 집, 그리고 갓생/카푸어 등급을 3초 만에 진단해드립니다. 인스타 스토리 인증 카드 생성 지원!">
-  <meta name="keywords" content="연봉 시뮬레이터, 현실 아파트 계산기, 카푸어 지수, 연봉별 차량 추천, 갓생 등급 테스트, 실수령액 계산기, 2026 연봉 계급도">
+  <title>2026 현실 연봉·자산 시뮬레이터 | 내 연봉 위치, 현실 차/집, 갓생 금융 레시피</title>
+  <meta name="description" content="20대~50대 연령별 연봉 중위소득 비교, 실수령액, 현실적 차/집 시세, 갓생 청약·예적금 금융상품 추천까지 3초 만에 진단해보세요.">
+  <meta name="keywords" content="연봉 시뮬레이터, 연령별 평균연봉, 중위소득, 카푸어 지수, 연봉별 실수령액, 아파트 실거래가, 엔카 중고차 시세, 청년도약계좌, 청약저축">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@300;400;500;600;700;800;900&family=Outfit:wght@600;800;900&display=swap" rel="stylesheet">
@@ -27,12 +27,17 @@
     <header class="app-header">
       <div class="badge-tag"><i class="fa-solid fa-fire"></i> 2026 TRENDING SIMULATOR</div>
       <h1 class="main-title">현실 연봉·자산 <span class="gradient-text">시뮬레이터</span></h1>
-      <p class="sub-title">내 소득과 자산으로 <b>숨 쉬고 탈 수 있는 현실적인 차와 집</b>, 그리고 <b>갓생 계급</b>을 3초 만에 진단해보세요.</p>
+      <p class="sub-title">내 소득으로 <b>살 수 있는 차·집</b>, <b>연령별 연봉 위치</b>, <b>최적의 갓생 금융상품</b>을 3초 만에 진단해보세요.</p>
+      
+      <div class="header-quick-nav">
+        <button type="button" class="nav-chip" onclick="openModal('ageSalaryModal')"><i class="fa-solid fa-chart-bar"></i> 20~50대 연봉/중위소득 표</button>
+        <button type="button" class="nav-chip" onclick="openModal('taxTableModal')"><i class="fa-solid fa-calculator"></i> 연봉별 실수령액 표</button>
+      </div>
     </header>
 
     <div class="adsense-slot adsense-header">
       <div class="ad-label"><i class="fa-solid fa-rectangle-ad"></i> SPONSORED ADVERTISEMENT</div>
-      <div class="ad-content"><span class="ad-placeholder-text">구글 애드센스 디스플레이 광고 영역 (Header Banner 728x90)</span></div>
+      <div class="ad-content"><span class="ad-placeholder-text">구글 애드센스 디스플레이 광고 영역 (Header Banner)</span></div>
     </div>
 
     <main class="main-content">
@@ -42,6 +47,22 @@
           <span class="step-indicator">10초 완성</span>
         </div>
         <form id="simulatorForm" onsubmit="return false;">
+          
+          <div class="input-group">
+            <label for="ageGroup">
+              <span class="label-title"><span class="icon">🎂</span> 연령대 선택</span>
+              <span class="label-desc">연령별 중위소득 및 계급 진단에 사용됩니다</span>
+            </label>
+            <div class="select-wrapper">
+              <select id="ageGroup">
+                <option value="20s">20대 (20~29세)</option>
+                <option value="30s" selected>30대 (30~39세)</option>
+                <option value="40s">40대 (40~49세)</option>
+                <option value="50s">50대 이상 (50세~)</option>
+              </select>
+            </div>
+          </div>
+
           <div class="input-group">
             <label for="annualIncome">
               <span class="label-title"><i class="fa-solid fa-won-sign"></i> 세전 연봉</span>
@@ -123,7 +144,7 @@
 
           <div class="adsense-slot adsense-inline">
             <div class="ad-label"><i class="fa-solid fa-rectangle-ad"></i> SPONSORED NATIVE AD</div>
-            <div class="ad-content"><span>구글 애드센스 인피드/네이티브 맞춤 광고 영역</span></div>
+            <div class="ad-content"><span>구글 애드센스 맞춤 광고 영역</span></div>
           </div>
 
           <button type="button" id="btnCalculate" class="btn-primary" onclick="calculateResult()">
@@ -149,6 +170,12 @@
               <div class="tier-badge" id="tierBadge">A TIER</div>
               <h3 class="tier-title" id="tierTitle">"안정적인 갓생 수호자"</h3>
               <p class="tier-sub" id="tierDesc">통장이 튼튼하며 카푸어 위험 지대에서 멀리 떨어져 있습니다!</p>
+            </div>
+
+            <!-- 내 연령대 연봉 위치 진단 배너 -->
+            <div class="age-rank-banner">
+              <i class="fa-solid fa-ranking-star"></i>
+              <span id="ageRankText">30대 소득 위치: <strong>상위 25%</strong> (연령대 평균 이상)</span>
             </div>
 
             <div class="card-stats-grid">
@@ -202,12 +229,72 @@
           </div>
         </div>
 
+        <!-- 실시간 시세 및 연동 링크 섹션 (새로 추가) -->
+        <div class="glass-card feature-links-card">
+          <h3><i class="fa-solid fa-magnifying-glass-location"></i> 추천 차·집 실시간 시세 & 실수령액 정보</h3>
+          <p class="card-sub-desc">내 진단 결과에 맞는 시세와 정확한 세금/실수령액을 바로 확인해보세요.</p>
+
+          <div class="quick-link-group">
+            <div class="link-category">
+              <span class="cat-label">🚗 자동차 시세 비교</span>
+              <div class="btn-cluster">
+                <a href="https://www.encar.com/ca/carsearch.do?wtClick_main=001" target="_blank" rel="noopener noreferrer" class="link-btn encar">
+                  <i class="fa-solid fa-car"></i> 엔카 중고/신차 시세 🔍
+                </a>
+                <a href="https://www.kbchachacha.com/public/search/main.kba" target="_blank" rel="noopener noreferrer" class="link-btn kb">
+                  <i class="fa-solid fa-car-side"></i> KB차차차 실시세 🚗
+                </a>
+                <a href="https://www.kcar.com/" target="_blank" rel="noopener noreferrer" class="link-btn kcar">
+                  <i class="fa-solid fa-shield-halved"></i> K Car 직영 시세 ✨
+                </a>
+              </div>
+            </div>
+
+            <div class="link-category">
+              <span class="cat-label">🏠 부동산 실거래가 조회</span>
+              <div class="btn-cluster">
+                <a href="https://m.land.naver.com/" target="_blank" rel="noopener noreferrer" class="link-btn naver-land">
+                  <i class="fa-solid fa-building-user"></i> 네이버 부동산 🏠
+                </a>
+                <a href="https://asil.kr/" target="_blank" rel="noopener noreferrer" class="link-btn asil">
+                  <i class="fa-solid fa-chart-line"></i> 아실(아파트 실거래가) 📊
+                </a>
+                <a href="https://www.zigbang.com/" target="_blank" rel="noopener noreferrer" class="link-btn zigbang">
+                  <i class="fa-solid fa-house-user"></i> 직방 아파트 시세 🏘️
+                </a>
+              </div>
+            </div>
+
+            <div class="link-category">
+              <span class="cat-label">📋 세금 및 금융 조회</span>
+              <div class="btn-cluster">
+                <button type="button" class="link-btn modal-trigger" onclick="openModal('taxTableModal')">
+                  <i class="fa-solid fa-table"></i> 연봉별 실수령액 상세 표
+                </button>
+                <button type="button" class="link-btn modal-trigger" onclick="openModal('ageSalaryModal')">
+                  <i class="fa-solid fa-users"></i> 20~50대 연봉/중위소득 표
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2026 맞춤 갓생 금융 레시피 카드 (새로 추가) -->
+        <div class="glass-card financial-recipe-card">
+          <h3><i class="fa-solid fa-coins"></i> 2026 맞춤 갓생 금융 레시피 & 상품 추천</h3>
+          <p class="card-sub-desc">내 자산과 성향에 가장 유리한 돈 모으기 금융 상품 조합입니다.</p>
+
+          <div id="financialRecipeContainer" class="recipe-grid">
+            <!-- JS dynamic content -->
+          </div>
+        </div>
+
         <div class="adsense-slot adsense-middle">
           <div class="ad-label"><i class="fa-solid fa-rectangle-ad"></i> SPONSORED LINK / AFFILIATE</div>
           <div class="ad-content">
             <div class="affiliate-box">
               <span class="affiliate-title">🚗 [스폰서] 2026 신차 장기렌트/리스 실시간 최저가 견적 비교</span>
-              <a href="#" onclick="alert('제휴 마케팅 링크 클릭 예시입니다.'); return false;" class="affiliate-btn">내 맞춤 렌트료 확인 <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+              <a href="https://www.encar.com" target="_blank" rel="noopener noreferrer" class="affiliate-btn">내 맞춤 렌트료 확인 <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
             </div>
           </div>
         </div>
@@ -243,6 +330,103 @@
     <footer class="app-footer">
       <p>© 2026 Real Asset Simulator. All rights reserved.</p>
     </footer>
+  </div>
+
+  <!-- MODALS -->
+
+  <!-- 1. 20대~50대 연봉 및 중위소득 표 모달 -->
+  <div id="ageSalaryModal" class="modal-overlay hidden" onclick="closeModalOnOverlay(event, 'ageSalaryModal')">
+    <div class="modal-content glass-card">
+      <div class="modal-header">
+        <h3><i class="fa-solid fa-users"></i> 2026 연령별 평균연봉 & 중위소득 표</h3>
+        <button type="button" class="close-btn" onclick="closeModal('ageSalaryModal')">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p class="modal-desc">통계청 및 고용노동부 최신 임금근로자 소득 데이터 기준입니다.</p>
+        <div class="table-responsive">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>연령대</th>
+                <th>평균 연봉</th>
+                <th>중위 소득 (월)</th>
+                <th>상위 10% 연봉</th>
+                <th>상위 25% 연봉</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>20대 (20~29세)</strong></td>
+                <td>3,450만 원</td>
+                <td>245만 원</td>
+                <td>5,200만 원</td>
+                <td>4,100만 원</td>
+              </tr>
+              <tr>
+                <td><strong>30대 (30~39세)</strong></td>
+                <td>4,980만 원</td>
+                <td>350만 원</td>
+                <td>8,200만 원</td>
+                <td>6,300만 원</td>
+              </tr>
+              <tr>
+                <td><strong>40대 (40~49세)</strong></td>
+                <td>6,120만 원</td>
+                <td>415만 원</td>
+                <td>1억 500만 원</td>
+                <td>7,800만 원</td>
+              </tr>
+              <tr>
+                <td><strong>50대 이상 (50세~)</strong></td>
+                <td>5,850만 원</td>
+                <td>375만 원</td>
+                <td>1억 1,000만 원</td>
+                <td>7,200만 원</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="modal-tip">
+          <strong>💡 중위소득이란?</strong> 대한민국 전체 근로자를 소득 순으로 나열했을 때 정확히 중앙에 위치한 사람의 소득입니다. 평균 소득보다 더 현실적인 내 소득 위치를 보여줍니다.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2. 연봉별 실수령액 표 모달 -->
+  <div id="taxTableModal" class="modal-overlay hidden" onclick="closeModalOnOverlay(event, 'taxTableModal')">
+    <div class="modal-content glass-card">
+      <div class="modal-header">
+        <h3><i class="fa-solid fa-calculator"></i> 2026 연봉별 실수령액 표 (4대보험/소득세 반영)</h3>
+        <button type="button" class="close-btn" onclick="closeModal('taxTableModal')">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p class="modal-desc">국민연금, 건강보험, 장기요양, 고용보험 및 근로소득세 공제 후 월 실수령액입니다.</p>
+        <div class="table-responsive">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>세전 연봉</th>
+                <th>월 세전 수령액</th>
+                <th>4대보험+세금 공제</th>
+                <th>월 실수령액</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>3,000만 원</td><td>250만 원</td><td>약 32만 원</td><td><strong>218만 원</strong></td></tr>
+              <tr><td>3,500만 원</td><td>291만 원</td><td>약 41만 원</td><td><strong>250만 원</strong></td></tr>
+              <tr><td>4,000만 원</td><td>333만 원</td><td>약 51만 원</td><td><strong>282만 원</strong></td></tr>
+              <tr><td>4,500만 원</td><td>375만 원</td><td>약 63만 원</td><td><strong>312만 원</strong></td></tr>
+              <tr><td>5,000만 원</td><td>416만 원</td><td>약 74만 원</td><td><strong>342만 원</strong></td></tr>
+              <tr><td>6,000만 원</td><td>500만 원</td><td>약 101만 원</td><td><strong>399만 원</strong></td></tr>
+              <tr><td>7,000만 원</td><td>583만 원</td><td>약 130만 원</td><td><strong>453만 원</strong></td></tr>
+              <tr><td>8,000만 원</td><td>666만 원</td><td>약 162만 원</td><td><strong>504만 원</strong></td></tr>
+              <tr><td>1억 원</td><td>833만 원</td><td>약 236만 원</td><td><strong>597만 원</strong></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
   </div>
 
   <script src="app.js"></script>

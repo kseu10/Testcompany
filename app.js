@@ -4,6 +4,22 @@ function addValue(inputId, addAmount) {
   el.value = (parseInt(el.value) || 0) + addAmount;
 }
 
+function openModal(modalId) {
+  const modal = document.getElementById(modalId);
+  if (modal) modal.classList.remove('hidden');
+}
+
+function closeModal(modalId) {
+  const modal = document.getElementById(modalId);
+  if (modal) modal.classList.add('hidden');
+}
+
+function closeModalOnOverlay(event, modalId) {
+  if (event.target.classList.contains('modal-overlay')) {
+    closeModal(modalId);
+  }
+}
+
 function calculateMonthlyNetPay(annualIncomeTenThousand) {
   const annualIncome = annualIncomeTenThousand * 10000;
   const monthlyGross = annualIncome / 12;
@@ -16,7 +32,33 @@ function calculateMonthlyNetPay(annualIncomeTenThousand) {
   return Math.round((monthlyGross * (1 - deductionRate)) / 10000);
 }
 
+function getAgeRankText(ageGroup, annualIncome) {
+  const benchmarks = {
+    '20s': { name: '20대', median: 2940, top25: 4100, top10: 5200 },
+    '30s': { name: '30대', median: 4200, top25: 6300, top10: 8200 },
+    '40s': { name: '40대', median: 4980, top25: 7800, top10: 10500 },
+    '50s': { name: '50대 이상', median: 4500, top25: 7200, top10: 11000 }
+  };
+
+  const b = benchmarks[ageGroup] || benchmarks['30s'];
+  let percentile = '중위권';
+  
+  if (annualIncome >= b.top10) {
+    percentile = '상위 10% 이내 (최상위 소득군)';
+  } else if (annualIncome >= b.top25) {
+    percentile = '상위 25% 이내 (안정적 상위권)';
+  } else if (annualIncome >= b.median) {
+    percentile = '상위 50% 이내 (평균 이상 계급)';
+  } else {
+    percentile = '하위 50% 지대 (자산 형성집중 필요)';
+  }
+
+  const ratio = (annualIncome / b.median).toFixed(1);
+  return `${b.name} 내 소득 위치: <strong>${percentile}</strong> (${b.name} 중위소득 대비 ${ratio}배)`;
+}
+
 function calculateResult() {
+  const ageGroup = document.getElementById('ageGroup').value;
   const annualIncome = parseInt(document.getElementById('annualIncome').value);
   const savings = parseInt(document.getElementById('savings').value);
   const fixedExpenses = parseInt(document.getElementById('fixedExpenses').value);
@@ -40,10 +82,12 @@ function calculateResult() {
   const carPoorIndex = Math.min(100, Math.max(5, Math.round((fixedExpenses + monthlyCarBudget * 1.5) / monthlyNet * 100)));
   const tierInfo = getTierInfo(savings, monthlyAvailable, carPoorIndex);
 
+  const ageRankText = getAgeRankText(ageGroup, annualIncome);
+
   const coffeeCount = Math.max(0, Math.floor((monthlyAvailable * 10000 * 0.4) / 4500));
   const deliveryCount = Math.max(0, Math.floor((monthlyAvailable * 10000 * 0.4) / 28000));
 
-  renderResults({ annualIncome, savings, fixedExpenses, monthlyNet, monthlyAvailable, carPoorIndex, carInfo, houseInfo, tierInfo, coffeeCount, deliveryCount });
+  renderResults({ annualIncome, savings, fixedExpenses, monthlyNet, monthlyAvailable, carPoorIndex, carInfo, houseInfo, tierInfo, ageRankText, coffeeCount, deliveryCount, lifestyle });
 
   document.getElementById('formSection').classList.add('hidden');
   document.getElementById('resultSection').classList.remove('hidden');
@@ -78,12 +122,72 @@ function getTierInfo(savings, monthlyAvailable, carPoorIndex) {
   else return { badge: "F TIER", class: "tier-f", title: "🚨 통장 비상사태!", desc: "숨만 쉬어도 마이너스 위험! 짠테크 모드 전환 필요." };
 }
 
+function renderFinancialRecipes(lifestyle, savings, monthlyAvailable) {
+  const container = document.getElementById('financialRecipeContainer');
+  if (!container) return;
+
+  const recipes = [
+    {
+      tag: "🏠 내집마련 필수",
+      tagClass: "tag-blue",
+      name: "청년 우대형 주택청약종합저축",
+      desc: "최고 연 4.5% 금리 + 비과세 혜택 + 청년 주택드림 대출(최저 2.2% 금리) 연계 필수 상품!",
+      link: "https://nhuf.molit.go.kr/"
+    },
+    {
+      tag: "💰 갓생 비상금 파킹통장",
+      tagClass: "tag-gold",
+      name: "2026 고금리 파킹통장 (연 3.5%~7%)",
+      desc: "하루만 맡겨도 이자가 쌓이는 비상금 통장. 월 여유자금의 30%를 파킹통장에 보관하세요.",
+      link: "https://finlife.fss.or.kr/"
+    },
+    {
+      tag: "🚀 정부 지원 혜택",
+      tagClass: "tag-purple",
+      name: "청년도약계좌 & ISA (개인자산관리계좌)",
+      desc: "5년 만기 시 최대 5,000만 원 목돈 마련. 정부 기여금 + 비과세 혜택 100% 챙기기!",
+      link: "https://www.kinfa.or.kr/"
+    }
+  ];
+
+  if (savings < 3000) {
+    recipes.push({
+      tag: "🌱 시드머니 불리기",
+      tagClass: "tag-blue",
+      name: "월 50만 원 챌린지 고금리 적금",
+      desc: "시드머니 3,000만 원 달성 전까지는 원금 보장형 적금과 파킹통장에 80% 이상 집중 배치!",
+      link: "https://finlife.fss.or.kr/"
+    });
+  } else {
+    recipes.push({
+      tag: "📈 절세 & 투파트너",
+      tagClass: "tag-purple",
+      name: "연금저축펀드 + S&P500 ETF 분할매수",
+      desc: "연 66만 원 세액공제 환급금 챙기기 + 미국 우량지수 ETF에 매월 자동 적립식 투자!",
+      link: "https://finlife.fss.or.kr/"
+    });
+  }
+
+  container.innerHTML = recipes.map(r => `
+    <div class="recipe-card">
+      <div class="recipe-top">
+        <span class="recipe-tag ${r.tagClass}">${r.tag}</span>
+        <a href="${r.link}" target="_blank" rel="noopener noreferrer" class="recipe-btn">상품 정보 보기 <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+      </div>
+      <h4 class="recipe-name">${r.name}</h4>
+      <p class="recipe-desc">${r.desc}</p>
+    </div>
+  `).join('');
+}
+
 function renderResults(data) {
   const banner = document.getElementById('tierBanner');
   banner.className = `tier-banner ${data.tierInfo.class}`;
   document.getElementById('tierBadge').innerText = data.tierInfo.badge;
   document.getElementById('tierTitle').innerText = data.tierInfo.title;
   document.getElementById('tierDesc').innerText = data.tierInfo.desc;
+
+  document.getElementById('ageRankText').innerHTML = data.ageRankText;
 
   document.getElementById('monthlyNetPay').innerText = `${data.monthlyNet.toLocaleString()}만 원`;
   document.getElementById('monthlyAvailable').innerText = `${data.monthlyAvailable.toLocaleString()}만 원`;
@@ -99,6 +203,8 @@ function renderResults(data) {
   document.getElementById('repAnnualNet').innerText = `${(data.monthlyNet * 12).toLocaleString()} 만 원`;
   document.getElementById('repSavings').innerText = `${data.savings.toLocaleString()} 만 원`;
   document.getElementById('repEmergencyFund').innerText = `${Math.round(data.fixedExpenses * 6).toLocaleString()} 만 원`;
+
+  renderFinancialRecipes(data.lifestyle, data.savings, data.monthlyAvailable);
 
   let adviceHTML = `<strong>💡 2026 맞춤 재정 팁:</strong><br>`;
   if (data.carPoorIndex > 50) {
