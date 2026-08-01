@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>2026 현실 연봉·자산 시뮬레이터 | 내 소득으로 살 수 있는 차와 집, 갓생 등급 테스트</title>
+  <meta name="description" content="내 연봉과 모은 자산으로 탈 수 있는 현실적인 차, 살 수 있는 집, 그리고 갓생/카푸어 등급을 3초 만에 진단해드립니다. 인스타 스토리 인증 카드 생성 지원!">
+  <meta name="keywords" content="연봉 시뮬레이터, 현실 아파트 계산기, 카푸어 지수, 연봉별 차량 추천, 갓생 등급 테스트, 실수령액 계산기, 2026 연봉 계급도">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@300;400;500;600;700;800;900&family=Outfit:wght@600;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="bg-glow-container">
+    <div class="glow-orb orb-1"></div>
+    <div class="glow-orb orb-2"></div>
+    <div class="glow-orb orb-3"></div>
+    <div class="bg-grid"></div>
+  </div>
+
+  <div class="app-container">
+    <header class="app-header">
+      <div class="badge-tag"><i class="fa-solid fa-fire"></i> 2026 TRENDING SIMULATOR</div>
+      <h1 class="main-title">현실 연봉·자산 <span class="gradient-text">시뮬레이터</span></h1>
+      <p class="sub-title">내 소득과 자산으로 <b>숨 쉬고 탈 수 있는 현실적인 차와 집</b>, 그리고 <b>갓생 계급</b>을 3초 만에 진단해보세요.</p>
+    </header>
+
+    <div class="adsense-slot adsense-header">
+      <div class="ad-label"><i class="fa-solid fa-rectangle-ad"></i> SPONSORED ADVERTISEMENT</div>
+      <div class="ad-content"><span class="ad-placeholder-text">구글 애드센스 디스플레이 광고 영역 (Header Banner 728x90)</span></div>
+    </div>
+
+    <main class="main-content">
+      <section id="formSection" class="glass-card form-card">
+        <div class="card-header">
+          <h2><i class="fa-solid fa-sliders"></i> 내 재정 정보 입력하기</h2>
+          <span class="step-indicator">10초 완성</span>
+        </div>
+        <form id="simulatorForm" onsubmit="return false;">
+          <div class="input-group">
+            <label for="annualIncome">
+              <span class="label-title"><i class="fa-solid fa-won-sign"></i> 세전 연봉</span>
+              <span class="label-desc">단위: 만 원</span>
+            </label>
+            <div class="input-wrapper">
+              <input type="number" id="annualIncome" placeholder="예: 4500" min="0" max="100000" step="50" required>
+              <span class="input-unit">만 원</span>
+            </div>
+            <div class="quick-buttons">
+              <button type="button" onclick="addValue('annualIncome', 3000)">3,000만</button>
+              <button type="button" onclick="addValue('annualIncome', 4500)">4,500만</button>
+              <button type="button" onclick="addValue('annualIncome', 6000)">6,000만</button>
+              <button type="button" onclick="addValue('annualIncome', 8000)">8,000만</button>
+              <button type="button" onclick="addValue('annualIncome', 10000)">1억</button>
+            </div>
+          </div>
+
+          <div class="input-group">
+            <label for="savings">
+              <span class="label-title"><i class="fa-solid fa-vault"></i> 순 모은 자산 (보증금+예적금+주식)</span>
+              <span class="label-desc">단위: 만 원 (대출금 제외 순자산)</span>
+            </label>
+            <div class="input-wrapper">
+              <input type="number" id="savings" placeholder="예: 3000" min="0" max="1000000" step="100" required>
+              <span class="input-unit">만 원</span>
+            </div>
+            <div class="quick-buttons">
+              <button type="button" onclick="addValue('savings', 1000)">1,000만</button>
+              <button type="button" onclick="addValue('savings', 3000)">3,000만</button>
+              <button type="button" onclick="addValue('savings', 5000)">5,000만</button>
+              <button type="button" onclick="addValue('savings', 10000)">1억</button>
+              <button type="button" onclick="addValue('savings', 30000)">3억</button>
+            </div>
+          </div>
+
+          <div class="input-group">
+            <label for="fixedExpenses">
+              <span class="label-title"><i class="fa-solid fa-receipt"></i> 월 필수 고정 지출</span>
+              <span class="label-desc">월세, 통신비, 보험료, 부모님 용돈 등 필수금액</span>
+            </label>
+            <div class="input-wrapper">
+              <input type="number" id="fixedExpenses" placeholder="예: 70" min="0" max="2000" step="5" required>
+              <span class="input-unit">만 원</span>
+            </div>
+            <div class="quick-buttons">
+              <button type="button" onclick="setValue('fixedExpenses', 40)">40만(자가/부모님집)</button>
+              <button type="button" onclick="setValue('fixedExpenses', 80)">80만(월세+기본)</button>
+              <button type="button" onclick="setValue('fixedExpenses', 130)">130만(원룸+숨만쉬어도)</button>
+            </div>
+          </div>
+
+          <div class="input-group">
+            <label><span class="label-title"><i class="fa-solid fa-heart-pulse"></i> 내 성향 & 가치관</span></label>
+            <div class="radio-grid">
+              <label class="radio-card">
+                <input type="radio" name="lifestyle" value="frugal" checked>
+                <div class="radio-content">
+                  <span class="icon">🌱</span>
+                  <div class="text"><strong>짠테크 갓생러</strong><small>최대한 아끼고 자산을 빠르게 모으고 싶음</small></div>
+                </div>
+              </label>
+              <label class="radio-card">
+                <input type="radio" name="lifestyle" value="balanced">
+                <div class="radio-content">
+                  <span class="icon">⚖️</span>
+                  <div class="text"><strong>밸런스 유지형</strong><small>적당히 즐기면서 미래도 챙김</small></div>
+                </div>
+              </label>
+              <label class="radio-card">
+                <input type="radio" name="lifestyle" value="yolo">
+                <div class="radio-content">
+                  <span class="icon">🔥</span>
+                  <div class="text"><strong>오늘만 산다 욜로족</strong><small>좋은 차 타고 맛있는 거 먹는 게 남는 거!</small></div>
+                </div>
+              </label>
+            </div>
+          </div>
+
+          <div class="adsense-slot adsense-inline">
+            <div class="ad-label"><i class="fa-solid fa-rectangle-ad"></i> SPONSORED NATIVE AD</div>
+            <div class="ad-content"><span>구글 애드센스 인피드/네이티브 맞춤 광고 영역</span></div>
+          </div>
+
+          <button type="button" id="btnCalculate" class="btn-primary" onclick="calculateResult()">
+            <span><i class="fa-solid fa-wand-magic-sparkles"></i> 2026 현실 진단 결과 보기</span>
+          </button>
+        </form>
+      </section>
+
+      <section id="resultSection" class="result-section hidden">
+        <div class="result-actions-top">
+          <button class="btn-secondary" onclick="resetForm()"><i class="fa-solid fa-rotate-left"></i> 다시 진단하기</button>
+          <button class="btn-highlight" onclick="captureStoryCard()"><i class="fa-brands fa-instagram"></i> 인스타 스토리 카드 다운로드</button>
+        </div>
+
+        <div id="storyCardContainer" class="story-card-wrapper">
+          <div class="story-card">
+            <div class="card-brand">
+              <span class="brand-name">REAL ASSET SIMULATOR 2026</span>
+              <span class="brand-tag">@2026_REALITY_TEST</span>
+            </div>
+
+            <div id="tierBanner" class="tier-banner tier-a">
+              <div class="tier-badge" id="tierBadge">A TIER</div>
+              <h3 class="tier-title" id="tierTitle">"안정적인 갓생 수호자"</h3>
+              <p class="tier-sub" id="tierDesc">통장이 튼튼하며 카푸어 위험 지대에서 멀리 떨어져 있습니다!</p>
+            </div>
+
+            <div class="card-stats-grid">
+              <div class="stat-box">
+                <span class="stat-label">월 실수령액</span>
+                <span class="stat-val highlight" id="monthlyNetPay">312만 원</span>
+              </div>
+              <div class="stat-box">
+                <span class="stat-label">월 저축/여유자금</span>
+                <span class="stat-val" id="monthlyAvailable">162만 원</span>
+              </div>
+              <div class="stat-box">
+                <span class="stat-label">카푸어 위험도</span>
+                <span class="stat-val danger" id="carPoorIndex">18%</span>
+              </div>
+            </div>
+
+            <div class="reality-grid">
+              <div class="reality-item">
+                <div class="item-icon">🚗</div>
+                <div class="item-info">
+                  <span class="item-category">숨 쉬고 탈 수 있는 현실적 차</span>
+                  <h4 class="item-value" id="recommendedCar">현대 아반떼 CN7 / 셀토스</h4>
+                  <p class="item-note" id="carNote">월 할부/유지비 약 45만 원 수준 안전권</p>
+                </div>
+              </div>
+
+              <div class="reality-item">
+                <div class="item-icon">🏠</div>
+                <div class="item-info">
+                  <span class="item-category">현실 대출 가능한 매매/전세 집</span>
+                  <h4 class="item-value" id="recommendedHouse">수도권 24평형 아파트 (매매 4.5억)</h4>
+                  <p class="item-note" id="houseNote">LTV/DSR 기준 월 원리금 감당 가능</p>
+                </div>
+              </div>
+
+              <div class="reality-item">
+                <div class="item-icon">☕</div>
+                <div class="item-info">
+                  <span class="item-category">월 지출 한도 가이드</span>
+                  <h4 class="item-value" id="lifestyleFunStat">스벅 아메리카노 140잔 / 배달 18회 가능</h4>
+                  <p class="item-note" id="lifestyleNote">월 고정비를 뺀 순수 품위유지비 한도</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="card-footer">
+              <span>#2026연봉계급 #갓생시뮬레이터 #카푸어지수 #내집마련</span>
+              <span class="watermark-url">real-asset-2026.app</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="adsense-slot adsense-middle">
+          <div class="ad-label"><i class="fa-solid fa-rectangle-ad"></i> SPONSORED LINK / AFFILIATE</div>
+          <div class="ad-content">
+            <div class="affiliate-box">
+              <span class="affiliate-title">🚗 [스폰서] 2026 신차 장기렌트/리스 실시간 최저가 견적 비교</span>
+              <a href="#" onclick="alert('제휴 마케팅 링크 클릭 예시입니다.'); return false;" class="affiliate-btn">내 맞춤 렌트료 확인 <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+            </div>
+          </div>
+        </div>
+
+        <div class="glass-card analysis-card">
+          <h3><i class="fa-solid fa-chart-pie"></i> 2026 재정 심층 분석 리포트</h3>
+          <div class="analysis-details">
+            <div class="detail-row"><span>세전 연봉:</span><strong id="repAnnualIncome">0 만 원</strong></div>
+            <div class="detail-row"><span>예상 연 실수령액:</span><strong id="repAnnualNet">0 만 원</strong></div>
+            <div class="detail-row"><span>현재 모은 자산:</span><strong id="repSavings">0 만 원</strong></div>
+            <div class="detail-row"><span>권장 비상금 레버리지:</span><strong id="repEmergencyFund">0 만 원</strong></div>
+          </div>
+          <div class="advice-box" id="financialAdvice"></div>
+        </div>
+
+        <div class="bottom-share-card glass-card">
+          <h3><i class="fa-solid fa-share-nodes"></i> 친구들과 함께 진단하기</h3>
+          <p>내 결과를 공유하고 다른 친구들의 카푸어 지수도 확인해보세요!</p>
+          <div class="share-buttons">
+            <button class="share-btn kakao" onclick="shareKakao()"><i class="fa-solid fa-comment"></i> 카카오톡 공유</button>
+            <button class="share-btn link" onclick="copyLink()"><i class="fa-solid fa-link"></i> 링크 복사</button>
+            <button class="share-btn story" onclick="captureStoryCard()"><i class="fa-brands fa-instagram"></i> 스토리 저장</button>
+          </div>
+        </div>
+
+        <div class="adsense-slot adsense-footer">
+          <div class="ad-label"><i class="fa-solid fa-rectangle-ad"></i> SPONSORED ADVERTISEMENT</div>
+          <div class="ad-content"><span class="ad-placeholder-text">구글 애드센스 하단 반응형 광고 영역</span></div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="app-footer">
+      <p>© 2026 Real Asset Simulator. All rights reserved.</p>
+    </footer>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
