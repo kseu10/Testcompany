@@ -32,29 +32,44 @@ function calculateMonthlyNetPay(annualIncomeTenThousand) {
   return Math.round((monthlyGross * (1 - deductionRate)) / 10000);
 }
 
-function getAgeRankText(ageGroup, annualIncome) {
-  const benchmarks = {
-    '20s': { name: '20대', median: 2940, top25: 4100, top10: 5200 },
-    '30s': { name: '30대', median: 4200, top25: 6300, top10: 8200 },
-    '40s': { name: '40대', median: 4980, top25: 7800, top10: 10500 },
-    '50s': { name: '50대 이상', median: 4500, top25: 7200, top10: 11000 }
-  };
+function getExactAgeStats(ageVal) {
+  const age = Math.max(18, Math.min(75, parseInt(ageVal) || 30));
+  let median = 3900, top25 = 5400, top10 = 7100;
+  if (age <= 22) { median = 2200; top25 = 2800; top10 = 3500; }
+  else if (age <= 24) { median = 2700; top25 = 3500; top10 = 4400; }
+  else if (age <= 26) { median = 3100; top25 = 4100; top10 = 5200; }
+  else if (age <= 28) { median = 3500; top25 = 4800; top10 = 6200; }
+  else if (age <= 30) { median = 3900; top25 = 5400; top10 = 7100; }
+  else if (age <= 32) { median = 4300; top25 = 6000; top10 = 7800; }
+  else if (age <= 34) { median = 4600; top25 = 6500; top10 = 8400; }
+  else if (age <= 36) { median = 5000; top25 = 7000; top10 = 9100; }
+  else if (age <= 39) { median = 5400; top25 = 7600; top10 = 9800; }
+  else if (age <= 43) { median = 5800; top25 = 8200; top10 = 10600; }
+  else if (age <= 48) { median = 6200; top25 = 8800; top10 = 11500; }
+  else if (age <= 53) { median = 5800; top25 = 8200; top10 = 10800; }
+  else if (age <= 59) { median = 5000; top25 = 7200; top10 = 9500; }
+  else { median = 4000; top25 = 5800; top10 = 7500; }
 
-  const b = benchmarks[ageGroup] || benchmarks['30s'];
+  return { age, median, top25, top10 };
+}
+
+function getAgeRankText(ageVal, annualIncome) {
+  const stats = getExactAgeStats(ageVal);
+  const age = stats.age;
   let percentile = '중위권';
   
-  if (annualIncome >= b.top10) {
+  if (annualIncome >= stats.top10) {
     percentile = '상위 10% 이내 (최상위 소득군)';
-  } else if (annualIncome >= b.top25) {
+  } else if (annualIncome >= stats.top25) {
     percentile = '상위 25% 이내 (안정적 상위권)';
-  } else if (annualIncome >= b.median) {
+  } else if (annualIncome >= stats.median) {
     percentile = '상위 50% 이내 (평균 이상 계급)';
   } else {
     percentile = '하위 50% 지대 (자산 형성집중 필요)';
   }
 
-  const ratio = (annualIncome / b.median).toFixed(1);
-  return `${b.name} 내 소득 위치: <strong>${percentile}</strong> (${b.name} 중위소득 대비 ${ratio}배)`;
+  const ratio = (annualIncome / stats.median).toFixed(1);
+  return `만 <strong>${age}세</strong> 소득 위치: <strong>${percentile}</strong> (${age}세 평균/중위 연봉 ${stats.median.toLocaleString()}만 원 대비 ${ratio}배)`;
 }
 
 function get15TierInfo(savings, monthlyAvailable, carPoorIndex, annualIncome) {
@@ -125,14 +140,14 @@ function calculateSubStats(annualIncome, savings, fixedExpenses, carPoorIndex) {
 }
 
 function calculateResult() {
-  const ageGroup = document.getElementById('ageGroup').value;
+  const userAge = parseInt(document.getElementById('userAge').value);
   const annualIncome = parseInt(document.getElementById('annualIncome').value);
   const savings = parseInt(document.getElementById('savings').value);
   const fixedExpenses = parseInt(document.getElementById('fixedExpenses').value);
   const lifestyle = document.querySelector('input[name="lifestyle"]:checked').value;
 
-  if (isNaN(annualIncome) || isNaN(savings) || isNaN(fixedExpenses)) {
-    alert('모든 입력값을 정확히 입력해주세요!');
+  if (isNaN(userAge) || isNaN(annualIncome) || isNaN(savings) || isNaN(fixedExpenses)) {
+    alert('모든 입력값(나이, 연봉, 자산, 고정지출)을 정확히 입력해주세요!');
     return;
   }
 
@@ -151,7 +166,7 @@ function calculateResult() {
   const tierInfo = get15TierInfo(savings, monthlyAvailable, carPoorIndex, annualIncome);
   const subStats = calculateSubStats(annualIncome, savings, fixedExpenses, carPoorIndex);
 
-  const ageRankText = getAgeRankText(ageGroup, annualIncome);
+  const ageRankText = getAgeRankText(userAge, annualIncome);
 
   const coffeeCount = Math.max(0, Math.floor((monthlyAvailable * 10000 * 0.4) / 4500));
   const deliveryCount = Math.max(0, Math.floor((monthlyAvailable * 10000 * 0.4) / 28000));

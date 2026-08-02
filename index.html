@@ -49,17 +49,20 @@
         <form id="simulatorForm" onsubmit="return false;">
           
           <div class="input-group">
-            <label for="ageGroup">
-              <span class="label-title"><span class="icon">🎂</span> 연령대 선택</span>
-              <span class="label-desc">연령별 중위소득 및 계급 진단에 사용됩니다</span>
+            <label for="userAge">
+              <span class="label-title"><span class="icon">🎂</span> 내 정확한 나이</span>
+              <span class="label-desc">단위: 세 (정확한 나이별 연봉/중위소득 산출)</span>
             </label>
-            <div class="select-wrapper">
-              <select id="ageGroup">
-                <option value="20s">20대 (20~29세)</option>
-                <option value="30s" selected>30대 (30~39세)</option>
-                <option value="40s">40대 (40~49세)</option>
-                <option value="50s">50대 이상 (50세~)</option>
-              </select>
+            <div class="input-wrapper">
+              <input type="number" id="userAge" placeholder="예: 29" min="18" max="75" step="1" required>
+              <span class="input-unit">세</span>
+            </div>
+            <div class="quick-buttons">
+              <button type="button" onclick="setValue('userAge', 25)">25세</button>
+              <button type="button" onclick="setValue('userAge', 29)">29세</button>
+              <button type="button" onclick="setValue('userAge', 33)">33세</button>
+              <button type="button" onclick="setValue('userAge', 38)">38세</button>
+              <button type="button" onclick="setValue('userAge', 45)">45세</button>
             </div>
           </div>
 
