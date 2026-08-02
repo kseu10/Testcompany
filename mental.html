@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>2026 멘탈 방어력 & 스트레스 유형 테스트 | 1:1 수호 팩폭 리포트</title>
+  <meta name="description" content="내 멘탈은 강철인가 쿠쿠다스인가? 12문항으로 알아보는 2026 멘탈 방어력 및 힐링 1:1 심층 팩폭 리포트">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+  <!-- 구글 애드센스 자동 광고 코드 -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8915258891613707" crossorigin="anonymous"></script>
+</head>
+<body class="theme-mental">
+  <div class="bg-glow-container">
+    <div class="glow-orb orb-1"></div>
+    <div class="glow-orb orb-2"></div>
+    <div class="bg-grid"></div>
+  </div>
+
+  <div class="app-container">
+    <header class="app-header">
+      <div class="badge-tag" style="background: rgba(225, 29, 72, 0.15); color: #e11d48; border-color: rgba(225, 29, 72, 0.3);"><i class="fa-solid fa-brain"></i> 2026 MENTAL HEALTH & STRESS RESILIENCE</div>
+      <h1 class="main-title">2026 멘탈 방어력 & <span class="gradient-text" style="background: linear-gradient(135deg, #f43f5e 0%, #e11d48 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">스트레스 테스트</span></h1>
+      <p class="sub-title">내 멘탈은 강철인가 쿠쿠다스인가? <b>12문항 1:1 멘탈 수호 리포트</b>를 1초 만에 확인해 보세요.</p>
+      
+      <div class="header-quick-nav">
+        <a href="index.html" class="nav-chip chip-asset"><i class="fa-solid fa-won-sign"></i> 💰 연봉·자산 계급도</a>
+        <a href="love.html" class="nav-chip chip-love"><i class="fa-solid fa-heart"></i> ❤️ 연애 성향</a>
+        <a href="work.html" class="nav-chip chip-work"><i class="fa-solid fa-briefcase"></i> 💼 직장생활 유형</a>
+        <a href="spending.html" class="nav-chip" style="background: #fef3c7; color: #d97706;"><i class="fa-solid fa-credit-card"></i> 💳 탕진잼 소비성향</a>
+        <a href="saju-life.html" class="nav-chip chip-saju-life"><i class="fa-solid fa-yin-yang"></i> 🔮 사주 인생 총운</a>
+      </div>
+    </header>
+
+    <div class="adsense-slot adsense-header">
+      <div class="ad-label"><i class="fa-solid fa-rectangle-ad"></i> SPONSORED ADVERTISEMENT</div>
+      <div class="ad-content"><span class="ad-placeholder-text">구글 애드센스 디스플레이 광고 영역</span></div>
+    </div>
+
+    <main class="main-content">
+      <!-- 1. 시작 화면 -->
+      <section id="startSection" class="glass-card form-card">
+        <div class="card-header">
+          <h2><i class="fa-solid fa-shield-halved"></i> 멘탈 방어력 진단 시작하기</h2>
+          <span class="step-indicator">12문항 / 45초 완성</span>
+        </div>
+        <div class="input-group">
+          <label for="mentalName">
+            <span class="label-title"><span class="icon">👤</span> 닉네임 또는 이름</span>
+            <span class="label-desc">결과 멘탈 수호 카드에 표시될 이름을 적어주세요.</span>
+          </label>
+          <div class="input-wrapper">
+            <input type="text" id="mentalName" placeholder="예: 무적멘탈" required>
+          </div>
+        </div>
+        <button type="button" class="btn-primary" style="background: linear-gradient(135deg, #f43f5e 0%, #e11d48 100%); margin-top: 10px;" onclick="startMentalQuiz()">
+          <span>멘탈 방어력 & 스트레스 유형 진단받기 <i class="fa-solid fa-arrow-right"></i></span>
+        </button>
+      </section>
+
+      <!-- 2. 퀴즈 진행 섹션 -->
+      <section id="quizSection" class="glass-card quiz-card hidden">
+        <div class="quiz-progress-bar">
+          <div id="progressFill" class="progress-fill" style="background: linear-gradient(90deg, #f43f5e, #e11d48);"></div>
+        </div>
+        <div id="progressText" class="progress-text">1 / 12 문항 (8%)</div>
+        <div id="questionContainer" class="question-container">
+          <!-- JS로 질문 렌더링 -->
+        </div>
+      </section>
+
+      <!-- 3. 결과 리포트 섹션 -->
+      <section id="resultSection" class="result-section hidden">
+        <div class="share-button-suite">
+          <button class="share-btn-item copy" onclick="copyMentalLink()"><i class="fa-solid fa-link"></i> 링크 복사</button>
+          <button class="share-btn-item story" onclick="captureStoryCard()"><i class="fa-brands fa-instagram"></i> 스토리 저장</button>
+          <button class="share-btn-item kakao" onclick="shareKakao()"><i class="fa-solid fa-comment"></i> 카톡 공유</button>
+        </div>
+
+        <button type="button" id="toggleMentalDeepBtn" class="btn-primary" style="background: linear-gradient(135deg, #f43f5e 0%, #e11d48 100%); margin-top: 4px; margin-bottom: 14px; box-shadow: 0 4px 20px rgba(225, 29, 72, 0.35);" onclick="toggleMentalDeepReport()">
+          <span><i class="fa-solid fa-shield-heart"></i> 📖 2026 멘탈 수호 1:1 팩폭 리포트 보기 (클릭시 열림) ▼</span>
+        </button>
+
+        <div id="storyCardContainer" class="story-card-wrapper">
+          <div class="story-card">
+            <div class="card-brand">
+              <span class="brand-name">2026 MENTAL RESILIENCE ARCHETYPE</span>
+              <span class="brand-tag">@2026_MENTAL_TEST</span>
+            </div>
+
+            <div class="archetype-img-frame">
+              <img id="mentalArchetypeImg" src="work_2.jpg" alt="멘탈 부캐 캐릭터" class="archetype-img">
+            </div>
+
+            <div id="mentalBanner" class="tier-banner tier-sss-plus" style="background: linear-gradient(135deg, #fff1f2 0%, #ffe4e6 100%); border: 2px solid #fecdd3;">
+              <div class="tier-badge" id="mentalBadge">SSS TIER</div>
+              <h3 class="tier-title" id="mentalTitle" style="color: #be123c;">"겉강속유 타격 0% 무적 멘탈"</h3>
+              <p class="tier-desc" id="mentalDesc">어떤 꼰대 질타나 야근 폭탄에도 타격감 0%! 무적의 포커페이스 보유자.</p>
+            </div>
+
+            <button type="button" class="btn-primary" style="background: linear-gradient(135deg, #f43f5e 0%, #e11d48 100%); width: 100%; margin: 10px 0 14px 0; border-radius: 14px; font-size: 0.95rem; color: #ffffff;" onclick="toggleMentalDeepReport()">
+              <span><i class="fa-solid fa-shield-heart"></i> 📖 2026 멘탈 수호 1:1 팩폭 리포트 보기 ▼</span>
+            </button>
+
+            <div class="sub-stats-grid">
+              <div class="sub-stat-box">
+                <span class="sub-stat-title">🛡️ 멘탈 방어력</span>
+                <span class="sub-stat-grade" id="statMentalShield">SSS Grade</span>
+              </div>
+              <div class="sub-stat-box">
+                <span class="sub-stat-title">💥 번아웃 위험 지수</span>
+                <span class="sub-stat-grade" id="statBurnout">15% (클린)</span>
+              </div>
+              <div class="sub-stat-box">
+                <span class="sub-stat-title">🌊 스트레스 회복력</span>
+                <span class="sub-stat-grade" id="statRecovery">SSS Grade</span>
+              </div>
+              <div class="sub-stat-box">
+                <span class="sub-stat-title">🧘 갓생 멘탈 유지</span>
+                <span class="sub-stat-grade" id="statMentalKeep">S Grade</span>
+              </div>
+            </div>
+
+            <div class="reality-grid">
+              <div class="reality-item">
+                <div class="item-main">
+                  <div class="item-icon">💖</div>
+                  <div class="item-info">
+                    <span class="item-category">최고의 멘탈 짝꿍 (천생연분)</span>
+                    <h4 class="item-value" id="mentalBest">말없이 안아주는 힐링 수호신</h4>
+                  </div>
+                </div>
+              </div>
+
+              <div class="reality-item">
+                <div class="item-main">
+                  <div class="item-icon">💔</div>
+                  <div class="item-info">
+                    <span class="item-category">피해야 할 멘탈 붕괴 악연</span>
+                    <h4 class="item-value" id="mentalWorst">사사건건 감정 쥐어짜는 징징이</h4>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="card-footer">
+              <span>#2026멘탈테스트 #스트레스유형 #무적멘탈 #멘탈케어</span>
+              <span class="watermark-url">real-asset-2026.app</span>
+            </div>
+          </div>
+        </div>
+
+        <div id="mentalDeepDashboard" class="glass-card deep-report-dashboard hidden">
+          <div class="dashboard-header">
+            <h3><i class="fa-solid fa-brain"></i> 2026 멘탈 수호 1:1 팩폭 리포트</h3>
+            <span class="report-badge" style="background: #ffe4e6; color: #be123c; border-color: #fecdd3;"><i class="fa-solid fa-shield-cat"></i> 2026 멘탈 진단</span>
+          </div>
+
+          <div class="report-block">
+            <h4><i class="fa-solid fa-heart-pulse"></i> 나의 멘탈 본성 & 스트레스 반응</h4>
+            <div class="saju-quote-box" style="border-left-color: #f43f5e; background: #fff1f2;">
+              <p id="mentalStyleText">어떤 질타나 외부 자극에도 묵묵히 내 할 일을 해내는 강인한 멘탈 소유자입니다.</p>
+            </div>
+          </div>
+
+          <div class="report-block">
+            <h4><i class="fa-solid fa-shield-halved"></i> 멘탈 강점 vs ⚠️ 멘탈 붕괴 스팟 (약점)</h4>
+            <div class="solution-steps">
+              <div class="time-flow-card morning">
+                <span class="time-flow-badge morning" style="background: #f43f5e;">멘탈 강점 🌟</span>
+                <div class="time-flow-body">
+                  <h5>감정 분리와 높은 스트레스 회복탄력성</h5>
+                  <p id="mentalStrengthText">회사 일에 감정을 깊이 이입하지 않아 어떤 비난에도 타격감 없이 회복합니다.</p>
+                </div>
+              </div>
+
+              <div class="time-flow-card evening">
+                <span class="time-flow-badge evening" style="background: #dc2626;">멘탈 붕괴 스팟 ⚠️</span>
+                <div class="time-flow-body">
+                  <h5>신뢰했던 사람의 갑작스러운 배신이나 정서적 고립</h5>
+                  <p id="mentalWeaknessDetailText">외부 질타에는 강하나, 내가 믿었던 사람의 뒤통수에는 멘탈이 사르르 무너지는 약점이 있습니다.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="report-block">
+            <h4><i class="fa-solid fa-hands-holding-circle"></i> 💖 멘탈 찰떡 궁합 vs 💔 멘탈 붕괴 궁합</h4>
+            <div class="report-grid-4">
+              <div class="r-card" style="background: #f0fdf4; border-color: #bbf7d0; grid-column: span 2;">
+                <span class="r-label" style="color: #16a34a;">💖 환상의 멘탈 찰떡 궁합</span>
+                <span class="r-val highlight" id="mentalBestPartnerText" style="color: #15803d;">내 지친 마음을 들어주고 온전히 쉬게 해주는 수호신</span>
+              </div>
+              <div class="r-card" style="background: #fef2f2; border-color: #fecaca; grid-column: span 2;">
+                <span class="r-label" style="color: #dc2626;">🚫 절대 피해야 할 파멸 궁합</span>
+                <span class="r-val warning" id="mentalWorstPartnerText" style="color: #b91c1c;">사사건건 감정 쥐어짜고 서운하다고 징징대는 빌런</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="report-block">
+            <h4><i class="fa-solid fa-feather"></i> 🛠️ 2026 멘탈 수호 & 번아웃 예방 팩폭 조언</h4>
+            <div class="saju-quote-box" style="border-left-color: #7c3aed; background: #faf5ff;">
+              <p id="mentalAdviceText">남의 시선이나 비판에 영혼을 주지 마세요! 퇴근 후 나만을 위한 힐링 루틴을 사수하세요.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="glass-card feature-links-card">
+          <h3><i class="fa-solid fa-fire"></i> 2026 다른 인싸 테스트도 해보기</h3>
+          <div class="btn-cluster">
+            <a href="index.html" class="link-btn btn-asset"><i class="fa-solid fa-won-sign"></i> 💰 2026 연봉·자산 계급도 테스트</a>
+            <a href="love.html" class="link-btn btn-love"><i class="fa-solid fa-heart"></i> ❤️ 2026 연애 성향 테스트</a>
+            <a href="work.html" class="link-btn btn-work"><i class="fa-solid fa-briefcase"></i> 💼 직장생활 유형 & 퇴사지수</a>
+            <a href="spending.html" class="link-btn" style="background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); color: #fff;"><i class="fa-solid fa-credit-card"></i> 💳 탕진잼 소비성향 테스트</a>
+            <a href="saju-life.html" class="link-btn btn-saju-life"><i class="fa-solid fa-yin-yang"></i> 🔮 사주 인생 대운 진단</a>
+            <a href="saju-today.html" class="link-btn btn-saju-today"><i class="fa-solid fa-clover"></i> 🥠 사주 오늘의 운세</a>
+          </div>
+        </div>
+
+        <div class="adsense-slot adsense-footer">
+          <div class="ad-label"><i class="fa-solid fa-rectangle-ad"></i> SPONSORED ADVERTISEMENT</div>
+          <div class="ad-content">
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-client="ca-pub-8915258891613707"
+                 data-ad-slot="auto"
+                 data-ad-format="auto"
+                 data-full-width-responsive="true"></ins>
+            <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="mental.js"></script>
+</body>
+</html>

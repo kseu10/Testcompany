@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>2026 탕진잼 & 소비 성향 테스트 | 1:1 영수증 팩폭 진단</title>
+  <meta name="description" content="내 통장이 텅장이 되는 진짜 이유! 12문항으로 알아보는 2026 탕진잼 & 소비 성향 1:1 심층 영수증 팩폭 리포트">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+  <!-- 구글 애드센스 자동 광고 코드 -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8915258891613707" crossorigin="anonymous"></script>
+</head>
+<body class="theme-spending">
+  <div class="bg-glow-container">
+    <div class="glow-orb orb-1"></div>
+    <div class="glow-orb orb-2"></div>
+    <div class="bg-grid"></div>
+  </div>
+
+  <div class="app-container">
+    <header class="app-header">
+      <div class="badge-tag" style="background: rgba(245, 158, 11, 0.15); color: #d97706; border-color: rgba(245, 158, 11, 0.3);"><i class="fa-solid fa-receipt"></i> 2026 MONEY & SHOPPING TRAIT</div>
+      <h1 class="main-title">2026 탕진잼 & <span class="gradient-text" style="background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">소비 성향 테스트</span></h1>
+      <p class="sub-title">내 통장이 텅장이 되는 진짜 이유! <b>12문항 1:1 영수증 팩폭 리포트</b>를 1초 만에 확인해 보세요.</p>
+      
+      <div class="header-quick-nav">
+        <a href="index.html" class="nav-chip chip-asset"><i class="fa-solid fa-won-sign"></i> 💰 연봉·자산 계급도</a>
+        <a href="love.html" class="nav-chip chip-love"><i class="fa-solid fa-heart"></i> ❤️ 연애 성향</a>
+        <a href="work.html" class="nav-chip chip-work"><i class="fa-solid fa-briefcase"></i> 💼 직장생활 유형</a>
+        <a href="mental.html" class="nav-chip" style="background: #fef2f2; color: #dc2626;"><i class="fa-solid fa-brain"></i> 🛡️ 멘탈 방어력</a>
+        <a href="saju-life.html" class="nav-chip chip-saju-life"><i class="fa-solid fa-yin-yang"></i> 🔮 사주 인생 총운</a>
+      </div>
+    </header>
+
+    <div class="adsense-slot adsense-header">
+      <div class="ad-label"><i class="fa-solid fa-rectangle-ad"></i> SPONSORED ADVERTISEMENT</div>
+      <div class="ad-content"><span class="ad-placeholder-text">구글 애드센스 디스플레이 광고 영역</span></div>
+    </div>
+
+    <main class="main-content">
+      <!-- 1. 시작 화면 -->
+      <section id="startSection" class="glass-card form-card">
+        <div class="card-header">
+          <h2><i class="fa-solid fa-credit-card"></i> 소비 성향 진단 시작하기</h2>
+          <span class="step-indicator">12문항 / 45초 완성</span>
+        </div>
+        <div class="input-group">
+          <label for="spendingName">
+            <span class="label-title"><span class="icon">👤</span> 닉네임 또는 이름</span>
+            <span class="label-desc">결과 영수증 카드에 표시될 이름을 적어주세요.</span>
+          </label>
+          <div class="input-wrapper">
+            <input type="text" id="spendingName" placeholder="예: 탕진요정" required>
+          </div>
+        </div>
+        <button type="button" class="btn-primary" style="background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); margin-top: 10px;" onclick="startSpendingQuiz()">
+          <span>소비 성향 & 탕진 지수 진단받기 <i class="fa-solid fa-arrow-right"></i></span>
+        </button>
+      </section>
+
+      <!-- 2. 퀴즈 진행 섹션 -->
+      <section id="quizSection" class="glass-card quiz-card hidden">
+        <div class="quiz-progress-bar">
+          <div id="progressFill" class="progress-fill" style="background: linear-gradient(90deg, #f59e0b, #d97706);"></div>
+        </div>
+        <div id="progressText" class="progress-text">1 / 12 문항 (8%)</div>
+        <div id="questionContainer" class="question-container">
+          <!-- JS로 질문 렌더링 -->
+        </div>
+      </section>
+
+      <!-- 3. 결과 리포트 섹션 -->
+      <section id="resultSection" class="result-section hidden">
+        <div class="share-button-suite">
+          <button class="share-btn-item copy" onclick="copySpendingLink()"><i class="fa-solid fa-link"></i> 링크 복사</button>
+          <button class="share-btn-item story" onclick="captureStoryCard()"><i class="fa-brands fa-instagram"></i> 스토리 저장</button>
+          <button class="share-btn-item kakao" onclick="shareKakao()"><i class="fa-solid fa-comment"></i> 카톡 공유</button>
+        </div>
+
+        <button type="button" id="toggleSpendingDeepBtn" class="btn-primary" style="background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); margin-top: 4px; margin-bottom: 14px; box-shadow: 0 4px 20px rgba(245, 158, 11, 0.35);" onclick="toggleSpendingDeepReport()">
+          <span><i class="fa-solid fa-receipt"></i> 📖 2026 탕진잼 1:1 영수증 팩폭 리포트 보기 (클릭시 열림) ▼</span>
+        </button>
+
+        <div id="storyCardContainer" class="story-card-wrapper">
+          <div class="story-card">
+            <div class="card-brand">
+              <span class="brand-name">2026 SHOPPING TRAIT ARCHETYPE</span>
+              <span class="brand-tag">@2026_MONEY_TEST</span>
+            </div>
+
+            <div class="archetype-img-frame">
+              <img id="spendingArchetypeImg" src="work_1.jpg" alt="소비 부캐 캐릭터" class="archetype-img">
+            </div>
+
+            <div id="spendingBanner" class="tier-banner tier-sss-plus" style="background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%); border: 2px solid #fde047;">
+              <div class="tier-badge" id="spendingBadge">SSS TIER</div>
+              <h3 class="tier-title" id="spendingTitle" style="color: #b45309;">"감성 충동 탕진 마왕"</h3>
+              <p class="tier-desc" id="spendingDesc">스트레스는 지름신으로 해소! 일단 지르고 보는 감성 충동 1등 탕진러.</p>
+            </div>
+
+            <button type="button" class="btn-primary" style="background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); width: 100%; margin: 10px 0 14px 0; border-radius: 14px; font-size: 0.95rem; color: #ffffff;" onclick="toggleSpendingDeepReport()">
+              <span><i class="fa-solid fa-receipt"></i> 📖 2026 탕진잼 1:1 영수증 팩폭 리포트 보기 ▼</span>
+            </button>
+
+            <div class="sub-stats-grid">
+              <div class="sub-stat-box">
+                <span class="sub-stat-title">🛍️ 지름신 발동력</span>
+                <span class="sub-stat-grade" id="statShoppingSpree">SSS Grade</span>
+              </div>
+              <div class="sub-stat-box">
+                <span class="sub-stat-title">💳 텅장 위험 지수</span>
+                <span class="sub-stat-grade danger" id="statEmptyAccount">95% (위험)</span>
+              </div>
+              <div class="sub-stat-box">
+                <span class="sub-stat-title">🔍 혜택/쿠폰 챙김력</span>
+                <span class="sub-stat-grade" id="statCouponSense">A Grade</span>
+              </div>
+              <div class="sub-stat-box">
+                <span class="sub-stat-title">🌱 시드머니 모음력</span>
+                <span class="sub-stat-grade" id="statSeedMoney">S Grade</span>
+              </div>
+            </div>
+
+            <div class="reality-grid">
+              <div class="reality-item">
+                <div class="item-main">
+                  <div class="item-icon">💖</div>
+                  <div class="item-info">
+                    <span class="item-category">최고의 소비 짝꿍 (천생연분)</span>
+                    <h4 class="item-value" id="spendingBest">갓생 가성비 혜택 마왕</h4>
+                  </div>
+                </div>
+              </div>
+
+              <div class="reality-item">
+                <div class="item-main">
+                  <div class="item-icon">💔</div>
+                  <div class="item-info">
+                    <span class="item-category">피해야 할 탕진 쥐약 궁합</span>
+                    <h4 class="item-value" id="spendingWorst">사치 허세 플렉스 빌런</h4>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="card-footer">
+              <span>#2026소비성향 #탕진잼 #영수증팩폭 #시드머니</span>
+              <span class="watermark-url">real-asset-2026.app</span>
+            </div>
+          </div>
+        </div>
+
+        <div id="spendingDeepDashboard" class="glass-card deep-report-dashboard hidden">
+          <div class="dashboard-header">
+            <h3><i class="fa-solid fa-receipt"></i> 2026 탕진잼 1:1 영수증 팩폭 리포트</h3>
+            <span class="report-badge" style="background: #fef3c7; color: #b45309; border-color: #fde68a;"><i class="fa-solid fa-coins"></i> 2026 소비 진단</span>
+          </div>
+
+          <div class="report-block">
+            <h4><i class="fa-solid fa-wallet"></i> 나의 소비 습관 & 탕진 본성</h4>
+            <div class="saju-quote-box" style="border-left-color: #f59e0b; background: #fffbeb;">
+              <p id="spendingStyleText">스트레스를 받을 때 장바구니 결제로 힐링하는 감성 탕진러입니다.</p>
+            </div>
+          </div>
+
+          <div class="report-block">
+            <h4><i class="fa-solid fa-chart-line"></i> 현실 소비 장점 vs ⚠️ 치명적 탕진 약점</h4>
+            <div class="solution-steps">
+              <div class="time-flow-card morning">
+                <span class="time-flow-badge morning" style="background: #f59e0b;">소비 장점 🌟</span>
+                <div class="time-flow-body">
+                  <h5>기분 전환과 내 자신을 위한 확실한 투자</h5>
+                  <p id="spendingStrengthText">내 만족을 위한 지출에는 돈을 아끼지 않으며 확실한 행복을 챙깁니다.</p>
+                </div>
+              </div>
+
+              <div class="time-flow-card evening">
+                <span class="time-flow-badge evening" style="background: #dc2626;">치명적 약점 ⚠️</span>
+                <div class="time-flow-body">
+                  <h5>월말 카드값 명세서를 보고 깜짝 놀라는 건망증 탕진</h5>
+                  <p id="spendingWeaknessDetailText">소소하게 잔돈을 쓰다 보니 월말에 합산된 금액을 보고 멘탈이 나가는 지출 구멍이 존재합니다.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="report-block">
+            <h4><i class="fa-solid fa-handshake"></i> 💖 소비 찰떡 궁합 vs 💔 파멸하는 탕진 궁합</h4>
+            <div class="report-grid-4">
+              <div class="r-card" style="background: #f0fdf4; border-color: #bbf7d0; grid-column: span 2;">
+                <span class="r-label" style="color: #16a34a;">💖 환상의 소비 찰떡 궁합</span>
+                <span class="r-val highlight" id="spendingBestPartnerText" style="color: #15803d;">내 과소비를 잡아주고 혜택을 챙겨주는 가성비 마왕</span>
+              </div>
+              <div class="r-card" style="background: #fef2f2; border-color: #fecaca; grid-column: span 2;">
+                <span class="r-label" style="color: #dc2626;">🚫 절대 피해야 할 파멸 궁합</span>
+                <span class="r-val warning" id="spendingWorstPartnerText" style="color: #b91c1c;">같이 지르자고 부추기는 과소비 라이벌</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="report-block">
+            <h4><i class="fa-solid fa-piggy-bank"></i> 🛠️ 2026 시드머니 펌핑 팩폭 조언</h4>
+            <div class="saju-quote-box" style="border-left-color: #7c3aed; background: #faf5ff;">
+              <p id="spendingAdviceText">월급날 자동 적금 이체를 설정하여 강제 시드머니를 확보하세요!</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="glass-card feature-links-card">
+          <h3><i class="fa-solid fa-fire"></i> 2026 다른 인싸 테스트도 해보기</h3>
+          <div class="btn-cluster">
+            <a href="index.html" class="link-btn btn-asset"><i class="fa-solid fa-won-sign"></i> 💰 2026 연봉·자산 계급도 테스트</a>
+            <a href="love.html" class="link-btn btn-love"><i class="fa-solid fa-heart"></i> ❤️ 2026 연애 성향 테스트</a>
+            <a href="work.html" class="link-btn btn-work"><i class="fa-solid fa-briefcase"></i> 💼 직장생활 유형 & 퇴사지수</a>
+            <a href="mental.html" class="link-btn" style="background: linear-gradient(135deg, #ef4444 0%, #b91c1c 100%); color: #fff;"><i class="fa-solid fa-brain"></i> 🛡️ 멘탈 방어력 테스트</a>
+            <a href="saju-life.html" class="link-btn btn-saju-life"><i class="fa-solid fa-yin-yang"></i> 🔮 사주 인생 대운 진단</a>
+            <a href="saju-today.html" class="link-btn btn-saju-today"><i class="fa-solid fa-clover"></i> 🥠 사주 오늘의 운세</a>
+          </div>
+        </div>
+
+        <div class="adsense-slot adsense-footer">
+          <div class="ad-label"><i class="fa-solid fa-rectangle-ad"></i> SPONSORED ADVERTISEMENT</div>
+          <div class="ad-content">
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-client="ca-pub-8915258891613707"
+                 data-ad-slot="auto"
+                 data-ad-format="auto"
+                 data-full-width-responsive="true"></ins>
+            <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="spending.js"></script>
+</body>
+</html>
