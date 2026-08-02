@@ -199,4 +199,31 @@ body.theme-today .orb-3 { background: #fbbf24; opacity: 0.2; }
 .link-btn { text-decoration: none; font-size: 0.78rem; font-weight: 700; padding: 9px 13px; border-radius: var(--radius-sm); border: 1px solid rgba(0, 0, 0, 0.08); background: #ffffff; color: #1e293b; display: inline-flex; align-items: center; gap: 6px; transition: all 0.2s; cursor: pointer; box-shadow: 0 2px 6px rgba(0,0,0,0.03); }
 .link-btn:hover { transform: translateY(-2px); border-color: var(--primary-purple); background: var(--primary-purple); color: #fff; }
 
+/* ELEGANT ORIENTAL DEEP REPORT STYLING */
+.deep-report-dashboard {
+  background: linear-gradient(135deg, #ffffff 0%, #fffdf5 100%) !important;
+  border: 2px solid #fde047 !important;
+  box-shadow: 0 10px 30px rgba(217, 119, 6, 0.12) !important;
+  border-radius: var(--radius-lg);
+  padding: 24px;
+}
+.dashboard-header { border-bottom: 2px solid #fef08a; padding-bottom: 14px; display: flex; justify-content: space-between; align-items: center; }
+.dashboard-header h3 { font-size: 1.2rem; font-weight: 900; color: #7c3aed; display: flex; align-items: center; gap: 8px; }
+
+.saju-quote-box { background: #fffbeb; border-left: 4px solid #d97706; border-radius: 12px; padding: 16px; margin-top: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.03); }
+.saju-quote-box p { font-size: 0.92rem; line-height: 1.65; color: #1e293b; font-weight: 600; }
+
+.time-flow-card { border-radius: 14px; padding: 14px 16px; display: flex; gap: 12px; align-items: flex-start; box-shadow: 0 2px 8px rgba(0,0,0,0.03); }
+.time-flow-card.morning { background: #fff7ed; border: 1.5px solid #ffedd5; }
+.time-flow-card.afternoon { background: #fefce8; border: 1.5px solid #fef08a; }
+.time-flow-card.evening { background: #faf5ff; border: 1.5px solid #f3e8ff; }
+
+.time-flow-badge { font-size: 0.75rem; font-weight: 800; padding: 4px 10px; border-radius: 100px; flex-shrink: 0; }
+.time-flow-badge.morning { background: #ff7849; color: #fff; }
+.time-flow-badge.afternoon { background: #d97706; color: #fff; }
+.time-flow-badge.evening { background: #7c3aed; color: #fff; }
+
+.time-flow-body h5 { font-size: 0.9rem; font-weight: 800; color: #0f172a; margin-bottom: 4px; }
+.time-flow-body p { font-size: 0.83rem; color: #475569; line-height: 1.5; }
+
 .app-footer { text-align: center; font-size: 0.75rem; color: var(--text-dim); padding: 20px 0; }
