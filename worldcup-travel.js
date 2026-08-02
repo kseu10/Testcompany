@@ -91,6 +91,10 @@ function showWinner(winner) {
   document.getElementById('winnerTitle').innerText = `"${winner.title}"`;
   document.getElementById('winnerDesc').innerText = winner.desc;
 
+  if (document.getElementById('winnerIcon')) {
+    document.getElementById('winnerIcon').innerText = winner.icon || '✈️';
+  }
+
   // 우승 후보 표수 저장
   const stored = getStoredVotes();
   stored[winner.id] = (stored[winner.id] || 0) + 1;
@@ -102,6 +106,16 @@ function showWinner(winner) {
 
   renderRankings(winner);
   window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function captureStoryCard() {
+  const cardNode = document.getElementById('storyCardContainer');
+  html2canvas(cardNode, { scale: 2, backgroundColor: '#ffffff', useCORS: true }).then(canvas => {
+    const a = document.createElement('a');
+    a.href = canvas.toDataURL("image/png");
+    a.download = `2026_여행빌런_월드컵_우승카드.png`;
+    a.click();
+  });
 }
 
 function renderRankings(winner) {

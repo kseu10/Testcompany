@@ -82,15 +82,37 @@
 
       <!-- 3. 우승 결과 및 랭킹 섹션 -->
       <section id="resultSection" class="result-section hidden">
-        <div class="glass-card text-center" style="background: linear-gradient(135deg, #fff1f2 0%, #ffe4e6 100%); border: 2px solid #fecdd3; padding: 28px 20px;">
-          <div style="font-size: 3.5rem; margin-bottom: 8px;">👑🥇</div>
-          <span class="report-badge" style="background: #dc2626; color: #fff; font-size: 0.85rem; padding: 6px 16px;">내가 뽑은 최악의 여행 빌런 1위</span>
-          <h2 id="winnerTitle" style="font-size: 1.5rem; font-weight: 900; color: #991b1b; margin: 12px 0 6px 0;">"지갑 닫는 짠돌이"</h2>
-          <p id="winnerDesc" style="font-size: 0.95rem; color: #475569; line-height: 1.6;">지갑 한 번 안 열고 10원 단위로 가성비만 따지는 짠돌이</p>
-          
-          <div class="share-button-suite" style="margin-top: 18px;">
-            <button class="share-btn-item copy" onclick="copyWorldCupLink()"><i class="fa-solid fa-link"></i> 링크 복사</button>
-            <button class="share-btn-item kakao" onclick="shareKakao()"><i class="fa-solid fa-comment"></i> 카톡 공유</button>
+        <div class="share-button-suite">
+          <button class="share-btn-item copy" onclick="copyWorldCupLink()"><i class="fa-solid fa-link"></i> 링크 복사</button>
+          <button class="share-btn-item story" onclick="captureStoryCard()"><i class="fa-brands fa-instagram"></i> 스토리 저장</button>
+          <button class="share-btn-item kakao" onclick="shareKakao()"><i class="fa-solid fa-comment"></i> 카톡 공유</button>
+        </div>
+
+        <div id="storyCardContainer" class="story-card-wrapper">
+          <div class="story-card">
+            <div class="card-brand">
+              <span class="brand-name">2026 WORST TRAVEL COMPANION CHAMPION</span>
+              <span class="brand-tag">@2026_TRAVEL_TEST</span>
+            </div>
+
+            <div class="archetype-img-frame" style="background: linear-gradient(135deg, #fff1f2 0%, #ffe4e6 100%); padding: 24px; text-align: center; border-color: #fecdd3;">
+              <div id="winnerIcon" style="font-size: 5rem; filter: drop-shadow(0 8px 16px rgba(0,0,0,0.15)); margin-bottom: 6px;">✈️</div>
+              <span class="tier-badge" style="background: #dc2626 !important; color: #ffffff !important;">👑 16강 최종 우승 빌런</span>
+            </div>
+
+            <div class="tier-banner tier-sss-plus" style="background: linear-gradient(135deg, #fff1f2 0%, #ffe4e6 100%); border: 2px solid #fecdd3;">
+              <h3 class="tier-title" id="winnerTitle" style="color: #991b1b !important;">"지갑 닫는 짠돌이"</h3>
+              <p class="tier-desc" id="winnerDesc" style="color: #475569 !important;">지갑 한 번 안 열고 10원 단위로 가성비만 따지는 짠돌이</p>
+            </div>
+
+            <div class="saju-quote-box" style="border-left-color: #ef4444; background: #fff1f2; margin-bottom: 16px;">
+              <p style="font-size: 0.88rem; color: #991b1b; font-weight: 700;">"여행지에서 이 유저를 만나면 혈압 폭발 100%! 당장 손절하거나 여행 일정 단독 집행이 답입니다."</p>
+            </div>
+
+            <div class="card-footer">
+              <span>#여행월드컵 #최악의여행동료 #여행빌런 #2026테스트</span>
+              <span class="watermark-url">real-asset-2026.app</span>
+            </div>
           </div>
         </div>
 

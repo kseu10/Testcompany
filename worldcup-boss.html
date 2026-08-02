@@ -82,15 +82,37 @@
 
       <!-- 3. 우승 결과 및 랭킹 섹션 -->
       <section id="resultSection" class="result-section hidden">
-        <div class="glass-card text-center" style="background: linear-gradient(135deg, #fff1f2 0%, #ffe4e6 100%); border: 2px solid #fecdd3; padding: 28px 20px;">
-          <div style="font-size: 3.5rem; margin-bottom: 8px;">👑🥇</div>
-          <span class="report-badge" style="background: #dc2626; color: #fff; font-size: 0.85rem; padding: 6px 16px;">내가 뽑은 최악의 직장 상사 1위</span>
-          <h2 id="winnerTitle" style="font-size: 1.5rem; font-weight: 900; color: #991b1b; margin: 12px 0 6px 0;">"퇴근 5분 전 업무 폭탄"</h2>
-          <p id="winnerDesc" style="font-size: 0.95rem; color: #475569; line-height: 1.6;">퇴근 5분 전에 메일로 긴급 업무 폭탄 던지는 꼰대</p>
-          
-          <div class="share-button-suite" style="margin-top: 18px;">
-            <button class="share-btn-item copy" onclick="copyWorldCupLink()"><i class="fa-solid fa-link"></i> 링크 복사</button>
-            <button class="share-btn-item kakao" onclick="shareKakao()"><i class="fa-solid fa-comment"></i> 카톡 공유</button>
+        <div class="share-button-suite">
+          <button class="share-btn-item copy" onclick="copyWorldCupLink()"><i class="fa-solid fa-link"></i> 링크 복사</button>
+          <button class="share-btn-item story" onclick="captureStoryCard()"><i class="fa-brands fa-instagram"></i> 스토리 저장</button>
+          <button class="share-btn-item kakao" onclick="shareKakao()"><i class="fa-solid fa-comment"></i> 카톡 공유</button>
+        </div>
+
+        <div id="storyCardContainer" class="story-card-wrapper">
+          <div class="story-card">
+            <div class="card-brand">
+              <span class="brand-name">2026 WORST WORKPLACE BOSS CHAMPION</span>
+              <span class="brand-tag">@2026_BOSS_TEST</span>
+            </div>
+
+            <div class="archetype-img-frame" style="background: linear-gradient(135deg, #fff1f2 0%, #ffe4e6 100%); padding: 24px; text-align: center; border-color: #fecdd3;">
+              <div id="winnerIcon" style="font-size: 5rem; filter: drop-shadow(0 8px 16px rgba(0,0,0,0.15)); margin-bottom: 6px;">👔</div>
+              <span class="tier-badge" style="background: #dc2626 !important; color: #ffffff !important;">👑 16강 최종 우승 상사 빌런</span>
+            </div>
+
+            <div class="tier-banner tier-sss-plus" style="background: linear-gradient(135deg, #fff1f2 0%, #ffe4e6 100%); border: 2px solid #fecdd3;">
+              <h3 class="tier-title" id="winnerTitle" style="color: #991b1b !important;">"퇴근 5분 전 업무 폭탄"</h3>
+              <p class="tier-desc" id="winnerDesc" style="color: #475569 !important;">퇴근 5분 전에 메일로 긴급 업무 폭탄 던지는 꼰대</p>
+            </div>
+
+            <div class="saju-quote-box" style="border-left-color: #ef4444; background: #fff1f2; margin-bottom: 16px;">
+              <p style="font-size: 0.88rem; color: #991b1b; font-weight: 700;">"사직서 품게 만드는 1등 빌런 상사! 칼퇴 직전 폭탄 던지는 스킬은 전 직장인 분노 유발 1위입니다."</p>
+            </div>
+
+            <div class="card-footer">
+              <span>#상사월드컵 #최악의직장상사 #퇴사욕구 #2026테스트</span>
+              <span class="watermark-url">real-asset-2026.app</span>
+            </div>
           </div>
         </div>
 

@@ -82,15 +82,37 @@
 
       <!-- 3. 우승 결과 및 랭킹 섹션 -->
       <section id="resultSection" class="result-section hidden">
-        <div class="glass-card text-center" style="background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%); border: 2px solid #bae6fd; padding: 28px 20px;">
-          <div style="font-size: 3.5rem; margin-bottom: 8px;">👑🥇</div>
-          <span class="report-badge" style="background: #0284c7; color: #fff; font-size: 0.85rem; padding: 6px 16px;">내가 뽑은 최악의 영화관 민폐 1위</span>
-          <h2 id="winnerTitle" style="font-size: 1.5rem; font-weight: 900; color: #0369a1; margin: 12px 0 6px 0;">"스포일러 입털기 마스터"</h2>
-          <p id="winnerDesc" style="font-size: 0.95rem; color: #475569; line-height: 1.6;">영화 내내 '어 저 사람 죽나?' 스포일러 입털기 마스터</p>
-          
-          <div class="share-button-suite" style="margin-top: 18px;">
-            <button class="share-btn-item copy" onclick="copyWorldCupLink()"><i class="fa-solid fa-link"></i> 링크 복사</button>
-            <button class="share-btn-item kakao" onclick="shareKakao()"><i class="fa-solid fa-comment"></i> 카톡 공유</button>
+        <div class="share-button-suite">
+          <button class="share-btn-item copy" onclick="copyWorldCupLink()"><i class="fa-solid fa-link"></i> 링크 복사</button>
+          <button class="share-btn-item story" onclick="captureStoryCard()"><i class="fa-brands fa-instagram"></i> 스토리 저장</button>
+          <button class="share-btn-item kakao" onclick="shareKakao()"><i class="fa-solid fa-comment"></i> 카톡 공유</button>
+        </div>
+
+        <div id="storyCardContainer" class="story-card-wrapper">
+          <div class="story-card">
+            <div class="card-brand">
+              <span class="brand-name">2026 WORST CINEMA MINPYE CHAMPION</span>
+              <span class="brand-tag">@2026_MOVIE_TEST</span>
+            </div>
+
+            <div class="archetype-img-frame" style="background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%); padding: 24px; text-align: center; border-color: #bae6fd;">
+              <div id="winnerIcon" style="font-size: 5rem; filter: drop-shadow(0 8px 16px rgba(0,0,0,0.15)); margin-bottom: 6px;">🎬</div>
+              <span class="tier-badge" style="background: #0284c7 !important; color: #ffffff !important;">👑 16강 최종 우승 민폐 관객</span>
+            </div>
+
+            <div class="tier-banner tier-sss-plus" style="background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%); border: 2px solid #bae6fd;">
+              <h3 class="tier-title" id="winnerTitle" style="color: #0369a1 !important;">"스포일러 입털기 마스터"</h3>
+              <p class="tier-desc" id="winnerDesc" style="color: #475569 !important;">영화 내내 '어 저 사람 죽나?' 스포일러 입털기 마스터</p>
+            </div>
+
+            <div class="saju-quote-box" style="border-left-color: #0284c7; background: #f0f9ff; margin-bottom: 16px;">
+              <p style="font-size: 0.88rem; color: #0369a1; font-weight: 700;">"영화 몰입감 싹 날려버리는 극혐 관객! 극장 안에서 절대 같이 영화보고 싶지 않은 빌런 1위입니다."</p>
+            </div>
+
+            <div class="card-footer">
+              <span>#영화월드컵 #영화관민폐 #스포일러 #2026테스트</span>
+              <span class="watermark-url">real-asset-2026.app</span>
+            </div>
           </div>
         </div>
 
