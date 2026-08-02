@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>2026 내 직장생활 유형 & 퇴사지수 테스트 | 오피스 빌런, 칼퇴력 진단</title>
-  <meta name="description" content="2026 최신 직장생활 부캐 테스트! 오피스 빌런 위험도, 퇴사 욕구 지수, 연봉 협상 성공률을 3초 만에 진단해드립니다.">
-  <meta name="keywords" content="직장생활 테스트, 오피스 빌런, 퇴사 욕구 지수, 칼퇴력, 연봉협상, 직장인 부캐 테스트">
+  <title>2026 내 직장생활 유형 & 퇴사지수 테스트 | 10문항 오피스 생존력 진단</title>
+  <meta name="description" content="2026 최신 10문항 직장생활 부캐 테스트! 칼퇴력, 오피스 빌런 위험도, 퇴사 욕구 지수를 귀여운 고양이 캐릭터와 함께 3초 만에 진단해보세요.">
+  <meta name="keywords" content="직장생활 테스트, 칼퇴력, 퇴사지수, 오피스 부캐, 2026 직장인 테스트, 귀여운 오피스 테스트">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@300;400;500;600;700;800;900&family=Outfit:wght@600;800;900&display=swap" rel="stylesheet">
@@ -15,20 +15,19 @@
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8915258891613707" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body class="theme-work">
   <div class="bg-glow-container">
     <div class="glow-orb orb-1"></div>
     <div class="glow-orb orb-2"></div>
     <div class="glow-orb orb-3"></div>
-    <div class="bg-grid"></div>
   </div>
 
   <div class="app-container">
     <header class="app-header">
       <div class="badge-tag"><i class="fa-solid fa-briefcase"></i> 2026 OFFICE LIFE TEST</div>
       <h1 class="main-title">내 직장생활 <span class="gradient-text">유형 테스트</span></h1>
-      <p class="sub-title">오피스 부캐 유형, <b>퇴사 욕구 지수(%)</b>, <b>연봉 협상 스탯</b> 팩폭 진단!</p>
-
+      <p class="sub-title">10개 오피스 상황으로 알아보는 <b>칼퇴력</b> & <b>퇴사 욕구 지수(%)</b> 진단!</p>
+      
       <div class="header-quick-nav">
         <a href="index.html" class="nav-chip"><i class="fa-solid fa-won-sign"></i> 연봉 계급 테스트</a>
         <a href="love.html" class="nav-chip"><i class="fa-solid fa-heart"></i> 연애 성향 테스트</a>
@@ -43,108 +42,61 @@
     </div>
 
     <main class="main-content">
-      <section id="formSection" class="glass-card form-card">
+      <section id="startSection" class="glass-card">
         <div class="card-header">
-          <h2><i class="fa-solid fa-building-user"></i> 오피스 생존력 진단 (8문항)</h2>
-          <span class="step-indicator">1분 완성</span>
+          <h2><i class="fa-solid fa-building-user"></i> 오피스 생존력 진단</h2>
+          <span class="step-indicator">총 10문항</span>
         </div>
-        <form id="workForm" onsubmit="return false;">
-          
-          <div class="input-group">
-            <label for="workName"><span class="label-title">👤 직장인 이름 / 닉네임</span></label>
-            <div class="input-wrapper">
-              <input type="text" id="workName" placeholder="예: 6시칼퇴요정" required>
-            </div>
+        <div class="input-group">
+          <label for="workName"><span class="label-title">👤 직장인 이름 / 닉네임 입력</span></label>
+          <div class="input-wrapper">
+            <input type="text" id="workName" placeholder="예: 칼퇴요정" required>
           </div>
+        </div>
+        <button type="button" class="btn-primary" onclick="startWorkQuiz()">
+          <span><i class="fa-solid fa-play"></i> 10문항 직장생활 진단 시작!</span>
+        </button>
+      </section>
 
-          <div class="input-group">
-            <label><span class="label-title">Q1. 퇴근 10분 전 업무 지시가 내려왔을 때 나는?</span></label>
-            <div class="radio-grid">
-              <label class="radio-card">
-                <input type="radio" name="wq1" value="BYE" checked>
-                <div class="radio-content">
-                  <span class="icon">🏃</span>
-                  <div class="text"><strong>"내일 아침 일찍 처리하겠습니다!" (6시 00분 칼퇴)</strong></div>
-                </div>
-              </label>
-              <label class="radio-card">
-                <input type="radio" name="wq1" value="WORK">
-                <div class="radio-content">
-                  <span class="icon">💻</span>
-                  <div class="text"><strong>한숨 쉬며 컴퓨터 다시 켜고 야근 시작</strong></div>
-                </div>
-              </label>
-            </div>
-          </div>
+      <section id="quizSection" class="glass-card hidden">
+        <div class="progress-bar-container">
+          <div id="progressFill" class="progress-bar-fill"></div>
+        </div>
+        <div id="progressText" class="progress-text">1 / 10 문항 (10%)</div>
 
-          <div class="input-group">
-            <label><span class="label-title">Q2. 점심시간 메뉴 정할 때 나는?</span></label>
-            <div class="radio-grid">
-              <label class="radio-card">
-                <input type="radio" name="wq2" value="LEAD" checked>
-                <div class="radio-content">
-                  <span class="icon">🍱</span>
-                  <div class="text"><strong>"오늘 은화수식당 가시죠!" 메뉴 딱 찍어 제시</strong></div>
-                </div>
-              </label>
-              <label class="radio-card">
-                <input type="radio" name="wq2" value="FOLLOW">
-                <div class="radio-content">
-                  <span class="icon">🙋</span>
-                  <div class="text"><strong>"전 다 좋습니다!" 대세에 합류</strong></div>
-                </div>
-              </label>
-            </div>
-          </div>
-
-          <div class="input-group">
-            <label><span class="label-title">Q3. 부장님의 썰렁한 아재 개그에 내 반응은?</span></label>
-            <div class="radio-grid">
-              <label class="radio-card">
-                <input type="radio" name="wq3" value="LAUGH" checked>
-                <div class="radio-content">
-                  <span class="icon">🤣</span>
-                  <div class="text"><strong>"와 부장님 미쳤다 ㅋㅋㅋ" 폭풍 리액션 (사회생활)</strong></div>
-                </div>
-              </label>
-              <label class="radio-card">
-                <input type="radio" name="wq3" value="POKER">
-                <div class="radio-content">
-                  <span class="icon">😶</span>
-                  <div class="text"><strong>은은한 썩소로 예의상 미소만 발사</strong></div>
-                </div>
-              </label>
-            </div>
-          </div>
-
-          <button type="button" class="btn-primary" onclick="calculateWorkResult()">
-            <span><i class="fa-solid fa-wand-magic-sparkles"></i> 2026 직장 부캐 진단하기</span>
-          </button>
-        </form>
+        <div id="questionContainer" class="question-step">
+          <!-- JS 렌더링 -->
+        </div>
       </section>
 
       <section id="resultSection" class="result-section hidden">
-        <div class="result-actions-top">
-          <button class="btn-secondary" onclick="resetForm()"><i class="fa-solid fa-rotate-left"></i> 다시 테스트하기</button>
-          <button class="btn-highlight" onclick="captureStoryCard()"><i class="fa-brands fa-instagram"></i> 스토리 카드 저장</button>
+        <div class="share-button-suite">
+          <button class="share-btn-item copy" onclick="copyWorkLink()"><i class="fa-solid fa-link"></i> 링크 복사</button>
+          <button class="share-btn-item story" onclick="captureStoryCard()"><i class="fa-brands fa-instagram"></i> 스토리 저장</button>
+          <button class="share-btn-item kakao" onclick="shareKakao()"><i class="fa-solid fa-comment"></i> 카톡 공유</button>
         </div>
 
         <div id="storyCardContainer" class="story-card-wrapper">
           <div class="story-card">
             <div class="card-brand">
-              <span class="brand-name">2026 WORK LIFE PERSONALITY</span>
+              <span class="brand-name">2026 WORK LIFE ARCHETYPE</span>
               <span class="brand-tag">@2026_WORK_TEST</span>
+            </div>
+
+            <!-- 하찮은 귀여운 직장인 캐릭터 일러스트 -->
+            <div class="archetype-img-frame">
+              <img src="work_doodle.jpg" alt="직장인 부캐 캐릭터" class="archetype-img">
             </div>
 
             <div id="workBanner" class="tier-banner tier-s-plus">
               <div class="tier-badge" id="workBadge">S TIER</div>
               <h3 class="tier-title" id="workTitle">"칼퇴 보장 갓생 요정"</h3>
-              <p class="tier-sub" id="workDesc">업무는 스마트하게 마감하고 6시 정각 빛의 속도로 퇴근합니다!</p>
+              <p class="tier-desc" id="workDesc">업무는 빛의 속도로 마감하고 6시 00분 정각 퇴근합니다!</p>
             </div>
 
             <div class="sub-stats-grid">
               <div class="sub-stat-box">
-                <span class="sub-stat-title">🏃 칼퇴력</span>
+                <span class="sub-stat-title">🏃 칼퇴 스피드</span>
                 <span class="sub-stat-grade" id="statLeaveHome">SSS Grade</span>
               </div>
               <div class="sub-stat-box">
@@ -153,7 +105,7 @@
               </div>
               <div class="sub-stat-box">
                 <span class="sub-stat-title">🔥 퇴사 욕구 지수</span>
-                <span class="sub-stat-grade danger" id="statResignIndex">88% (위험)</span>
+                <span class="sub-stat-grade danger" id="statResignIndex">88% (경고)</span>
               </div>
               <div class="sub-stat-box">
                 <span class="sub-stat-title">💼 연봉협상 성공률</span>
@@ -166,8 +118,8 @@
                 <div class="item-main">
                   <div class="item-icon">☕</div>
                   <div class="item-info">
-                    <span class="item-category">직장 생활 생존 무기</span>
-                    <h4 class="item-value" id="workWeapon">아이스 아메리카노 + 노이즈캔슬링 헤드폰</h4>
+                    <span class="item-category">직장 생활 필수 무기</span>
+                    <h4 class="item-value" id="workWeapon">아이스 아메리카노 + 노캔 헤드폰</h4>
                   </div>
                 </div>
               </div>
@@ -184,13 +136,12 @@
             </div>
 
             <div class="card-footer">
-              <span>#2026직장생활 #오피스부캐 #칼퇴보장 #퇴사욕구</span>
+              <span>#2026직장생활 #오피스부캐 #칼퇴보장 #퇴사지수</span>
               <span class="watermark-url">real-asset-2026.app</span>
             </div>
           </div>
         </div>
 
-        <!-- 다른 테스트 교차 유입 바 -->
         <div class="glass-card feature-links-card">
           <h3><i class="fa-solid fa-fire"></i> 2026 다른 인싸 테스트도 해보기</h3>
           <div class="btn-cluster">

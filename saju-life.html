@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>2026 사주로 보는 내 인생 총운 & 대운 진단 | 오행 재물운, 출세운 리포트</title>
-  <meta name="description" content="2026 사주 만세력 무료 진단! 내 사주 오행(목화토금수), 인생 대운이 터지는 시기, 4대 운세(재물/애정/출세/건강) 팩폭 리포트.">
-  <meta name="keywords" content="2026 사주, 사주 인생 총운, 사주 만세력, 오행 진단, 사주 재물운, 대운 터지는 시기, 무료 사주">
+  <title>2026 사주로 보는 내 인생 총운 & 대운 진단 | 10문항 오행 재물운 리포트</title>
+  <meta name="description" content="2026 사주 만세력 10문항 진단! 내 사주 오행(목화토금수), 인생 대운이 터지는 시기, 4대 운세(재물/애정/출세/건강) 귀여운 호랑이 캐릭터 팩폭 리포트.">
+  <meta name="keywords" content="2026 사주, 사주 인생 총운, 사주 만세력, 오행 진단, 사주 재물운, 대운 터지는 시기, 귀여운 사주">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@300;400;500;600;700;800;900&family=Outfit:wght@600;800;900&display=swap" rel="stylesheet">
@@ -15,19 +15,18 @@
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8915258891613707" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body class="theme-saju">
   <div class="bg-glow-container">
     <div class="glow-orb orb-1"></div>
     <div class="glow-orb orb-2"></div>
     <div class="glow-orb orb-3"></div>
-    <div class="bg-grid"></div>
   </div>
 
   <div class="app-container">
     <header class="app-header">
       <div class="badge-tag"><i class="fa-solid fa-yin-yang"></i> 2026 SAJU LIFE FORTUNE</div>
       <h1 class="main-title">사주로 보는 <span class="gradient-text">내 인생 총운</span></h1>
-      <p class="sub-title">생년월일로 푸는 <b>오행 오라</b>, <b>인생 대운 터지는 시기</b>, <b>4대 운세 팩폭 리포트!</b></p>
+      <p class="sub-title">10개 오행 파동으로 푸는 <b>내 인생 대운 터지는 시기</b> & <b>재물운!</b></p>
 
       <div class="header-quick-nav">
         <a href="index.html" class="nav-chip"><i class="fa-solid fa-won-sign"></i> 연봉 계급 테스트</a>
@@ -43,70 +42,62 @@
     </div>
 
     <main class="main-content">
-      <section id="formSection" class="glass-card form-card">
+      <section id="startSection" class="glass-card">
         <div class="card-header">
-          <h2><i class="fa-solid fa-compass"></i> 사주 만세력 정보 입력</h2>
-          <span class="step-indicator">30초 완성</span>
+          <h2><i class="fa-solid fa-compass"></i> 사주 만세력 진단</h2>
+          <span class="step-indicator">총 10문항</span>
         </div>
-        <form id="sajuForm" onsubmit="return false;">
-          
-          <div class="input-group">
-            <label for="sajuName"><span class="label-title">👤 이름 / 닉네임</span></label>
-            <div class="input-wrapper">
-              <input type="text" id="sajuName" placeholder="예: 대운 터질 부자" required>
-            </div>
+        <div class="input-group">
+          <label for="sajuName"><span class="label-title">👤 이름 / 닉네임 입력</span></label>
+          <div class="input-wrapper">
+            <input type="text" id="sajuName" placeholder="예: 재물대운이" required>
           </div>
-
-          <div class="input-group">
-            <label for="birthDate"><span class="label-title">📅 생년월일</span></label>
-            <div class="input-wrapper">
-              <input type="date" id="birthDate" value="1997-05-15" required>
-            </div>
+        </div>
+        <div class="input-group">
+          <label for="birthDate"><span class="label-title">📅 생년월일</span></label>
+          <div class="input-wrapper">
+            <input type="date" id="birthDate" value="1997-05-15" required>
           </div>
+        </div>
+        <button type="button" class="btn-primary" onclick="startSajuQuiz()">
+          <span><i class="fa-solid fa-play"></i> 10문항 인생 대운 풀기!</span>
+        </button>
+      </section>
 
-          <div class="input-group">
-            <label><span class="label-title">☯️ 성별 선택</span></label>
-            <div class="radio-grid">
-              <label class="radio-card">
-                <input type="radio" name="gender" value="M" checked>
-                <div class="radio-content">
-                  <span class="icon">👨</span>
-                  <div class="text"><strong>남성 (양의 기운)</strong></div>
-                </div>
-              </label>
-              <label class="radio-card">
-                <input type="radio" name="gender" value="F">
-                <div class="radio-content">
-                  <span class="icon">👩</span>
-                  <div class="text"><strong>여성 (음의 기운)</strong></div>
-                </div>
-              </label>
-            </div>
-          </div>
+      <section id="quizSection" class="glass-card hidden">
+        <div class="progress-bar-container">
+          <div id="progressFill" class="progress-bar-fill"></div>
+        </div>
+        <div id="progressText" class="progress-text">1 / 10 문항 (10%)</div>
 
-          <button type="button" class="btn-primary" onclick="calculateSajuLifeResult()">
-            <span><i class="fa-solid fa-wand-magic-sparkles"></i> 2026 내 사주 인생 총운 보기</span>
-          </button>
-        </form>
+        <div id="questionContainer" class="question-step">
+          <!-- JS 렌더링 -->
+        </div>
       </section>
 
       <section id="resultSection" class="result-section hidden">
-        <div class="result-actions-top">
-          <button class="btn-secondary" onclick="resetForm()"><i class="fa-solid fa-rotate-left"></i> 다시 검송하기</button>
-          <button class="btn-highlight" onclick="captureStoryCard()"><i class="fa-brands fa-instagram"></i> 스토리 카드 저장</button>
+        <div class="share-button-suite">
+          <button class="share-btn-item copy" onclick="copySajuLink()"><i class="fa-solid fa-link"></i> 링크 복사</button>
+          <button class="share-btn-item story" onclick="captureStoryCard()"><i class="fa-brands fa-instagram"></i> 스토리 저장</button>
+          <button class="share-btn-item kakao" onclick="shareKakao()"><i class="fa-solid fa-comment"></i> 카톡 공유</button>
         </div>
 
         <div id="storyCardContainer" class="story-card-wrapper">
           <div class="story-card">
             <div class="card-brand">
-              <span class="brand-name">2026 SAJU LIFE FORTUNE</span>
+              <span class="brand-name">2026 SAJU LIFE ARCHETYPE</span>
               <span class="brand-tag">@2026_SAJU_TEST</span>
+            </div>
+
+            <!-- 귀여운 호랑이 사주 일러스트 -->
+            <div class="archetype-img-frame">
+              <img src="saju_doodle.jpg" alt="사주 호랑이 캐릭터" class="archetype-img">
             </div>
 
             <div id="sajuBanner" class="tier-banner tier-sss-plus">
               <div class="tier-badge" id="sajuBadge">대운 만발</div>
               <h3 class="tier-title" id="sajuTitle">"화(火) 기운 만발! 재물 대운의 수호자"</h3>
-              <p class="tier-sub" id="sajuDesc">열정과 행동력이 넘치며 30대 후반 최고의 재물 대운이 찾아오는 사주입니다!</p>
+              <p class="tier-desc" id="sajuDesc">열정과 행동력이 넘치며 30대 후반 최고의 재물 대운이 찾아오는 사주입니다!</p>
             </div>
 
             <div class="sub-stats-grid">
@@ -143,7 +134,7 @@
                 <div class="item-main">
                   <div class="item-icon">🎨</div>
                   <div class="item-info">
-                    <span class="item-category">나를 만드는 행운의 아이템</span>
+                    <span class="item-category">나를 만들어주는 행운 아이템</span>
                     <h4 class="item-value" id="sajuLuckyItem">행운 색상: 딥 블루 | 행운 숫자: 7, 3</h4>
                   </div>
                 </div>
@@ -157,7 +148,6 @@
           </div>
         </div>
 
-        <!-- 다른 테스트 교차 유입 바 -->
         <div class="glass-card feature-links-card">
           <h3><i class="fa-solid fa-fire"></i> 2026 다른 인싸 테스트도 해보기</h3>
           <div class="btn-cluster">

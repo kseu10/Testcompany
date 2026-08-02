@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>2026 사주로 보는 오늘의 운세 & 행운 부적 | 매일 업데이트 운세 점수</title>
-  <meta name="description" content="매일 접속해서 확인하는 2026 무료 오늘의 운세! 내 생년월일 기준 오늘 운세 점수(100점 만점), 오늘 피해야 할 액운, 2026 행운 부적 캡처 지원.">
-  <meta name="keywords" content="오늘의 운세, 2026 오늘의 운세, 사주 운세, 행운의 부적, 무료 오늘의 운세, 행운 아이템">
+  <title>2026 사주로 보는 오늘의 운세 & 행운 부적 | 10문항 매일 운세 점수</title>
+  <meta name="description" content="매일 접속해서 확인하는 2026 무료 오늘의 운세! 내 10가지 신체/감정 기운으로 보는 오늘 운세 점수(100점 만점), 액운 방어, 귀여운 행운 부적 캡처 지원.">
+  <meta name="keywords" content="오늘의 운세, 2026 오늘의 운세, 사주 운세, 행운의 부적, 귀여운 부적, 무료 오늘의 운세">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@300;400;500;600;700;800;900&family=Outfit:wght@600;800;900&display=swap" rel="stylesheet">
@@ -15,19 +15,18 @@
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8915258891613707" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body class="theme-today">
   <div class="bg-glow-container">
     <div class="glow-orb orb-1"></div>
     <div class="glow-orb orb-2"></div>
     <div class="glow-orb orb-3"></div>
-    <div class="bg-grid"></div>
   </div>
 
   <div class="app-container">
     <header class="app-header">
       <div class="badge-tag"><i class="fa-solid fa-clover"></i> 2026 DAILY FORTUNE & CHARM</div>
       <h1 class="main-title">사주로 보는 <span class="gradient-text">오늘의 운세</span></h1>
-      <p class="sub-title">매일 아침 확인하는 <b>오늘의 운세 점수(100점 만점)</b>와 <b>2026 행운 부적!</b></p>
+      <p class="sub-title">10개 체크리스트로 확인하는 <b>오늘 운세 점수(100점 만점)</b> & <b>행운 부적!</b></p>
 
       <div class="header-quick-nav">
         <a href="index.html" class="nav-chip"><i class="fa-solid fa-won-sign"></i> 연봉 계급 테스트</a>
@@ -43,37 +42,38 @@
     </div>
 
     <main class="main-content">
-      <section id="formSection" class="glass-card form-card">
+      <section id="startSection" class="glass-card">
         <div class="card-header">
           <h2><i class="fa-solid fa-calendar-day"></i> 오늘 하루 운세 뽑기</h2>
-          <span class="step-indicator">매일 무료</span>
+          <span class="step-indicator">총 10문항</span>
         </div>
-        <form id="todayForm" onsubmit="return false;">
-          
-          <div class="input-group">
-            <label for="todayName"><span class="label-title">👤 이름 / 닉네임</span></label>
-            <div class="input-wrapper">
-              <input type="text" id="todayName" placeholder="예: 오늘 대박날 주인공" required>
-            </div>
+        <div class="input-group">
+          <label for="todayName"><span class="label-title">👤 이름 / 닉네임 입력</span></label>
+          <div class="input-wrapper">
+            <input type="text" id="todayName" placeholder="예: 오늘 대박날이" required>
           </div>
+        </div>
+        <button type="button" class="btn-primary" onclick="startTodayQuiz()">
+          <span><i class="fa-solid fa-play"></i> 10문항 오늘 운세 & 부적 뽑기!</span>
+        </button>
+      </section>
 
-          <div class="input-group">
-            <label for="todayBirth"><span class="label-title">📅 생년월일</span></label>
-            <div class="input-wrapper">
-              <input type="date" id="todayBirth" value="1998-08-20" required>
-            </div>
-          </div>
+      <section id="quizSection" class="glass-card hidden">
+        <div class="progress-bar-container">
+          <div id="progressFill" class="progress-bar-fill"></div>
+        </div>
+        <div id="progressText" class="progress-text">1 / 10 문항 (10%)</div>
 
-          <button type="button" class="btn-primary" onclick="calculateTodayResult()">
-            <span><i class="fa-solid fa-wand-magic-sparkles"></i> 오늘 운세 점수 & 부적 뽑기</span>
-          </button>
-        </form>
+        <div id="questionContainer" class="question-step">
+          <!-- JS 렌더링 -->
+        </div>
       </section>
 
       <section id="resultSection" class="result-section hidden">
-        <div class="result-actions-top">
-          <button class="btn-secondary" onclick="resetForm()"><i class="fa-solid fa-rotate-left"></i> 다시 뽑기</button>
-          <button class="btn-highlight" onclick="captureStoryCard()"><i class="fa-brands fa-instagram"></i> 부적 이미지 저장</button>
+        <div class="share-button-suite">
+          <button class="share-btn-item copy" onclick="copyTodayLink()"><i class="fa-solid fa-link"></i> 링크 복사</button>
+          <button class="share-btn-item story" onclick="captureStoryCard()"><i class="fa-brands fa-instagram"></i> 부적 이미지 저장</button>
+          <button class="share-btn-item kakao" onclick="shareKakao()"><i class="fa-solid fa-comment"></i> 카톡 공유</button>
         </div>
 
         <div id="storyCardContainer" class="story-card-wrapper">
@@ -83,10 +83,15 @@
               <span class="brand-tag">@2026_TODAY_SAJU</span>
             </div>
 
+            <!-- 귀여운 햄스터 행운 부적 일러스트 -->
+            <div class="archetype-img-frame">
+              <img src="today_doodle.jpg" alt="오늘의 행운 부적 캐릭터" class="archetype-img">
+            </div>
+
             <div id="todayBanner" class="tier-banner tier-sss">
               <div class="tier-badge" id="todayBadge">98점 (대길 ♠)</div>
               <h3 class="tier-title" id="todayTitle">"금전운 폭발! 돈이 굴러들어오는 날"</h3>
-              <p class="tier-sub" id="todayDesc">오늘 귀인을 만나고 생각지 못한 뜻밖의 기쁨이나 수익이 찾아오는 하루입니다!</p>
+              <p class="tier-desc" id="todayDesc">오늘 귀인을 만나고 생각지 못한 뜻밖의 기쁨이나 수익이 찾아오는 하루입니다!</p>
             </div>
 
             <div class="sub-stats-grid">
@@ -96,15 +101,15 @@
               </div>
               <div class="sub-stat-box">
                 <span class="sub-stat-title">💘 오늘 애정운</span>
-                <span class="sub-stat-grade" id="statTodayLove">92점 (상승)</span>
+                <span class="sub-stat-grade" id="statTodayLove">95점 (상승)</span>
               </div>
               <div class="sub-stat-box">
                 <span class="sub-stat-title">💼 오늘 사업/업무</span>
-                <span class="sub-stat-grade" id="statTodayWork">95점 (원활)</span>
+                <span class="sub-stat-grade" id="statTodayWork">97점 (원활)</span>
               </div>
               <div class="sub-stat-box">
                 <span class="sub-stat-title">🛡️ 오늘 액운 방어</span>
-                <span class="sub-stat-grade" id="statTodayGuard">완벽 방어</span>
+                <span class="sub-stat-grade" id="statTodayGuard">철통 방어</span>
               </div>
             </div>
 
@@ -137,7 +142,6 @@
           </div>
         </div>
 
-        <!-- 다른 테스트 교차 유입 바 -->
         <div class="glass-card feature-links-card">
           <h3><i class="fa-solid fa-fire"></i> 2026 다른 인싸 테스트도 해보기</h3>
           <div class="btn-cluster">
