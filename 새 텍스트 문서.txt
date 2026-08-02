@@ -1,0 +1,528 @@
+====================================
+[2026 현실 연봉·자산 시뮬레이터 프로젝트 - 복원 & 집 PC용 가이드]
+================================================================================
+
+■ 대화 요약 및 배경:
+- 회사 어려움으로 재택 부업 및 본업 전환 가능한 "광고 수익형 웹앱" 프로젝트 시작.
+- 선택된 아이템: 2026 트렌드 [SNS 바이럴형] "2026 현실 연봉·자산 시뮬레이터 (차/집/갓생 계급)"
+- 연봉, 자산, 고정지출 입력 ➡️ 세후 실수령액, 카푸어 위험도(%), 현실적 차/집, 갓생 티어(S~F) 진단.
+- html2canvas 기반으로 인스타그램 스토리 공유용 PNG 카드를 1초 만에 저장하는 바이럴 기능 포함.
+- 애드센스 노출 수익(CPM), 클릭 수익(CPC), 장기렌트/리스 제휴 링크(CPA) 슬롯이 완벽히 내장되어 있음.
+
+■ 집에 있는 AI(Antigravity 등)에게 할 요청:
+"안녕! 아래는 내가 회사에서 만들어둔 웹사이트 소스코드(HTML, CSS, JS) 전체야.
+이 코드대로 각각 index.html, style.css, app.js 파일 3개를 내 컴퓨터에 새로 만들어줘!
+그리고 이 사이트를 인터넷(Vercel/Netlify)에 무료로 올려서 구글 애드센스 신청하고 트래픽 모으는 다음 단계를 도와줘."
+
+--------------------------------------------------------------------------------
+1. index.html 코드
+--------------------------------------------------------------------------------
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>2026 현실 연봉·자산 시뮬레이터 | 내 소득으로 살 수 있는 차와 집, 갓생 등급 테스트</title>
+  <meta name="description" content="내 연봉과 모은 자산으로 탈 수 있는 현실적인 차, 살 수 있는 집, 그리고 갓생/카푸어 등급을 3초 만에 진단해드립니다. 인스타 스토리 인증 카드 생성 지원!">
+  <meta name="keywords" content="연봉 시뮬레이터, 현실 아파트 계산기, 카푸어 지수, 연봉별 차량 추천, 갓생 등급 테스트, 실수령액 계산기, 2026 연봉 계급도">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@300;400;500;600;700;800;900&family=Outfit:wght@600;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="bg-glow-container">
+    <div class="glow-orb orb-1"></div>
+    <div class="glow-orb orb-2"></div>
+    <div class="glow-orb orb-3"></div>
+    <div class="bg-grid"></div>
+  </div>
+
+  <div class="app-container">
+    <header class="app-header">
+      <div class="badge-tag"><i class="fa-solid fa-fire"></i> 2026 TRENDING SIMULATOR</div>
+      <h1 class="main-title">현실 연봉·자산 <span class="gradient-text">시뮬레이터</span></h1>
+      <p class="sub-title">내 소득과 자산으로 <b>숨 쉬고 탈 수 있는 현실적인 차와 집</b>, 그리고 <b>갓생 계급</b>을 3초 만에 진단해보세요.</p>
+    </header>
+
+    <div class="adsense-slot adsense-header">
+      <div class="ad-label"><i class="fa-solid fa-rectangle-ad"></i> SPONSORED ADVERTISEMENT</div>
+      <div class="ad-content"><span class="ad-placeholder-text">구글 애드센스 디스플레이 광고 영역 (Header Banner 728x90)</span></div>
+    </div>
+
+    <main class="main-content">
+      <section id="formSection" class="glass-card form-card">
+        <div class="card-header">
+          <h2><i class="fa-solid fa-sliders"></i> 내 재정 정보 입력하기</h2>
+          <span class="step-indicator">10초 완성</span>
+        </div>
+        <form id="simulatorForm" onsubmit="return false;">
+          <div class="input-group">
+            <label for="annualIncome">
+              <span class="label-title"><i class="fa-solid fa-won-sign"></i> 세전 연봉</span>
+              <span class="label-desc">단위: 만 원</span>
+            </label>
+            <div class="input-wrapper">
+              <input type="number" id="annualIncome" placeholder="예: 4500" min="0" max="100000" step="50" required>
+              <span class="input-unit">만 원</span>
+            </div>
+            <div class="quick-buttons">
+              <button type="button" onclick="addValue('annualIncome', 3000)">3,000만</button>
+              <button type="button" onclick="addValue('annualIncome', 4500)">4,500만</button>
+              <button type="button" onclick="addValue('annualIncome', 6000)">6,000만</button>
+              <button type="button" onclick="addValue('annualIncome', 8000)">8,000만</button>
+              <button type="button" onclick="addValue('annualIncome', 10000)">1억</button>
+            </div>
+          </div>
+
+          <div class="input-group">
+            <label for="savings">
+              <span class="label-title"><i class="fa-solid fa-vault"></i> 순 모은 자산 (보증금+예적금+주식)</span>
+              <span class="label-desc">단위: 만 원 (대출금 제외 순자산)</span>
+            </label>
+            <div class="input-wrapper">
+              <input type="number" id="savings" placeholder="예: 3000" min="0" max="1000000" step="100" required>
+              <span class="input-unit">만 원</span>
+            </div>
+            <div class="quick-buttons">
+              <button type="button" onclick="addValue('savings', 1000)">1,000만</button>
+              <button type="button" onclick="addValue('savings', 3000)">3,000만</button>
+              <button type="button" onclick="addValue('savings', 5000)">5,000만</button>
+              <button type="button" onclick="addValue('savings', 10000)">1억</button>
+              <button type="button" onclick="addValue('savings', 30000)">3억</button>
+            </div>
+          </div>
+
+          <div class="input-group">
+            <label for="fixedExpenses">
+              <span class="label-title"><i class="fa-solid fa-receipt"></i> 월 필수 고정 지출</span>
+              <span class="label-desc">월세, 통신비, 보험료, 부모님 용돈 등 필수금액</span>
+            </label>
+            <div class="input-wrapper">
+              <input type="number" id="fixedExpenses" placeholder="예: 70" min="0" max="2000" step="5" required>
+              <span class="input-unit">만 원</span>
+            </div>
+            <div class="quick-buttons">
+              <button type="button" onclick="setValue('fixedExpenses', 40)">40만(자가/부모님집)</button>
+              <button type="button" onclick="setValue('fixedExpenses', 80)">80만(월세+기본)</button>
+              <button type="button" onclick="setValue('fixedExpenses', 130)">130만(원룸+숨만쉬어도)</button>
+            </div>
+          </div>
+
+          <div class="input-group">
+            <label><span class="label-title"><i class="fa-solid fa-heart-pulse"></i> 내 성향 & 가치관</span></label>
+            <div class="radio-grid">
+              <label class="radio-card">
+                <input type="radio" name="lifestyle" value="frugal" checked>
+                <div class="radio-content">
+                  <span class="icon">🌱</span>
+                  <div class="text"><strong>짠테크 갓생러</strong><small>최대한 아끼고 자산을 빠르게 모으고 싶음</small></div>
+                </div>
+              </label>
+              <label class="radio-card">
+                <input type="radio" name="lifestyle" value="balanced">
+                <div class="radio-content">
+                  <span class="icon">⚖️</span>
+                  <div class="text"><strong>밸런스 유지형</strong><small>적당히 즐기면서 미래도 챙김</small></div>
+                </div>
+              </label>
+              <label class="radio-card">
+                <input type="radio" name="lifestyle" value="yolo">
+                <div class="radio-content">
+                  <span class="icon">🔥</span>
+                  <div class="text"><strong>오늘만 산다 욜로족</strong><small>좋은 차 타고 맛있는 거 먹는 게 남는 거!</small></div>
+                </div>
+              </label>
+            </div>
+          </div>
+
+          <div class="adsense-slot adsense-inline">
+            <div class="ad-label"><i class="fa-solid fa-rectangle-ad"></i> SPONSORED NATIVE AD</div>
+            <div class="ad-content"><span>구글 애드센스 인피드/네이티브 맞춤 광고 영역</span></div>
+          </div>
+
+          <button type="button" id="btnCalculate" class="btn-primary" onclick="calculateResult()">
+            <span><i class="fa-solid fa-wand-magic-sparkles"></i> 2026 현실 진단 결과 보기</span>
+          </button>
+        </form>
+      </section>
+
+      <section id="resultSection" class="result-section hidden">
+        <div class="result-actions-top">
+          <button class="btn-secondary" onclick="resetForm()"><i class="fa-solid fa-rotate-left"></i> 다시 진단하기</button>
+          <button class="btn-highlight" onclick="captureStoryCard()"><i class="fa-brands fa-instagram"></i> 인스타 스토리 카드 다운로드</button>
+        </div>
+
+        <div id="storyCardContainer" class="story-card-wrapper">
+          <div class="story-card">
+            <div class="card-brand">
+              <span class="brand-name">REAL ASSET SIMULATOR 2026</span>
+              <span class="brand-tag">@2026_REALITY_TEST</span>
+            </div>
+
+            <div id="tierBanner" class="tier-banner tier-a">
+              <div class="tier-badge" id="tierBadge">A TIER</div>
+              <h3 class="tier-title" id="tierTitle">"안정적인 갓생 수호자"</h3>
+              <p class="tier-sub" id="tierDesc">통장이 튼튼하며 카푸어 위험 지대에서 멀리 떨어져 있습니다!</p>
+            </div>
+
+            <div class="card-stats-grid">
+              <div class="stat-box">
+                <span class="stat-label">월 실수령액</span>
+                <span class="stat-val highlight" id="monthlyNetPay">312만 원</span>
+              </div>
+              <div class="stat-box">
+                <span class="stat-label">월 저축/여유자금</span>
+                <span class="stat-val" id="monthlyAvailable">162만 원</span>
+              </div>
+              <div class="stat-box">
+                <span class="stat-label">카푸어 위험도</span>
+                <span class="stat-val danger" id="carPoorIndex">18%</span>
+              </div>
+            </div>
+
+            <div class="reality-grid">
+              <div class="reality-item">
+                <div class="item-icon">🚗</div>
+                <div class="item-info">
+                  <span class="item-category">숨 쉬고 탈 수 있는 현실적 차</span>
+                  <h4 class="item-value" id="recommendedCar">현대 아반떼 CN7 / 셀토스</h4>
+                  <p class="item-note" id="carNote">월 할부/유지비 약 45만 원 수준 안전권</p>
+                </div>
+              </div>
+
+              <div class="reality-item">
+                <div class="item-icon">🏠</div>
+                <div class="item-info">
+                  <span class="item-category">현실 대출 가능한 매매/전세 집</span>
+                  <h4 class="item-value" id="recommendedHouse">수도권 24평형 아파트 (매매 4.5억)</h4>
+                  <p class="item-note" id="houseNote">LTV/DSR 기준 월 원리금 감당 가능</p>
+                </div>
+              </div>
+
+              <div class="reality-item">
+                <div class="item-icon">☕</div>
+                <div class="item-info">
+                  <span class="item-category">월 지출 한도 가이드</span>
+                  <h4 class="item-value" id="lifestyleFunStat">스벅 아메리카노 140잔 / 배달 18회 가능</h4>
+                  <p class="item-note" id="lifestyleNote">월 고정비를 뺀 순수 품위유지비 한도</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="card-footer">
+              <span>#2026연봉계급 #갓생시뮬레이터 #카푸어지수 #내집마련</span>
+              <span class="watermark-url">real-asset-2026.app</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="adsense-slot adsense-middle">
+          <div class="ad-label"><i class="fa-solid fa-rectangle-ad"></i> SPONSORED LINK / AFFILIATE</div>
+          <div class="ad-content">
+            <div class="affiliate-box">
+              <span class="affiliate-title">🚗 [스폰서] 2026 신차 장기렌트/리스 실시간 최저가 견적 비교</span>
+              <a href="#" onclick="alert('제휴 마케팅 링크 클릭 예시입니다.'); return false;" class="affiliate-btn">내 맞춤 렌트료 확인 <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+            </div>
+          </div>
+        </div>
+
+        <div class="glass-card analysis-card">
+          <h3><i class="fa-solid fa-chart-pie"></i> 2026 재정 심층 분석 리포트</h3>
+          <div class="analysis-details">
+            <div class="detail-row"><span>세전 연봉:</span><strong id="repAnnualIncome">0 만 원</strong></div>
+            <div class="detail-row"><span>예상 연 실수령액:</span><strong id="repAnnualNet">0 만 원</strong></div>
+            <div class="detail-row"><span>현재 모은 자산:</span><strong id="repSavings">0 만 원</strong></div>
+            <div class="detail-row"><span>권장 비상금 레버리지:</span><strong id="repEmergencyFund">0 만 원</strong></div>
+          </div>
+          <div class="advice-box" id="financialAdvice"></div>
+        </div>
+
+        <div class="bottom-share-card glass-card">
+          <h3><i class="fa-solid fa-share-nodes"></i> 친구들과 함께 진단하기</h3>
+          <p>내 결과를 공유하고 다른 친구들의 카푸어 지수도 확인해보세요!</p>
+          <div class="share-buttons">
+            <button class="share-btn kakao" onclick="shareKakao()"><i class="fa-solid fa-comment"></i> 카카오톡 공유</button>
+            <button class="share-btn link" onclick="copyLink()"><i class="fa-solid fa-link"></i> 링크 복사</button>
+            <button class="share-btn story" onclick="captureStoryCard()"><i class="fa-brands fa-instagram"></i> 스토리 저장</button>
+          </div>
+        </div>
+
+        <div class="adsense-slot adsense-footer">
+          <div class="ad-label"><i class="fa-solid fa-rectangle-ad"></i> SPONSORED ADVERTISEMENT</div>
+          <div class="ad-content"><span class="ad-placeholder-text">구글 애드센스 하단 반응형 광고 영역</span></div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="app-footer">
+      <p>© 2026 Real Asset Simulator. All rights reserved.</p>
+    </footer>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
+
+--------------------------------------------------------------------------------
+2. style.css 코드
+--------------------------------------------------------------------------------
+:root {
+  --bg-dark: #090a10;
+  --bg-card: rgba(18, 22, 34, 0.75);
+  --bg-card-hover: rgba(26, 32, 50, 0.85);
+  --border-color: rgba(255, 255, 255, 0.12);
+  --border-highlight: rgba(120, 119, 198, 0.4);
+  --primary-purple: #7952ff;
+  --primary-cyan: #00d2ff;
+  --primary-gradient: linear-gradient(135deg, #7952ff 0%, #00d2ff 100%);
+  --accent-gold: #ffb800;
+  --accent-pink: #ff2e93;
+  --text-main: #f3f4f6;
+  --text-muted: #9ca3af;
+  --text-dim: #6b7280;
+  --tier-s-grad: linear-gradient(135deg, #ff007a, #9600ff);
+  --tier-a-grad: linear-gradient(135deg, #00c6ff, #0072ff);
+  --tier-b-grad: linear-gradient(135deg, #11998e, #38ef7d);
+  --tier-c-grad: linear-gradient(135deg, #f857a6, #ff5858);
+  --tier-f-grad: linear-gradient(135deg, #434343, #000000);
+  --radius-lg: 24px;
+  --radius-md: 16px;
+  --radius-sm: 10px;
+  --shadow-glass: 0 16px 40px rgba(0, 0, 0, 0.4);
+  --shadow-neon: 0 0 25px rgba(121, 82, 255, 0.3);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Pretendard', sans-serif; }
+body { background-color: var(--bg-dark); color: var(--text-main); min-height: 100vh; display: flex; justify-content: center; padding: 20px 12px; }
+
+.bg-glow-container { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: -1; pointer-events: none; }
+.glow-orb { position: absolute; border-radius: 50%; filter: blur(100px); opacity: 0.25; }
+.orb-1 { width: 450px; height: 450px; background: var(--primary-purple); top: -100px; left: -100px; }
+.orb-2 { width: 500px; height: 500px; background: var(--primary-cyan); bottom: -150px; right: -100px; }
+.orb-3 { width: 300px; height: 300px; background: var(--accent-pink); top: 40%; left: 50%; transform: translate(-50%, -50%); }
+
+.app-container { width: 100%; max-width: 680px; display: flex; flex-direction: column; gap: 20px; }
+.app-header { text-align: center; padding: 20px 10px 10px 10px; }
+.badge-tag { display: inline-flex; align-items: center; gap: 6px; background: rgba(121, 82, 255, 0.15); border: 1px solid rgba(121, 82, 255, 0.4); color: var(--primary-cyan); font-size: 0.75rem; font-weight: 700; padding: 6px 14px; border-radius: 100px; margin-bottom: 12px; }
+.main-title { font-size: 2rem; font-weight: 900; line-height: 1.25; margin-bottom: 10px; }
+.gradient-text { background: var(--primary-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+.sub-title { font-size: 0.95rem; color: var(--text-muted); }
+
+.adsense-slot { background: rgba(255, 255, 255, 0.03); border: 1px dashed rgba(255, 255, 255, 0.15); border-radius: var(--radius-md); padding: 10px; text-align: center; }
+.ad-label { font-size: 0.65rem; color: var(--text-dim); margin-bottom: 6px; font-weight: 600; }
+.ad-placeholder-text { font-size: 0.8rem; color: var(--text-muted); }
+
+.glass-card { background: var(--bg-card); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border: 1px solid var(--border-color); border-radius: var(--radius-lg); padding: 24px; box-shadow: var(--shadow-glass); }
+.card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; padding-bottom: 14px; border-bottom: 1px solid var(--border-color); }
+.card-header h2 { font-size: 1.25rem; font-weight: 800; display: flex; align-items: center; gap: 8px; }
+.card-header h2 i { color: var(--primary-purple); }
+
+.input-group { margin-bottom: 20px; }
+.input-group label { display: flex; justify-content: space-between; margin-bottom: 8px; }
+.label-title { font-weight: 700; font-size: 0.95rem; display: flex; align-items: center; gap: 6px; }
+.label-title i { color: var(--primary-cyan); }
+.label-desc { font-size: 0.75rem; color: var(--text-muted); }
+
+.input-wrapper { position: relative; display: flex; align-items: center; }
+.input-wrapper input { width: 100%; background: rgba(0, 0, 0, 0.4); border: 1.5px solid var(--border-color); border-radius: var(--radius-md); padding: 14px 65px 14px 16px; color: #fff; font-size: 1.1rem; font-weight: 700; outline: none; }
+.input-wrapper input:focus { border-color: var(--primary-purple); box-shadow: 0 0 15px rgba(121, 82, 255, 0.3); }
+.input-unit { position: absolute; right: 16px; font-size: 0.9rem; font-weight: 700; color: var(--text-muted); }
+
+.quick-buttons { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+.quick-buttons button { background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); color: var(--text-muted); font-size: 0.75rem; padding: 5px 10px; border-radius: var(--radius-sm); cursor: pointer; }
+.quick-buttons button:hover { background: rgba(121, 82, 255, 0.2); color: #fff; border-color: var(--primary-purple); }
+
+.radio-grid { display: flex; flex-direction: column; gap: 10px; margin-top: 6px; }
+.radio-card { position: relative; cursor: pointer; }
+.radio-card input { position: absolute; opacity: 0; }
+.radio-content { display: flex; align-items: center; gap: 12px; background: rgba(0, 0, 0, 0.3); border: 1.5px solid var(--border-color); border-radius: var(--radius-md); padding: 12px 16px; }
+.radio-card input:checked + .radio-content { border-color: var(--primary-cyan); background: rgba(0, 210, 255, 0.08); }
+
+.btn-primary { width: 100%; background: var(--primary-gradient); border: none; border-radius: var(--radius-md); padding: 18px; color: #fff; font-size: 1.1rem; font-weight: 800; cursor: pointer; box-shadow: var(--shadow-neon); margin-top: 10px; }
+
+.hidden { display: none !important; }
+.result-section { display: flex; flex-direction: column; gap: 20px; }
+.result-actions-top { display: flex; gap: 10px; }
+.btn-secondary, .btn-highlight { flex: 1; padding: 14px; border-radius: var(--radius-md); font-size: 0.9rem; font-weight: 700; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; }
+.btn-secondary { background: rgba(255, 255, 255, 0.08); border: 1px solid var(--border-color); color: var(--text-main); }
+.btn-highlight { background: linear-gradient(135deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); border: none; color: #fff; }
+
+.story-card-wrapper { width: 100%; display: flex; justify-content: center; }
+.story-card { width: 100%; max-width: 480px; background: #0f121d; border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 28px; padding: 24px; box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6); }
+.card-brand { display: flex; justify-content: space-between; font-size: 0.7rem; font-weight: 800; color: var(--text-dim); margin-bottom: 16px; padding-bottom: 8px; border-bottom: 1px solid rgba(255, 255, 255, 0.08); }
+.tier-banner { border-radius: var(--radius-md); padding: 20px; text-align: center; margin-bottom: 20px; color: #fff; }
+.tier-s { background: var(--tier-s-grad); }
+.tier-a { background: var(--tier-a-grad); }
+.tier-b { background: var(--tier-b-grad); }
+.tier-c { background: var(--tier-c-grad); }
+.tier-f { background: var(--tier-f-grad); }
+.tier-badge { display: inline-block; font-family: 'Outfit', sans-serif; font-size: 0.8rem; font-weight: 900; background: rgba(0, 0, 0, 0.35); padding: 4px 12px; border-radius: 100px; margin-bottom: 6px; }
+.tier-title { font-size: 1.5rem; font-weight: 900; margin-bottom: 6px; }
+.tier-desc { font-size: 0.8rem; opacity: 0.9; }
+
+.card-stats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 20px; }
+.stat-box { background: rgba(255, 255, 255, 0.04); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: var(--radius-sm); padding: 10px 8px; text-align: center; }
+.stat-label { display: block; font-size: 0.7rem; color: var(--text-muted); margin-bottom: 4px; }
+.stat-val { font-family: 'Outfit', sans-serif; font-size: 1.05rem; font-weight: 800; color: #fff; }
+.stat-val.highlight { color: var(--primary-cyan); }
+.stat-val.danger { color: var(--accent-pink); }
+
+.reality-grid { display: flex; flex-direction: column; gap: 12px; margin-bottom: 20px; }
+.reality-item { display: flex; align-items: center; gap: 12px; background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.06); border-radius: var(--radius-md); padding: 12px 14px; }
+.item-icon { font-size: 1.6rem; background: rgba(255, 255, 255, 0.06); width: 44px; height: 44px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.item-category { font-size: 0.7rem; color: var(--text-muted); font-weight: 600; }
+.item-value { font-size: 0.95rem; font-weight: 800; color: #fff; margin: 2px 0; }
+.item-note { font-size: 0.73rem; color: var(--primary-cyan); }
+
+.analysis-card h3 { font-size: 1.1rem; font-weight: 800; margin-bottom: 16px; color: var(--primary-cyan); }
+.analysis-details { display: flex; flex-direction: column; gap: 10px; margin-bottom: 16px; padding-bottom: 14px; border-bottom: 1px solid var(--border-color); }
+.detail-row { display: flex; justify-content: space-between; font-size: 0.9rem; color: var(--text-muted); }
+.detail-row strong { color: var(--text-main); }
+.advice-box { background: rgba(121, 82, 255, 0.1); border-left: 4px solid var(--primary-purple); padding: 14px; border-radius: 0 var(--radius-sm) var(--radius-sm) 0; font-size: 0.85rem; line-height: 1.6; }
+
+.bottom-share-card { text-align: center; }
+.share-buttons { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 12px; }
+.share-btn { border: none; padding: 12px 8px; border-radius: var(--radius-md); font-size: 0.8rem; font-weight: 700; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 6px; color: #fff; }
+.share-btn.kakao { background: #fee500; color: #000; }
+.share-btn.link { background: rgba(255, 255, 255, 0.12); }
+.share-btn.story { background: #e1306c; }
+
+.app-footer { text-align: center; font-size: 0.75rem; color: var(--text-dim); padding: 20px 0; }
+
+--------------------------------------------------------------------------------
+3. app.js 코드
+--------------------------------------------------------------------------------
+function setValue(inputId, value) { document.getElementById(inputId).value = value; }
+function addValue(inputId, addAmount) {
+  const el = document.getElementById(inputId);
+  el.value = (parseInt(el.value) || 0) + addAmount;
+}
+
+function calculateMonthlyNetPay(annualIncomeTenThousand) {
+  const annualIncome = annualIncomeTenThousand * 10000;
+  const monthlyGross = annualIncome / 12;
+  let deductionRate = 0.12;
+  if (annualIncome > 100000000) deductionRate = 0.22;
+  else if (annualIncome > 80000000) deductionRate = 0.195;
+  else if (annualIncome > 60000000) deductionRate = 0.165;
+  else if (annualIncome > 45000000) deductionRate = 0.145;
+  else if (annualIncome > 30000000) deductionRate = 0.13;
+  return Math.round((monthlyGross * (1 - deductionRate)) / 10000);
+}
+
+function calculateResult() {
+  const annualIncome = parseInt(document.getElementById('annualIncome').value);
+  const savings = parseInt(document.getElementById('savings').value);
+  const fixedExpenses = parseInt(document.getElementById('fixedExpenses').value);
+  const lifestyle = document.querySelector('input[name="lifestyle"]:checked').value;
+
+  if (isNaN(annualIncome) || isNaN(savings) || isNaN(fixedExpenses)) {
+    alert('모든 입력값을 정확히 입력해주세요!');
+    return;
+  }
+
+  const monthlyNet = calculateMonthlyNetPay(annualIncome);
+  const monthlyAvailable = monthlyNet - fixedExpenses;
+
+  let carBudgetRate = 0.25;
+  if (lifestyle === 'frugal') carBudgetRate = 0.15;
+  if (lifestyle === 'yolo') carBudgetRate = 0.40;
+  const monthlyCarBudget = Math.max(0, monthlyAvailable * carBudgetRate);
+
+  const carInfo = getCarRecommendation(monthlyCarBudget, monthlyAvailable);
+  const houseInfo = getHousingRecommendation(savings, monthlyAvailable);
+  const carPoorIndex = Math.min(100, Math.max(5, Math.round((fixedExpenses + monthlyCarBudget * 1.5) / monthlyNet * 100)));
+  const tierInfo = getTierInfo(savings, monthlyAvailable, carPoorIndex);
+
+  const coffeeCount = Math.max(0, Math.floor((monthlyAvailable * 10000 * 0.4) / 4500));
+  const deliveryCount = Math.max(0, Math.floor((monthlyAvailable * 10000 * 0.4) / 28000));
+
+  renderResults({ annualIncome, savings, fixedExpenses, monthlyNet, monthlyAvailable, carPoorIndex, carInfo, houseInfo, tierInfo, coffeeCount, deliveryCount });
+
+  document.getElementById('formSection').classList.add('hidden');
+  document.getElementById('resultSection').classList.remove('hidden');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function getCarRecommendation(monthlyCarBudget, monthlyAvailable) {
+  if (monthlyAvailable < 30 || monthlyCarBudget < 15) return { title: "따릉이 & 지하철/버스 패스", note: "차량 구매 시 카푸어 직행! 대중교통이 최고의 재테크" };
+  else if (monthlyCarBudget < 35) return { title: "현대 캐스퍼 / 기아 레이 (경차)", note: "월 할부/유지비 약 25~35만 원선" };
+  else if (monthlyCarBudget < 55) return { title: "현대 아반떼 CN7 / 기아 셀토스", note: "월 유지비 약 40~50만 원선 (가성비 갓생 조합)" };
+  else if (monthlyCarBudget < 85) return { title: "기아 K5 / 스포티지 / KG 토레스", note: "월 유지비 약 65~80만 원선" };
+  else if (monthlyCarBudget < 130) return { title: "현대 그랜저 GN7 / 제네시스 GV70", note: "월 유지비 약 100~120만 원선" };
+  else if (monthlyCarBudget < 200) return { title: "제네시스 G80 / 벤츠 E-Class / BMW 5시리즈", note: "월 유지비 약 150~180만 원선" };
+  else return { title: "포르쉐 타이칸 / 911 / 파나메라", note: "월 유지비 250만 원 이상 감당 가능!" };
+}
+
+function getHousingRecommendation(savings, monthlyAvailable) {
+  const maxMortgageLoan = Math.max(0, monthlyAvailable * 150);
+  const maxHomePrice = Math.round((savings + maxMortgageLoan) / 10000 * 10) / 10;
+  if (maxHomePrice < 1.5) return { title: "청년 안심주택 / 보증금 전세 (원룸)", note: `순자산 ${savings}만 원 기준 대출 활용 권장` };
+  else if (maxHomePrice < 3.5) return { title: "수도권 투룸 오피스텔 / 빌라 (매매 2~3억 대)", note: `최대 전세/매매 한도 약 ${maxHomePrice}억 원 수준` };
+  else if (maxHomePrice < 7.0) return { title: "수도권 24~32평형 아파트 (매매 5~6억 대)", note: `약 ${maxHomePrice}억 원 아파트 진입 가능` };
+  else if (maxHomePrice < 12.0) return { title: "서울 준상급지/수도권 대장 아파트 (8~11억)", note: `약 ${maxHomePrice}억 원 대 내 집 마련 한도` };
+  else return { title: "서울 마용성/강남권 상급지 아파트 (15억 이상)", note: "자산 가치 상위 1%대 주거 영역" };
+}
+
+function getTierInfo(savings, monthlyAvailable, carPoorIndex) {
+  if (savings >= 20000 && monthlyAvailable >= 250) return { badge: "S TIER", class: "tier-s", title: "💎 재벌집 막내아들급 자산 수호자", desc: "압도적인 자산과 강력한 현금 흐름!" };
+  else if (savings >= 8000 || monthlyAvailable >= 150) return { badge: "A TIER", class: "tier-a", title: "🥇 탄탄한 갓생 수호자", desc: "통장이 튼튼하며 카푸어 위험 지대에서 멀리 있습니다." };
+  else if (monthlyAvailable >= 80) return { badge: "B TIER", class: "tier-b", title: "🥈 평화로운 밸런스 유지자", desc: "안정적 현금 흐름을 유지하고 있습니다." };
+  else if (monthlyAvailable >= 30) return { badge: "C TIER", class: "tier-c", title: "⚠️ 카푸어 경계선 주의보!", desc: "고정 지출 다이어트가 필요합니다." };
+  else return { badge: "F TIER", class: "tier-f", title: "🚨 통장 비상사태!", desc: "숨만 쉬어도 마이너스 위험! 짠테크 모드 전환 필요." };
+}
+
+function renderResults(data) {
+  const banner = document.getElementById('tierBanner');
+  banner.className = `tier-banner ${data.tierInfo.class}`;
+  document.getElementById('tierBadge').innerText = data.tierInfo.badge;
+  document.getElementById('tierTitle').innerText = data.tierInfo.title;
+  document.getElementById('tierDesc').innerText = data.tierInfo.desc;
+
+  document.getElementById('monthlyNetPay').innerText = `${data.monthlyNet.toLocaleString()}만 원`;
+  document.getElementById('monthlyAvailable').innerText = `${data.monthlyAvailable.toLocaleString()}만 원`;
+  document.getElementById('carPoorIndex').innerText = `${data.carPoorIndex}%`;
+
+  document.getElementById('recommendedCar').innerText = data.carInfo.title;
+  document.getElementById('carNote').innerText = data.carInfo.note;
+  document.getElementById('recommendedHouse').innerText = data.houseInfo.title;
+  document.getElementById('houseNote').innerText = data.houseInfo.note;
+  document.getElementById('lifestyleFunStat').innerText = `스벅 아메리카노 ${data.coffeeCount}잔 / 배달 ${data.deliveryCount}회`;
+
+  document.getElementById('repAnnualIncome').innerText = `${data.annualIncome.toLocaleString()} 만 원`;
+  document.getElementById('repAnnualNet').innerText = `${(data.monthlyNet * 12).toLocaleString()} 만 원`;
+  document.getElementById('repSavings').innerText = `${data.savings.toLocaleString()} 만 원`;
+  document.getElementById('repEmergencyFund').innerText = `${Math.round(data.fixedExpenses * 6).toLocaleString()} 만 원`;
+
+  let adviceHTML = `<strong>💡 2026 맞춤 재정 팁:</strong><br>`;
+  if (data.carPoorIndex > 50) {
+    adviceHTML += `현재 고정 지출 비율이 높아 무리한 차량 구매 시 카푸어 위험도(${data.carPoorIndex}%)가 높습니다. 지출을 줄이세요.`;
+  } else {
+    adviceHTML += `현재 월 여유자금(${data.monthlyAvailable}만 원) 흐름이 안정적입니다. 연금저축/투자 연계 시 갓생 진입이 빠릅니다.`;
+  }
+  document.getElementById('financialAdvice').innerHTML = adviceHTML;
+}
+
+function resetForm() {
+  document.getElementById('resultSection').classList.add('hidden');
+  document.getElementById('formSection').classList.remove('hidden');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function captureStoryCard() {
+  const cardNode = document.getElementById('storyCardContainer');
+  html2canvas(cardNode, { scale: 2, backgroundColor: '#090a10', useCORS: true }).then(canvas => {
+    const a = document.createElement('a');
+    a.href = canvas.toDataURL("image/png");
+    a.download = `2026_현실연봉진단_결과카드.png`;
+    a.click();
+  });
+}
+
+function copyLink() { navigator.clipboard.writeText(window.location.href).then(() => alert('링크가 복사되었습니다!')); }
+function shareKakao() { alert('카카오톡 공유 버튼 지점입니다.'); }
+================================================================================
+```
