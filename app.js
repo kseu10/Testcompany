@@ -374,7 +374,7 @@ function resetForm() {
 
 function captureStoryCard() {
   const cardNode = document.getElementById('storyCardContainer');
-  html2canvas(cardNode, { scale: 2, backgroundColor: '#090a10', useCORS: true }).then(canvas => {
+  html2canvas(cardNode, { scale: 2, backgroundColor: '#ffffff', useCORS: true }).then(canvas => {
     const a = document.createElement('a');
     a.href = canvas.toDataURL("image/png");
     a.download = `2026_현실연봉계급_결과카드.png`;

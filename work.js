@@ -165,7 +165,7 @@ function shareKakao() {
 
 function captureStoryCard() {
   const cardNode = document.getElementById('storyCardContainer');
-  html2canvas(cardNode, { scale: 2, backgroundColor: '#040914', useCORS: true }).then(canvas => {
+  html2canvas(cardNode, { scale: 2, backgroundColor: '#ffffff', useCORS: true }).then(canvas => {
     const a = document.createElement('a');
     a.href = canvas.toDataURL("image/png");
     a.download = `2026_직장생활유형_귀염부캐카드.png`;

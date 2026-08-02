@@ -173,7 +173,7 @@ function shareKakao() {
 
 function captureStoryCard() {
   const cardNode = document.getElementById('storyCardContainer');
-  html2canvas(cardNode, { scale: 2, backgroundColor: '#120515', useCORS: true }).then(canvas => {
+  html2canvas(cardNode, { scale: 2, backgroundColor: '#ffffff', useCORS: true }).then(canvas => {
     const a = document.createElement('a');
     a.href = canvas.toDataURL("image/png");
     a.download = `2026_연애성향_귀염부캐카드.png`;

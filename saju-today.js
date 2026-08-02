@@ -155,7 +155,7 @@ function shareKakao() {
 
 function captureStoryCard() {
   const cardNode = document.getElementById('storyCardContainer');
-  html2canvas(cardNode, { scale: 2, backgroundColor: '#031209', useCORS: true }).then(canvas => {
+  html2canvas(cardNode, { scale: 2, backgroundColor: '#ffffff', useCORS: true }).then(canvas => {
     const a = document.createElement('a');
     a.href = canvas.toDataURL("image/png");
     a.download = `2026_오늘의운세_귀염행운부적.png`;
