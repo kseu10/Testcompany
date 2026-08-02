@@ -118,7 +118,7 @@ function calculateFinalSpendingResult() {
 
   const archetypes = [
     {
-      img: "work_3.jpg",
+      img: "spending_1.jpg",
       badge: "SSS TIER (탕진 마왕)", class: "tier-sss-plus",
       title: `"${name}님은 감성 충동 탕진 마왕"`,
       desc: "스트레스는 지름신으로 해소! 일단 지르고 보는 감성 충동 1등 탕진러.",
@@ -132,7 +132,7 @@ function calculateFinalSpendingResult() {
       advice: "월급날 자동 적금 이체를 설정하여 강제 시드머니를 선대출 후지출 방식으로 확보하세요!"
     },
     {
-      img: "work_1.jpg",
+      img: "spending_2.jpg",
       badge: "SS TIER (가성비 수집가)", class: "tier-ss",
       title: `"${name}님은 갓생 가성비 혜택 수집가"`,
       desc: "쿠폰, 적립금, 텀블러 할인까지 알뜰하게 챙겨 실속만 쏙 뽑아먹는 자산 재테크 장인.",

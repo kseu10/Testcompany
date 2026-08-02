@@ -118,7 +118,7 @@ function calculateFinalMentalResult() {
 
   const archetypes = [
     {
-      img: "work_2.jpg",
+      img: "mental_1.jpg",
       badge: "SSS TIER (무적 멘탈)", class: "tier-sss-plus",
       title: `"${name}님은 타격감 0% 무적 멘탈 수호자"`,
       desc: "어떤 꼰대 질타나 야근 폭탄에도 타격감 0%! 무적의 포커페이스 보유자.",
@@ -132,7 +132,7 @@ function calculateFinalMentalResult() {
       advice: "내 멘탈 방어력을 바탕으로 주변 사람들에게 따뜻한 안정감을 선사해 보세요!"
     },
     {
-      img: "love_infp.jpg",
+      img: "mental_2.jpg",
       badge: "SS TIER (쿠쿠다스 멘탈)", class: "tier-ss",
       title: `"${name}님은 몽글몽글 겉바속촉 힐링 멘탈"`,
       desc: "남의 한 마디에 이불 킥하며 소설 쓰는 감성파! 하지만 마음만은 세상 따뜻함.",
