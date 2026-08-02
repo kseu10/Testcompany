@@ -57,7 +57,6 @@ function getAgeRankText(ageGroup, annualIncome) {
   return `${b.name} 내 소득 위치: <strong>${percentile}</strong> (${b.name} 중위소득 대비 ${ratio}배)`;
 }
 
-/* 2026 15단계 현실 계급 판정 알고리즘 */
 function get15TierInfo(savings, monthlyAvailable, carPoorIndex, annualIncome) {
   if (savings >= 300000 || (savings >= 150000 && monthlyAvailable >= 1000)) {
     return { badge: "SSS+ TIER", class: "tier-sss-plus", title: "👑 재벌집 막내아들 & 불로소득 수호자", desc: "압도적 다이아 자산! 숨만 쉬어도 불로소득이 쌓입니다." };
@@ -92,7 +91,6 @@ function get15TierInfo(savings, monthlyAvailable, carPoorIndex, annualIncome) {
   }
 }
 
-/* 4대 세부 지표 스탯 계산기 */
 function calculateSubStats(annualIncome, savings, fixedExpenses, carPoorIndex) {
   let incomeGrade = "F Grade";
   if (annualIncome >= 10000) incomeGrade = "SSS Grade";
@@ -223,7 +221,7 @@ function renderFinancialRecipes(lifestyle, savings, monthlyAvailable) {
     });
   } else {
     recipes.push({
-      tag: "📈 절세 & 투파트너",
+      tag: "📈 절세 & 투자 파트너",
       tagClass: "tag-purple",
       name: "연금저축펀드 + S&P500 ETF 분할매수",
       desc: "연 66만 원 세액공제 환급금 챙기기 + 미국 우량지수 ETF에 매월 자동 적립식 투자!",
@@ -241,6 +239,82 @@ function renderFinancialRecipes(lifestyle, savings, monthlyAvailable) {
       <p class="recipe-desc">${r.desc}</p>
     </div>
   `).join('');
+}
+
+/* 대폭 강화된 2026 종합 심층 재정 컨설팅 리포트 렌더링 */
+function renderDeepReport(data) {
+  const { annualIncome, savings, fixedExpenses, monthlyNet, monthlyAvailable, carPoorIndex, lifestyle } = data;
+
+  // 1. 현금흐름 밸런스
+  const annualNet = monthlyNet * 12;
+  const taxDeduction = annualIncome - annualNet;
+  const expRatio = Math.round((fixedExpenses / monthlyNet) * 100);
+  let expHealth = `${expRatio}% (매우 양호)`;
+  if (expRatio >= 55) expHealth = `${expRatio}% (위험: 고정비 다이어트 필수)`;
+  else if (expRatio >= 35) expHealth = `${expRatio}% (적정 범위)`;
+
+  document.getElementById('repAnnualIncome').innerText = `${annualIncome.toLocaleString()} 만 원`;
+  document.getElementById('repAnnualNet').innerText = `${annualNet.toLocaleString()} 만 원`;
+  document.getElementById('repTaxDeductions').innerText = `${taxDeduction.toLocaleString()} 만 원`;
+  document.getElementById('repExpenseRatio').innerText = expHealth;
+
+  // 2. 10년 자산 형성 시뮬레이션 & 시드머니 1억 타임라인 (연 5% 복리 반영)
+  const seedTarget = 10000;
+  const timeEl = document.getElementById('repOneHundredMillionTime');
+  if (savings >= seedTarget) {
+    timeEl.innerText = "이미 1억 달성 완료! 🎉";
+  } else if (monthlyAvailable <= 0) {
+    timeEl.innerText = "달성 안 됨 (적자 상태)";
+  } else {
+    const needed = seedTarget - savings;
+    const monthsNeeded = Math.ceil(needed / monthlyAvailable);
+    const yrs = Math.floor(monthsNeeded / 12);
+    const mos = monthsNeeded % 12;
+    timeEl.innerText = yrs > 0 ? `${yrs}년 ${mos}개월 소요 예정` : `${mos}개월 소요 예정`;
+  }
+
+  const emgTarget = fixedExpenses * 6;
+  const emgRate = Math.min(100, Math.round((savings / emgTarget) * 100));
+  document.getElementById('repEmergencyFundRate').innerText = `${emgRate}% (${emgRate >= 100 ? '충분' : '부족'})`;
+
+  // 3/5/10년 복리 계산 (연 5% 가정)
+  const r = 0.05;
+  const asset3Y = Math.round(savings * Math.pow(1 + r, 3) + (monthlyAvailable * 12 * (Math.pow(1 + r, 3) - 1) / r));
+  const asset5Y = Math.round(savings * Math.pow(1 + r, 5) + (monthlyAvailable * 12 * (Math.pow(1 + r, 5) - 1) / r));
+  const asset10Y = Math.round(savings * Math.pow(1 + r, 10) + (monthlyAvailable * 12 * (Math.pow(1 + r, 10) - 1) / r));
+
+  document.getElementById('repSavingsCurrent').innerText = `${savings.toLocaleString()} 만 원`;
+  document.getElementById('repAsset3Y').innerText = `${asset3Y.toLocaleString()} 만 원`;
+  document.getElementById('repAsset5Y').innerText = `${asset5Y.toLocaleString()} 만 원`;
+  document.getElementById('repAsset10Y').innerText = `${asset10Y.toLocaleString()} 만 원`;
+
+  document.getElementById('repMilestone3Y').innerText = asset3Y >= 10000 ? '수도권 아파트 전세 / 시드머니 완성' : '원룸 전세 / 자산 스노우볼 진입';
+  document.getElementById('repMilestone5Y').innerText = asset5Y >= 30000 ? '수도권 24평 아파트 매매 진입 한도' : '투룸 매매 / 안정적 전세 자금';
+  document.getElementById('repMilestone10Y').innerText = asset10Y >= 70000 ? '서울 준상급지 매매 & 은퇴 자유권' : '수도권 아파트 자가 / 자산가 영역';
+
+  // 3. DSR 대출 한도 & 차·집 리스크
+  const dsrMaxMonthly = monthlyNet * 0.40; // DSR 40%
+  const maxLoan = Math.round((dsrMaxMonthly * 180) / 10000 * 10) / 10; // 30년 상환 대출 한도 추정
+  document.getElementById('repMaxLoanAmount').innerText = `약 ${maxLoan}억 원 한도`;
+  document.getElementById('repMortgageMonthly').innerText = `${Math.round(dsrMaxMonthly).toLocaleString()} 만 원 / 월`;
+
+  const carStressEl = document.getElementById('repCarStressIndex');
+  if (carPoorIndex >= 65) carStressEl.innerText = `고위험 (${carPoorIndex}%)`;
+  else if (carPoorIndex >= 40) carStressEl.innerText = `주의 (${carPoorIndex}%)`;
+  else carStressEl.innerText = `안전 (${carPoorIndex}%)`;
+
+  // 4. 3단계 맞춤 컨설팅 솔루션
+  document.getElementById('solStep1').innerText = expRatio > 40 ? 
+    `현재 고정비 비중이 실수령액의 ${expRatio}%로 높은 편입니다. 월세/알뜰폰/구독 서비스 다이어트로 월 20만 원을 아끼면 5년 후 모이는 자산이 약 1,400만 원 커집니다.` : 
+    `현재 고정비 비중이 ${expRatio}%로 매우 우수합니다. 현재의 알뜰한 지출 구조를 유지하면서 순 잉여 현금을 파킹통장에 즉시 집행하세요.`;
+
+  document.getElementById('solStep2').innerText = savings < 3000 ? 
+    `시드머니 3,000만 원 달성 시점까지는 예적금과 연 3.5%~7% 고금리 파킹통장에 자금의 80%를 몰아넣어 안전하게 자산 덩치를 키우는 것이 핵심입니다.` : 
+    `이미 시드머니가 마련되어 있으므로 청년도약계좌, ISA(비과세 계좌)를 적극 활용해 투자 수익에 대한 세금을 0원으로 방어하세요.`;
+
+  document.getElementById('solStep3').innerText = annualIncome >= 4500 ? 
+    `연봉 ${annualIncome}만 원 소득 구간은 연금저축펀드(연 600만 한도)를 활용하면 연말정산 시 매년 66만 원~99만 원을 국세청으로부터 현금 환급받을 수 있습니다.` : 
+    `청년 우대 주택청약저축을 유지하면서, 남는 여유자금 일부는 미국 S&P500 지수 ETF에 적립식으로 긴 호흡 투자를 시작할 타이밍입니다.`;
 }
 
 function renderResults(data) {
@@ -272,20 +346,8 @@ function renderResults(data) {
   document.getElementById('houseNote').innerText = data.houseInfo.note;
   document.getElementById('lifestyleFunStat').innerText = `스벅 아메리카노 ${data.coffeeCount}잔 / 배달 ${data.deliveryCount}회`;
 
-  document.getElementById('repAnnualIncome').innerText = `${data.annualIncome.toLocaleString()} 만 원`;
-  document.getElementById('repAnnualNet').innerText = `${(data.monthlyNet * 12).toLocaleString()} 만 원`;
-  document.getElementById('repSavings').innerText = `${data.savings.toLocaleString()} 만 원`;
-  document.getElementById('repEmergencyFund').innerText = `${Math.round(data.fixedExpenses * 6).toLocaleString()} 만 원`;
-
+  renderDeepReport(data);
   renderFinancialRecipes(data.lifestyle, data.savings, data.monthlyAvailable);
-
-  let adviceHTML = `<strong>💡 2026 맞춤 재정 팁:</strong><br>`;
-  if (data.carPoorIndex > 50) {
-    adviceHTML += `현재 고정 지출 비율이 높아 무리한 차량 구매 시 카푸어 위험도(${data.carPoorIndex}%)가 높습니다. 지출을 줄이세요.`;
-  } else {
-    adviceHTML += `현재 월 여유자금(${data.monthlyAvailable}만 원) 흐름이 안정적입니다. 연금저축/투자 연계 시 갓생 진입이 빠릅니다.`;
-  }
-  document.getElementById('financialAdvice').innerHTML = adviceHTML;
 }
 
 function resetForm() {
