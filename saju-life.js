@@ -24,12 +24,13 @@ function calculateInstantSajuLife() {
   ];
   const myElem = elements[(birthYear + birthMonth + birthDay) % elements.length];
 
-  const hash = (birthYear * 11 + birthMonth * 19 + birthDay * 23) % 100;
+  // 12가지 독자적 사주 명조 해시
+  const hash = (birthYear * 37 + birthMonth * 17 + birthDay * 13 + (gender === 'M' ? 7 : 3)) % 12;
 
   const sajuProfiles = [
     {
       badge: "대운 만발 (大運)", class: "tier-sss-plus",
-      title: `"${name}님 (${myZodiac}), ${myElem.name} 사주 만세력"`,
+      title: `"${name}님 (${myZodiac}), ${myElem.name} 용득수 사주"`,
       desc: "대지를 뚫고 솟구치는 개척자! 30대 후반 최고의 대운이 오나, 홧김에 지르는 성급함과 보증을 조심해야 합니다.",
       money: "SSS Grade (자산 폭발)", career: "SS Grade (승승장구)", love: "S Grade (운명적 인연)",
       luckyAge: "32세 ~ 44세 (최고의 재물 전성기)",
@@ -45,7 +46,7 @@ function calculateInstantSajuLife() {
     {
       badge: "귀인 조력 (貴人)", class: "tier-ss",
       title: `"${name}님 (${myZodiac}), 온화한 인복과 재물이 마르지 않는 사주"`,
-      desc: "주변 사람들과의 조화가 뛰어나나, 유유부단함과 거절하지 못하는 약점으로 손해를 보기 쉽습니다.",
+      desc: "주변 사람들과의 조화가 뛰어나나, 우유부단함과 거절하지 못하는 약점으로 손해를 보기 쉽습니다.",
       money: "SS Grade (안정적 축재)", career: "SSS Grade (명예 승진)", love: "SS Grade (찰떡 궁합)",
       luckyAge: "28세 ~ 39세 (인복 및 재물 만발기)",
       luckyItem: "행운 색상: 에메랄드 그린 | 행운 숫자: 8, 2",
@@ -56,6 +57,21 @@ function calculateInstantSajuLife() {
       age40s: "풍요로운 삶과 자녀 복으로 안돈하는 시기입니다. ⚠️ 과도한 영양 과다 및 혈관계 질환이 올 수 있으니 체중 및 유산소 운동 관리가 필수입니다.",
       loveMarriage: `💖 친구처럼 편안하고 소통이 잘 되는 배우자를 만나면 평생 금슬이 좋습니다. 🚫 그러나 낭비벽이 심하고 이성 문제가 복잡한 연하/도화살 악연을 만나면 사주 전체의 운이 크게 흔들립니다.`,
       moneyMethod: "동업 절대 금지 & 배당주/저축", careerField: "금융, 서비스, 기획, 교육", luckyColor: "35세 / 41세 이성 풍파 주의", healthCare: "심혈관 & 체중 관리"
+    },
+    {
+      badge: "천우신조 (天佑)", class: "tier-sss",
+      title: `"${name}님 (${myZodiac}), 자수성가형 금전 대운 사주"`,
+      desc: "맨손으로 시작해 시드머니를 수십 배로 튀기는 자수성가형 부자 사주! 헛돈 지출을 차단하세요.",
+      money: "SSS Grade (자수성가)", career: "S+ Grade (독립 사업)", love: "A+ Grade (상생 인연)",
+      luckyAge: "35세 ~ 48세 (재물 대운 최고조)",
+      luckyItem: "행운 색상: 럭키 옐로우 | 행운 숫자: 1, 9",
+      elemTitle: `${name}님 (${myZodiac})의 본성: ${myElem.name} 자수성가 기운`,
+      elemDesc: `${name}님은 남에게 의존하지 않고 본인의 능력과 기술로 부를 일구는 뚝심 사주입니다. 남들이 포기하는 위기 속에서 기회를 잡는 직관이 탁월합니다.`,
+      age20s: "남들보다 밑바닥 고생을 하지만 그만큼 돈 버는 법과 세상 물정을 일찍 체득하게 됩니다.",
+      age30s: "본인의 기술이나 자산이 폭발적으로 상승하는 시기! ⚠️ 조급함에 주식 숏/선물 고위험 투자를 하면 큰 실수를 하니 정석 투자를 유지하세요.",
+      age40s: "안정적인 자산가 반열 안착! 나만의 건물/사업체 보유 가능 사주입니다.",
+      loveMarriage: `💖 차분하고 내조/외조를 잘해주는 가성비 최고 배우자를 만납니다. 🚫 반면 겉멋만 들고 보여주기식 사치를 좋아하는 과소비 악연은 재산을 탕진하게 만듭니다.`,
+      moneyMethod: "고위험 투기 금지 & 정석 채권/부동산", careerField: "자영업, 전문 기술, 투자, 유통", luckyColor: "38세 / 44세 재물 이동 주의", healthCare: "위장 & 관절 관리"
     }
   ];
 

@@ -13,9 +13,9 @@ function calculateInstantDailySaju() {
   const zodiacs = ['원숭이띠', '닭띠', '개띠', '돼지띠', '쥐띠', '소띠', '범띠', '토끼띠', '용띠', '뱀띠', '말띠', '양띠'];
   const myZodiac = zodiacs[birthYear % 12];
 
-  // 매일 달라지는 사주 해시 값 계산
+  // 매일 달라지는 사주 해시 값 계산 (12가지 다채로운 결과)
   const today = new Date();
-  const hash = (birthYear * 7 + birthMonth * 13 + birthDay * 17 + today.getDate() * 31) % 100;
+  const hash = (birthYear * 3 + birthMonth * 7 + birthDay * 11 + today.getDate() * 19) % 12;
   const score = Math.min(100, Math.max(82, 85 + (hash % 16)));
 
   const sajuFortunes = [
@@ -60,6 +60,20 @@ function calculateInstantDailySaju() {
       afternoonText: "오후 12:00~18:00 : 성급하게 결정을 내리지 말고 한 번 더 검토하세요. 꼼꼼함이 큰 실수를 방지해줍니다.",
       eveningText: "저녁 18:00~24:00 : 가벼운 산책이나 좋아하는 취미에 몰입하세요. 오늘 밤 숙면이 내일의 대운을 부릅니다.",
       detailMoney: "90점 (안정 유지)", detailLove: "92점 (평온 조화)", detailWork: "95점 (무탈 순항)", detailHealth: "충분한 휴식"
+    },
+    {
+      badge: `${score}점 (재운 만발 💰)`, class: "tier-sss",
+      title: `"${name}님 (${myZodiac}), 금전 기운이 만발하는 재물 대운의 날"`,
+      desc: "예상치 못한 공돈이나 환급금, 지출 절감 기회가 찾아옵니다. 소중한 지갑을 안전하게 관리하세요!",
+      money: `${score}점 (금전 최고조)`, love: "88점 (평온한 대화)", work: "96점 (계약 성공)",
+      luckyItem: "행운의 숫자: 1, 6 | 행운 색상: 골드 & 블랙",
+      warning: "지인들의 보증 요구나 검증되지 않은 투자 찌라시 주의",
+      detailTitle: `${name}님 (${myZodiac})의 오늘 사주 총운 (財運 - 재물 만발)`,
+      totalNarrative: `오늘 ${name}님의 일진(日辰)은 편재(偏財)와 정재(正財)의 기운이 겹쳐 재물이 샘솟는 날입니다. 지갑이 두둑해지거나 그동안 떼일 뻔했던 돈을 받게 됩니다.`,
+      morningText: "오전 06:00~12:00 : 통장 잔고 및 금융 상태를 점검하기에 가장 좋은 시간입니다.",
+      afternoonText: "오후 12:00~18:00 : 계약이나 비즈니스 제안에서 내가 주도권을 쥐게 됩니다.",
+      eveningText: "저녁 18:00~24:00 : 맛있는 야식을 즐기며 스스로에게 소소한 보상을 선사하세요.",
+      detailMoney: "99점 (재물 극상)", detailLove: "88점 (무탈)", detailWork: "96점 (계약 성사)", detailHealth: "소화기 보양"
     }
   ];
 
@@ -96,14 +110,18 @@ function calculateInstantDailySaju() {
 
 function toggleDeepReport() {
   const el = document.getElementById('deepReportDashboard');
-  const btn = document.getElementById('toggleDeepBtn');
+  const btns = document.querySelectorAll('#toggleDeepBtn');
   if (el.classList.contains('hidden')) {
     el.classList.remove('hidden');
-    btn.innerHTML = '<span><i class="fa-solid fa-chevron-up"></i> 2026 전통 사주 심층 운세 접기 ▲</span>';
+    btns.forEach(btn => {
+      btn.innerHTML = '<span><i class="fa-solid fa-chevron-up"></i> 2026 전통 사주 심층 운세 접기 ▲</span>';
+    });
     el.scrollIntoView({ behavior: 'smooth' });
   } else {
     el.classList.add('hidden');
-    btn.innerHTML = '<span><i class="fa-solid fa-scroll"></i> 2026 전통 사주 심층 운세 풀이 보기 (클릭시 열림) ▼</span>';
+    btns.forEach(btn => {
+      btn.innerHTML = '<span><i class="fa-solid fa-scroll"></i> 2026 전통 사주 심층 운세 풀이 보기 (클릭시 열림) ▼</span>';
+    });
   }
 }
 
