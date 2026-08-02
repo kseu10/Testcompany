@@ -110,6 +110,7 @@ function calculateFinalWorkResult() {
 
   const archetypes = [
     {
+      img: "work_1.jpg",
       badge: "S+ TIER (16가지 유형 중 1위)", class: "tier-s-plus",
       title: `"${name}님은 칼퇴 보장 갓생 요정"`,
       desc: "업무 스킬 만렙! 6시 정각 빛의 속도로 짐 싸서 칼퇴하는 최고 가성비 오피스 엘리트.",
@@ -124,6 +125,7 @@ function calculateFinalWorkResult() {
       advice: "내 업무 성과를 숫자로 시각화해 연봉 협상 시 당당히 제시하세요! 회사 밖에서의 갓생 라이프가 멘탈의 강력한 방어막이 됩니다."
     },
     {
+      img: "work_2.jpg",
       badge: "SSS TIER (16가지 유형 중 2위)", class: "tier-sss-plus",
       title: `"${name}님은 오피스 실세 총괄 리더"`,
       desc: "팀원들의 절대적 신뢰! 일도 잘하고 분위기까지 하드캐리하는 최강 총괄 리더 유형.",
@@ -138,6 +140,7 @@ function calculateFinalWorkResult() {
       advice: "모든 일을 혼자 안고 가지 말고 팀원들에게 적절히 권한을 위임하세요. 휴식이 최고의 생산성 리뉴얼입니다."
     },
     {
+      img: "work_3.jpg",
       badge: "SS TIER (16가지 유형 중 3위)", class: "tier-ss",
       title: `"${name}님은 마음속 퇴직금 10억 장전러"`,
       desc: "주머니 속에 사직서 품고 다니는 조용한 이직 대기자! 월급 루팡 시크 전문가.",
@@ -201,6 +204,10 @@ function calculateFinalWorkResult() {
   else if (leaveCount >= 4) archetype = archetypes[0];
   else if (socialCount >= 4) archetype = archetypes[4];
   else archetype = archetypes[(leadCount + resignCount + socialCount) % archetypes.length];
+
+  if (archetype.img) {
+    document.getElementById('workArchetypeImg').src = archetype.img;
+  }
 
   document.getElementById('workBadge').innerText = archetype.badge;
   document.getElementById('workBanner').className = `tier-banner ${archetype.class}`;

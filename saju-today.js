@@ -20,6 +20,7 @@ function calculateInstantDailySaju() {
 
   const sajuFortunes = [
     {
+      img: "saju_dragon.jpg",
       badge: `${score}점 (대길 ♠)`, class: "tier-sss-plus",
       title: `"${name}님 (${myZodiac}), 용이 여의주를 얻듯 대운이 트이는 날"`,
       desc: "막혔던 물꼬가 트이고 구직, 금전, 계약에서 귀인의 조력을 얻습니다. 오늘 시작하는 일은 결실이 큽니다!",
@@ -78,6 +79,10 @@ function calculateInstantDailySaju() {
   ];
 
   const res = sajuFortunes[hash % sajuFortunes.length];
+
+  if (res.img) {
+    document.getElementById('sajuTodayArchetypeImg').src = res.img;
+  }
 
   document.getElementById('todayBadge').innerText = res.badge;
   document.getElementById('todayBanner').className = `tier-banner ${res.class}`;

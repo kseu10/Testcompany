@@ -116,6 +116,7 @@ function calculateFinalLoveResult() {
 
   const mbtiProfiles = {
     ENFP: {
+      img: "love_enfp.jpg",
       badge: "SSS TIER (로맨스 비타민)", class: "tier-sss-plus",
       title: `"${name}님은 로맨틱 직진 에너자이저 (ENFP)"`,
       desc: "내 사람에게 100% 올인! 함께 있으면 웃음이 끊이지 않는 세상 달콤한 비타민 사랑꾼.",
@@ -128,6 +129,7 @@ function calculateFinalLoveResult() {
       advice: "연인에게도 가끔 혼자 쉴 수 있는 힐링 타임을 선사하는 센스를 발휘하면 완벽한 로맨스가 완성됩니다."
     },
     INFJ: {
+      img: "love_infj.jpg",
       badge: "SS TIER (소울메이트)", class: "tier-ss",
       title: `"${name}님은 깊은 감성 힐링 오아시스 (INFJ)"`,
       desc: "상대방의 마음 깊은 곳까지 진심으로 보듬어주는 1:1 영혼의 소울메이트 연애러.",
@@ -140,6 +142,7 @@ function calculateFinalLoveResult() {
       advice: "혼자 참지 말고 속상한 점을 즉시 부드럽게 표현하세요! 대화가 관계를 훨씬 건강하게 만듭니다."
     },
     INFP: {
+      img: "love_infp.jpg",
       badge: "S+ TIER (순정 댕댕이)", class: "tier-sss",
       title: `"${name}님은 감성 폭발 다정 댕댕이 (INFP)"`,
       desc: "오직 나만을 바라보는 순정파! 상대방 눈빛만 봐도 기분을 캐치하는 로맨티스트.",
@@ -152,6 +155,7 @@ function calculateFinalLoveResult() {
       advice: "상대방의 무뚝뚝함이 당신을 싫어해서가 아님을 인지하세요! 스스로에게 확신을 갖는 것이 중요합니다."
     },
     INTJ: {
+      img: "love_intj.jpg",
       badge: "SS TIER (스마트 갓생러)", class: "tier-ss",
       title: `"${name}님은 갓생 연애 스마트 팩폭러 (INTJ)"`,
       desc: "연애도 이성적이고 똑똑하게! 쓸데없는 감정 소모 없이 미래를 함께 일구는 갓생 러버.",
@@ -214,6 +218,10 @@ function calculateFinalLoveResult() {
   };
 
   const archetype = mbtiProfiles[mbti] || mbtiProfiles.ENFP;
+
+  if (archetype.img) {
+    document.getElementById('loveArchetypeImg').src = archetype.img;
+  }
 
   document.getElementById('loveBadge').innerText = archetype.badge;
   document.getElementById('loveBanner').className = `tier-banner ${archetype.class}`;

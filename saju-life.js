@@ -29,6 +29,7 @@ function calculateInstantSajuLife() {
 
   const sajuProfiles = [
     {
+      img: "saju_dragon.jpg",
       badge: "대운 만발 (大運)", class: "tier-sss-plus",
       title: `"${name}님 (${myZodiac}), ${myElem.name} 용득수 사주"`,
       desc: "대지를 뚫고 솟구치는 개척자! 30대 후반 최고의 대운이 오나, 홧김에 지르는 성급함과 보증을 조심해야 합니다.",
@@ -76,6 +77,10 @@ function calculateInstantSajuLife() {
   ];
 
   const res = sajuProfiles[hash % sajuProfiles.length];
+
+  if (res.img) {
+    document.getElementById('sajuLifeArchetypeImg').src = res.img;
+  }
 
   document.getElementById('sajuBadge').innerText = res.badge;
   document.getElementById('sajuBanner').className = `tier-banner ${res.class}`;
