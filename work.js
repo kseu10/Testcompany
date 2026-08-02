@@ -1,23 +1,9 @@
 const workQuestions = [
+  // LEAVE (1, 5, 9)
   {
-    title: "1. 출근길 지하철/버스 안, 당신의 머릿속을 가득 채우는 생각은?",
-    a: { text: "오늘 할 일 우선순위 정리 & 아이스 아메리카노 들이키기", score: "LEAD" },
-    b: { text: "로또 당첨되면 오늘 당장 사직서 제출하는 상상", score: "RESIGN" }
-  },
-  {
-    title: "2. 퇴근 5분 전, 상사가 '잠깐 나 좀 보자' 할 때 당신의 반응은?",
-    a: { text: "속으로 눈물 흘리며 포커페이스 유지 후 자리에 앉는다", score: "SOCIAL" },
+    title: "1. 퇴근 5분 전, 상사가 '잠깐 나 좀 보자' 할 때 당신의 반응은?",
+    a: { text: "속으로 눈물 흘리며 포커페이스 유지 후 자리에 앉는다", score: "LEAD" },
     b: { text: "빛의 속도로 짐 싸서 가방 메고 칼퇴 모드 진입", score: "LEAVE" }
-  },
-  {
-    title: "3. 팀 회의 중 말도 안 되는 아이디어를 우기는 빌런 동료가 있다면?",
-    a: { text: "팩트와 논리로 조목조목 반박하여 바로잡는다", score: "LEAD" },
-    b: { text: "속으로 '그래 니 마음대로 해라' 하고 얌전히 있는다", score: "RESIGN" }
-  },
-  {
-    title: "4. 오늘따라 일이 진짜 일찍 끝났다! 남은 1시간 동안 당신은?",
-    a: { text: "엑셀 수식 단축키 연구 및 다음 프로젝트 사전 준비", score: "LEAD" },
-    b: { text: "모니터 보안 필름 믿고 이직 앱 & 쇼핑몰 둘러보기", score: "RESIGN" }
   },
   {
     title: "5. 회식 장소로 무제한 삼겹살집이 결정되었을 때 당신의 자세는?",
@@ -25,27 +11,55 @@ const workQuestions = [
     b: { text: "1차만 묵묵히 흡입 후 슬그머니 탈출 찬스 노리기", score: "LEAVE" }
   },
   {
-    title: "6. 회사 탕비실에서 맛있는 신상 간식을 발견했을 때?",
-    a: { text: "친한 동료들에게 나눠주며 오피스 수다 한바탕", score: "SOCIAL" },
-    b: { text: "내 자리 서랍에 2개 챙겨두고 비밀 힐링 타임", score: "LEAVE" }
+    title: "9. 오늘따라 일을 진짜 일찍 마감했다! 퇴근 전 남은 1시간 동안 당신은?",
+    a: { text: "노이즈 캔슬링 헤드폰 착용하고 조용히 갓생 마인드 컨트롤", score: "LEAVE" },
+    b: { text: "다음 프로젝트 문서 템플릿과 단축키 연구하기", score: "LEAD" }
+  },
+  // LEAD (2, 6, 10)
+  {
+    title: "2. 팀 회의 중 말도 안 되는 아이디어를 우기는 빌런 동료가 있다면?",
+    a: { text: "팩트와 수치 데이터로 조목조목 반박하여 바로잡는다", score: "LEAD" },
+    b: { text: "속으로 '그래 니 마음대로 해라' 하고 얌전히 있는다", score: "RESIGN" }
   },
   {
-    title: "7. 상사가 나에게 원래 내 업무가 아닌 뜬금없는 일을 부탁하면?",
+    title: "6. 상사가 나에게 원래 내 업무가 아닌 뜬금없는 프로젝트를 부탁하면?",
     a: { text: "\"제 일정상 무리입니다\"라고 매몰차게 거절하거나 조율한다", score: "LEAD" },
     b: { text: "속으로 욕하면서 일단 \"네 알겠습니다\" 하고 수용한다", score: "RESIGN" }
   },
   {
-    title: "8. 직장 생활을 버티게 하는 당신의 가장 큰 원동력은?",
-    a: { text: "꼬박꼬박 통장에 꽂히는 월급과 소소한 쇼핑/맛집", score: "LEAVE" },
-    b: { text: "내 커리어 성장과 더 좋은 곳으로의 이직 스펙", score: "LEAD" }
+    title: "10. 금요일 오후 5시, 긴급 수정 요청 메일이 도착했을 때?",
+    a: { text: "15분 만에 초스피드로 처리하고 기분 좋게 퇴근한다", score: "LEAD" },
+    b: { text: "월요일 아침으로 미루고 일단 주말 모드로 전환한다", score: "RESIGN" }
+  },
+  // SOCIAL (3, 7, 11)
+  {
+    title: "3. 회사 탕비실에서 맛있는 신상 간식을 발견했을 때?",
+    a: { text: "친한 동료들에게 나눠주며 오피스 수다 한바탕", score: "SOCIAL" },
+    b: { text: "내 자리 서랍에 2개 챙겨두고 비밀 힐링 타임", score: "LEAVE" }
   },
   {
-    title: "9. 금요일 오후 5시, 긴급 수정 요청 메일이 도착했을 때?",
-    a: { text: "월요일 아침으로 미루고 일단 주말 모드로 전환한다", score: "RESIGN" },
-    b: { text: "15분 만에 초스피드로 처리하고 기분 좋게 퇴근한다", score: "LEAD" }
+    title: "7. 새 프로젝트 팀원이 배치되었을 때 라포 형성 스타일은?",
+    a: { text: "커피 한 잔 사주면서 직장 꿀팁과 팀 분위기 친절히 전수", score: "SOCIAL" },
+    b: { text: "메신저로 필수 매뉴얼 링크만 전달하고 내 할 일 집중", score: "LEAD" }
   },
   {
-    title: "10. 나에게 '직장'이란 어떤 의미인가?",
+    title: "11. 회사 사내 동호회나 사제 모임 제안이 들어왔을 때?",
+    a: { text: "인맥도 쌓고 친목 도모를 위해 적극 참여한다", score: "SOCIAL" },
+    b: { text: "회사 밖에서까지 직장 동료 보고 싶지 않아 거절한다", score: "LEAVE" }
+  },
+  // RESIGN (4, 8, 12)
+  {
+    title: "4. 출근길 지하철/버스 안, 당신의 머릿속을 가득 채우는 생각은?",
+    a: { text: "오늘 할 일 우선순위 정리 & 아이스 아메리카노 들이키기", score: "LEAD" },
+    b: { text: "로또 당첨되면 오늘 당장 사직서 제출하는 상상", score: "RESIGN" }
+  },
+  {
+    title: "8. 모니터 화면 한쪽에 몰래 켜두는 비밀 창의 정체는?",
+    a: { text: "이직 스카우트 앱, 사직서 양식, 블라인드 앱", score: "RESIGN" },
+    b: { text: "업무 엑셀 단축키 모음집 및 갓생 포트폴리오", score: "LEAD" }
+  },
+  {
+    title: "12. 나에게 '직장'이란 어떤 의미인가?",
     a: { text: "내 자아실현과 연봉 펌핑을 위한 커리어 진딤돌", score: "LEAD" },
     b: { text: "숨만 쉬어도 돈 나가는 현대 사회의 피할 수 없는 수단", score: "RESIGN" }
   }
@@ -155,6 +169,7 @@ function calculateFinalWorkResult() {
       advice: "현재 회사에서의 성과도 이직용 포트폴리오의 훌륭한 무기가 됩니다! 차분히 이직할 곳을 확정한 후 기분 좋게 사직서를 던지세요."
     },
     {
+      img: "work_1.jpg",
       badge: "S TIER (16가지 유형 중 4위)", class: "tier-s",
       title: `"${name}님은 영혼 가출 영끌 야근러"`,
       desc: "메신저 답장은 빛보다 빠르나 영혼은 이미 퇴근한 오피스 야근 보살.",
@@ -169,6 +184,7 @@ function calculateFinalWorkResult() {
       advice: "버티는 것만이 능사가 아닙니다. 본인의 업무 한계를 명확히 전달하고 휴식을 챙기세요."
     },
     {
+      img: "work_2.jpg",
       badge: "A+ TIER (16가지 유형 중 5위)", class: "tier-s",
       title: `"${name}님은 회식 생존 마스터"`,
       desc: "상사 기분 다 맞추면서 속으로는 1등 칼퇴 타이밍 계산기 굴리는 오피스 인싸.",
@@ -183,6 +199,7 @@ function calculateFinalWorkResult() {
       advice: "모든 사람에게 좋은 사람이 될 필요는 없습니다. 내 진짜 커리어와 실속을 일순위로 챙기세요."
     },
     {
+      img: "work_3.jpg",
       badge: "A TIER (16가지 유형 중 6위)", class: "tier-s-plus",
       title: `"${name}님은 엑셀 마법사 자동화 장인"`,
       desc: "3시간 할 일을 단축키와 수식으로 10분 만에 끝내는 업무 효율성 극대화 천재.",
@@ -202,7 +219,7 @@ function calculateFinalWorkResult() {
   if (leadCount >= 4) archetype = archetypes[1];
   else if (resignCount >= 4) archetype = archetypes[2];
   else if (leaveCount >= 4) archetype = archetypes[0];
-  else if (socialCount >= 4) archetype = archetypes[4];
+  else if (socialCount >= 3) archetype = archetypes[4];
   else archetype = archetypes[(leadCount + resignCount + socialCount) % archetypes.length];
 
   if (archetype.img) {

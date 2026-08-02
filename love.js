@@ -1,53 +1,67 @@
 const loveQuestions = [
+  // E vs I (1, 5, 8)
   {
     title: "1. 짝사랑하는 사람이 생겼을 때, 당신의 행동은?",
     a: { text: "눈치 보지 않고 은근슬쩍 다가가 적극적으로 호감 표시하기", score: "E" },
     b: { text: "속으로 혼자 짝사랑하며 상대방의 행동을 관찰하기", score: "I" }
   },
   {
-    title: "2. 연인과의 데이트 코스를 짤 때 당신의 스타일은?",
-    a: { text: "분 단위 동선과 식당 예약, 주차장까지 완벽하게 준비", score: "J" },
-    b: { text: "그날 기분 따라 당일 끌리는 대로 자유롭게 이동", score: "P" }
+    title: "5. 첫 데이트를 마치고 집에 도착했을 때 당신의 행동은?",
+    a: { text: "아직 아쉬워서 바로 전화를 걸거나 톡으로 수다 떨기", score: "E" },
+    b: { text: "오늘 피곤했으니 혼자 씻고 온전히 힐링 타임 갖기", score: "I" }
   },
+  {
+    title: "8. 연인과 함께 이성 지인들과의 모임에 갔을 때 당신은?",
+    a: { text: "분위기를 주도하며 사람들과 신나게 수다 떨기", score: "E" },
+    b: { text: "연인 곁에 조용히 붙어서 조용히 미소 짓고 있기", score: "I" }
+  },
+  // S vs N (2, 6, 9)
+  {
+    title: "2. 데이트 중 갑작스러운 비가 쏟아질 때 당신의 반응은?",
+    a: { text: "현실적으로 근처 편의점 달려가 우산 2개 빠르게 사기", score: "S" },
+    b: { text: "'우산 하나로 같이 쓰면 로맨틱 영화 한 장면인가?' 상상하기", score: "N" }
+  },
+  {
+    title: "6. 연인에게 기념일 선물을 고를 때 당신의 기준은?",
+    a: { text: "평소 상대방이 정말 필요했던 실용성 100% 생필품/가전", score: "S" },
+    b: { text: "의미가 담긴 세상 하나뿐인 커스텀 굿즈와 감동 손편지", score: "N" }
+  },
+  {
+    title: "9. 연인과 해외여행 코스를 구상할 때 더 설레는 순간은?",
+    a: { text: "검증된 대표 맛집과 접근성 좋은 최저가 호텔 예약할 때", score: "S" },
+    b: { text: "이국적인 길거리와 몽환적인 야경 낭만을 상상할 때", score: "N" }
+  },
+  // T vs F (3, 7, 11)
   {
     title: "3. 연인이 '오늘 나 회사에서 너무 속상했어'라고 말할 때?",
     a: { text: "\"무슨 일이야? 힘들었겠다 ㅠㅠ\" 감정 이입하며 토닥이기", score: "F" },
     b: { text: "\"누가 무슨 문제 원인을 제공했는데?\" 객관적 해결책 제시", score: "T" }
   },
   {
-    title: "4. 데이트 중 갑작스러운 비가 올 때 당신의 반응은?",
-    a: { text: "현실적으로 근처 편의점 달려가 우산 2개 빠르게 사기", score: "S" },
-    b: { text: "'우산 하나로 같이 쓰면 로맨틱 영화 한 장면인가?' 상상하기", score: "N" }
-  },
-  {
-    title: "5. 첫 데이트 후 집으로 돌아가는 길, 가장 먼저 드는 생각은?",
-    a: { text: "오늘 나눈 대화를 복기하며 '나한테 호감 있었나?' 감정 체크", score: "F" },
-    b: { text: "오늘 피곤했는데 집에 가서 씻고 쉬어야지 현실 체력 체크", score: "T" }
-  },
-  {
-    title: "6. 연인과 말다툼이 일어났을 때 당신의 대화 해결법은?",
+    title: "7. 연인과 말다툼이 일어났을 때 당신의 대화 해결법은?",
     a: { text: "서운했던 감정을 솔직히 털어놓고 당일 바로 풀어야 함", score: "F" },
     b: { text: "서로 감정이 가라앉을 때까지 이성적으로 쿨다운 타임 갖기", score: "T" }
   },
   {
-    title: "7. 기념일 선물로 더 선호하는 스타일은?",
-    a: { text: "손편지와 평소 상대방이 갖고 싶어했던 감동 서프라이즈", score: "F" },
-    b: { text: "실용성 100% 최신 가전/브랜드 필수 아이템", score: "T" }
+    title: "11. 연인이 파격적인 새로운 헤어스타일로 나타났는데 어색하다면?",
+    a: { text: "상대방 기분 맞춰주려고 \"우와 색다르고 예쁜데?\" 무조건 칭찬", score: "F" },
+    b: { text: "솔직한 편이라 \"음 전 머리가 당신에게 훨씬 잘 어울려\" 팩트 전달", score: "T" }
+  },
+  // J vs P (4, 10, 12)
+  {
+    title: "4. 연인과의 데이트 코스를 짤 때 당신의 스타일은?",
+    a: { text: "분 단위 동선과 식당 예약, 주차장까지 완벽하게 준비", score: "J" },
+    b: { text: "그날 기분 따라 당일 끌리는 대로 자유롭게 이동", score: "P" }
   },
   {
-    title: "8. 연인과 주말에 같이 집데이트할 때 선호하는 일과는?",
-    a: { text: "넷플릭스 같이 보며 맛있는 배달 음식 먹고 꽁냥거리기", score: "E" },
-    b: { text: "각자 자기 할 일(게임, 독서) 하면서 중간중간 대화하기", score: "I" }
+    title: "10. 데이트 전날 밤, 당신의 출격 준비 자세는?",
+    a: { text: "내일 입을 옷과 소지품을 미리 착착 세팅하고 일찍 자기", score: "J" },
+    b: { text: "당일 아침 눈뜨는 대로 끌리는 옷 골라 입기", score: "P" }
   },
   {
-    title: "9. 연인과 해외여행 계획을 세울 때 당신의 행동은?",
-    a: { text: "일자별/시간별 분 단위 엑셀 일정을 미리 짠다", score: "J" },
-    b: { text: "항공권과 숙소만 잡고 구체적 일정은 현지에서 끌리는 대로", score: "P" }
-  },
-  {
-    title: "10. 당신이 생각하는 이상적인 연애 상태란?",
-    a: { text: "서로의 삶에 깊이 동화되어 세상 제일 친한 베프가 되는 것", score: "F" },
-    b: { text: "서로의 주체성과 갓생 라이프를 존중하며 함께 성장하는 것", score: "T" }
+    title: "12. 약속 시간 30분 전, 연인이 갑자기 늦는다고 카톡이 왔을 때?",
+    a: { text: "미리 근처 카페 위치나 대안 일정을 변경해 둔다", score: "J" },
+    b: { text: "\"괜찮아 천천히 와~\" 하고 근처 눈에 보이는 곳 들어가 있기", score: "P" }
   }
 ];
 
@@ -112,7 +126,7 @@ function calculateFinalLoveResult() {
   const jCount = userScores.filter(s => s === 'J').length;
   const pCount = userScores.filter(s => s === 'P').length;
 
-  const mbti = `${eCount >= iCount ? 'E' : 'I'}${sCount >= nCount ? 'S' : 'N'}${tCount >= fCount ? 'T' : 'F'}${jCount >= pCount ? 'J' : 'P'}`;
+  const mbti = `${eCount > iCount ? 'E' : 'I'}${sCount > nCount ? 'S' : 'N'}${tCount > fCount ? 'T' : 'F'}${jCount > pCount ? 'J' : 'P'}`;
 
   const mbtiProfiles = {
     ENFP: {
@@ -168,6 +182,7 @@ function calculateFinalLoveResult() {
       advice: "때로는 옳고 그름을 가리는 것보다 \"속상했겠네\"라는 공감 한 마디가 훨씬 강력한 사랑의 무기입니다."
     },
     ENTP: {
+      img: "love_enfp.jpg",
       badge: "S TIER (재치만점 밀당러)", class: "tier-s-plus",
       title: `"${name}님은 재치만점 티키타카 마스터 (ENTP)"`,
       desc: "지루할 틈이 없는 유쾌한 연애! 솔직하고 센스 넘치는 티키타카 능력자.",
@@ -180,6 +195,7 @@ function calculateFinalLoveResult() {
       advice: "연인이 진지한 표정일 때는 농담을 멈추고 깊이 있게 들어주는 진정성을 보여주세요!"
     },
     ESTJ: {
+      img: "love_intj.jpg",
       badge: "SS TIER (든든한 해결사)", class: "tier-ss",
       title: `"${name}님은 든든한 가성비 오피서 (ESTJ)"`,
       desc: "말보다 확실한 행동과 준비성! 연인의 문제를 대신 해결해 주는 든든한 버팀목.",
@@ -192,6 +208,7 @@ function calculateFinalLoveResult() {
       advice: "상대방의 자율성도 인정해 주고 조급하게 가르치려 하지 않는 자세가 필요합니다."
     },
     ISFP: {
+      img: "love_infp.jpg",
       badge: "S TIER (힐링 아티스트)", class: "tier-s",
       title: `"${name}님은 자유로운 힐링 아티스트 (ISFP)"`,
       desc: "구속은 거절한다! 따뜻한 온기와 편안함으로 마음을 녹여주는 힐링 러버.",
@@ -204,6 +221,7 @@ function calculateFinalLoveResult() {
       advice: "좋고 싫음을 명확하게 표현해 보세요! 연인도 당신의 진짜 취향을 알고 싶어 합니다."
     },
     ENTJ: {
+      img: "love_intj.jpg",
       badge: "SSS TIER (카리스마 리더)", class: "tier-sss-plus",
       title: `"${name}님은 비전 100% 카리스마 리더 (ENTJ)"`,
       desc: "연애도 함께 승승장구! 연인의 성장을 돕고 미래를 설계하는 비전형 사랑꾼.",
@@ -230,10 +248,10 @@ function calculateFinalLoveResult() {
   document.getElementById('bestMatch').innerText = archetype.best;
   document.getElementById('worstMatch').innerText = archetype.worst;
 
-  document.getElementById('statLoveExpress').innerText = fCount >= 3 ? 'SSS Grade' : 'A Grade';
-  document.getElementById('statJealousy').innerText = eCount >= 3 ? 'A Grade' : 'SSS Grade';
-  document.getElementById('statSomeWin').innerText = sCount >= 3 ? 'S+ Grade' : 'A Grade';
-  document.getElementById('statDateCost').innerText = jCount >= 3 ? 'SSS Grade' : 'S Grade';
+  document.getElementById('statLoveExpress').innerText = fCount >= 2 ? 'SSS Grade' : 'A Grade';
+  document.getElementById('statJealousy').innerText = eCount >= 2 ? 'A Grade' : 'SSS Grade';
+  document.getElementById('statSomeWin').innerText = sCount >= 2 ? 'S+ Grade' : 'A Grade';
+  document.getElementById('statDateCost').innerText = jCount >= 2 ? 'SSS Grade' : 'S Grade';
 
   /* 심층 연애 리포트 렌더링 */
   document.getElementById('loveStyleText').innerText = archetype.style;
