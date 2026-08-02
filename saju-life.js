@@ -30,32 +30,32 @@ function calculateInstantSajuLife() {
     {
       badge: "대운 만발 (大運)", class: "tier-sss-plus",
       title: `"${name}님 (${myZodiac}), ${myElem.name} 사주 만세력"`,
-      desc: "대지를 뚫고 솟구치는 강인한 개척자! 30대 후반부터 인생 최고의 재물 대운이 찾아오는 사주입니다.",
+      desc: "대지를 뚫고 솟구치는 개척자! 30대 후반 최고의 대운이 오나, 홧김에 지르는 성급함과 보증을 조심해야 합니다.",
       money: "SSS Grade (자산 폭발)", career: "SS Grade (승승장구)", love: "S Grade (운명적 인연)",
       luckyAge: "32세 ~ 44세 (최고의 재물 전성기)",
       luckyItem: "행운 색상: 딥 블루 & 골드 | 행운 숫자: 7, 3",
-      elemTitle: `${name}님 (${myZodiac})의 본성: ${myElem.name} 기운`,
-      elemDesc: `${name}님은 타고난 주체성과 곧은 결단력을 지닌 사주입니다. 남 밑에 길들여지기보다 본인만의 비전과 사업/전문성으로 판을 짜는 거목(巨木)의 기운을 가졌습니다. 시련이 와도 귀인의 도우미로 1초 만에 반등합니다.`,
-      age20s: "시드머니와 기술, 직업적 전문성을 차곡차곡 쌓아 올리는 준비와 경험의 시기입니다. 헛돈 쓰지 않고 투자 밑천을 다집니다.",
-      age30s: "인생 최고의 대운이 시작되는 승승장구 시기! 부동산 자가 마련 및 직업적 최고 성과로 내 삶의 주도권을 잡게 됩니다.",
-      age40s: "자산가 반열 진입 및 불로소득 시스템 완성기! 가문이 번창하고 수복강녕의 복을 누리며 존경받는 인물이 됩니다.",
-      loveMarriage: `배우자는 나를 진심으로 존중하고 보듬어주는 온화한 기운의 소유자입니다. 결이 잘 맞는 사람과 조화를 이루어 결혼 후 재산이 수 배 이상 늘어나는 '경사스러운 인연'을 맺게 됩니다.`,
-      moneyMethod: "안전자산 + 핵심 부동산", careerField: "전문직, IT, 사업, 관리직", luckyColor: "딥 블루 & 백색", healthCare: "간 보양 & 숙면 필수"
+      elemTitle: `${name}님 (${myZodiac})의 본성: ${myElem.name} 빛과 그림자`,
+      elemDesc: `${name}님은 강한 추진력과 강인한 결단력을 지녔으나, 성격이 불같아 홧김에 지르거나 남의 시선을 너무 의식하다 헛돈을 날리는 치명적 약점이 있습니다. 강점인 추진력은 살리되 홧김에 내리는 단독 결정만 제어하면 큰 부자가 됩니다.`,
+      age20s: "시드머니와 인맥을 다지는 시기입니다. ⚠️ 다만 친구 보증이나 주위의 감언이설에 속아 헛돈을 떼이거나 배신을 당할 위험이 매우 높으니 20대 금전 거래는 철저히 막아야 합니다.",
+      age30s: "인생 최고의 대운이 오며 내 집 마련과 직업적 성과가 폭발합니다. ⚠️ 주의: 대박을 노리고 홧김에 무모한 갭투자를 감행하면 37세 전후 일시적 자금 융통 단절을 겪게 됩니다.",
+      age40s: "부동산 자가 안착 및 안정적 불로소득 완성기! 가문이 번창하나 ⚠️ 지나친 만성 피로와 스트레스로 건강 악재가 올 수 있으니 간과 수면 관리가 필수입니다.",
+      loveMarriage: `💖 나를 조용히 감싸주고 이해해 주는 온화한 토(土) 기운 배우자와 결합하면 재산이 수 배로 불어납니다. 🚫 반면 자존심만 세고 남 탓만 하는 무책임한 악연을 만나면 사주상 재산이 반토막 나는 풍파를 겪게 됩니다.`,
+      moneyMethod: "친척/친구 보증 금지 & 안전 부동산", careerField: "전문직, IT, 사업, 관리직", luckyColor: "37세 / 43세 구설수 경계", healthCare: "간 보양 & 숙면 필수"
     },
     {
       badge: "귀인 조력 (貴人)", class: "tier-ss",
       title: `"${name}님 (${myZodiac}), 온화한 인복과 재물이 마르지 않는 사주"`,
-      desc: "주변 사람들과의 조화가 뛰어나고, 시간이 흐를수록 귀인이 꼬리를 물고 이어지는 만복의 사주입니다.",
+      desc: "주변 사람들과의 조화가 뛰어나나, 유유부단함과 거절하지 못하는 약점으로 손해를 보기 쉽습니다.",
       money: "SS Grade (안정적 축재)", career: "SSS Grade (명예 승진)", love: "SS Grade (찰떡 궁합)",
       luckyAge: "28세 ~ 39세 (인복 및 재물 만발기)",
       luckyItem: "행운 색상: 에메랄드 그린 | 행운 숫자: 8, 2",
-      elemTitle: `${name}님 (${myZodiac})의 본성: ${myElem.name} 조화의 기운`,
-      elemDesc: `${name}님은 친화력과 뛰어난 공감 능력으로 대인관계에서 큰 명예를 얻는 사주입니다. 타인에게 신뢰를 주어 중요한 보직이나 사업 파트너로 낙점되며, 평생 재물이 끊이지 않는 복을 타고났습니다.`,
-      age20s: "넓은 인맥과 좋은 평판을 쌓아 올리는 인복 구축기입니다. 상사나 선배의 귀인을 만나 빠른 성장을 경험합니다.",
-      age30s: "안정적인 고수익과 명예를 동시에 안게 되는 전성기! 가정을 이루고 직장에서 핵심 간부로 승진합니다.",
-      age40s: "풍요로운 삶과 여유로운 리더십을 발휘하는 안정기! 자녀들의 성장과 축적된 부로 주변의 부러움을 받습니다.",
-      loveMarriage: `친구처럼 편안하면서도 서로에게 감정적 안식처가 되어주는 최상의 배우자를 만납니다. 서로의 명운을 보완해주어 평생 금슬이 좋을 사주입니다.`,
-      moneyMethod: "월세/배당소득 + 저축", careerField: "금융, 서비스, 기획, 교육", luckyColor: "파스텔 핑크 & 그린", healthCare: "심혈관 & 영양 관리"
+      elemTitle: `${name}님 (${myZodiac})의 본성: ${myElem.name} 빛과 그림자`,
+      elemDesc: `${name}님은 뛰어난 친화력과 공감 능력으로 대인관계에서 큰 명예를 얻지만, 거절을 못 해 타인의 부탁이나 빚을 안아버리는 치명적 헛점이 있습니다. 확실하게 'NO'를 외치는 것이 사주상 부자가 되는 단 하나의 개운법입니다.`,
+      age20s: "귀인의 조력으로 빠른 직업적 성장을 이룹니다. ⚠️ 단, 연애나 인간관계에서 거절을 못해 상처받고 헛돈을 쓰는 도화살 풍파를 주의하세요.",
+      age30s: "안정적인 고수익과 명예를 품는 전성기! ⚠️ 35세 무렵 동업 제안이나 주식 찌라시에 낚여 자산을 날릴 위험이 있으니 독단적 동업은 절대 피하세요.",
+      age40s: "풍요로운 삶과 자녀 복으로 안돈하는 시기입니다. ⚠️ 과도한 영양 과다 및 혈관계 질환이 올 수 있으니 체중 및 유산소 운동 관리가 필수입니다.",
+      loveMarriage: `💖 친구처럼 편안하고 소통이 잘 되는 배우자를 만나면 평생 금슬이 좋습니다. 🚫 그러나 낭비벽이 심하고 이성 문제가 복잡한 연하/도화살 악연을 만나면 사주 전체의 운이 크게 흔들립니다.`,
+      moneyMethod: "동업 절대 금지 & 배당주/저축", careerField: "금융, 서비스, 기획, 교육", luckyColor: "35세 / 41세 이성 풍파 주의", healthCare: "심혈관 & 체중 관리"
     }
   ];
 
@@ -89,6 +89,23 @@ function calculateInstantSajuLife() {
   document.getElementById('startSection').classList.add('hidden');
   document.getElementById('resultSection').classList.remove('hidden');
   window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function toggleLifeDeepReport() {
+  const el = document.getElementById('lifeSajuDashboard');
+  const btns = document.querySelectorAll('#toggleLifeDeepBtn');
+  if (el.classList.contains('hidden')) {
+    el.classList.remove('hidden');
+    btns.forEach(btn => {
+      btn.innerHTML = '<span><i class="fa-solid fa-chevron-up"></i> 2026 사주 평생 총운 접기 ▲</span>';
+    });
+    el.scrollIntoView({ behavior: 'smooth' });
+  } else {
+    el.classList.add('hidden');
+    btns.forEach(btn => {
+      btn.innerHTML = '<span><i class="fa-solid fa-scroll"></i> 📖 2026 사주 평생 총운 만세력 자세히 보기 (클릭시 열림) ▼</span>';
+    });
+  }
 }
 
 function resetForm() {

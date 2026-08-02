@@ -137,6 +137,11 @@
           <button class="share-btn-item kakao" onclick="shareKakao()"><i class="fa-solid fa-comment"></i> 카톡 공유</button>
         </div>
 
+        <!-- 눈에 띄는 1:1 평생 총운 풀이 열기/접기 대형 버튼 -->
+        <button type="button" id="toggleLifeDeepBtn" class="btn-primary" style="background: linear-gradient(135deg, #d97706 0%, #7c3aed 100%); margin-top: 4px; margin-bottom: 14px; box-shadow: 0 4px 20px rgba(217, 119, 6, 0.35);" onclick="toggleLifeDeepReport()">
+          <span><i class="fa-solid fa-scroll"></i> 📖 2026 사주 평생 총운 만세력 자세히 보기 (클릭시 열림) ▼</span>
+        </button>
+
         <div id="storyCardContainer" class="story-card-wrapper">
           <div class="story-card">
             <div class="card-brand">
@@ -154,6 +159,11 @@
               <h3 class="tier-title" id="sajuTitle">"화(火) 기운 만발! 재물 대운의 수호자"</h3>
               <p class="tier-desc" id="sajuDesc">열정과 행동력이 넘치며 30대 후반 최고의 재물 대운이 찾아오는 사주입니다!</p>
             </div>
+
+            <!-- 결과 카드 내부 1:1 평생 총운 열기 버튼 -->
+            <button type="button" class="btn-primary" style="background: linear-gradient(135deg, #d97706 0%, #7c3aed 100%); width: 100%; margin: 10px 0 14px 0; border-radius: 14px; font-size: 0.95rem; color: #ffffff; box-shadow: 0 4px 15px rgba(217,119,6,0.4);" onclick="toggleLifeDeepReport()">
+              <span><i class="fa-solid fa-scroll"></i> 📖 2026 사주 평생 총운 만세력 자세히 보기 ▼</span>
+            </button>
 
             <div class="sub-stats-grid">
               <div class="sub-stat-box">
@@ -203,83 +213,86 @@
           </div>
         </div>
 
-        <!-- 🔮 사주 평생 총운 종합 감명서 대시보드 -->
-        <div id="lifeSajuDashboard" class="glass-card deep-report-dashboard" style="margin-top: 14px;">
+        <!-- 🔮 사주 평생 총운 정통 감명서 대시보드 (버튼 클릭시 열림) -->
+        <div id="lifeSajuDashboard" class="glass-card deep-report-dashboard hidden" style="margin-top: 14px;">
           <div class="dashboard-header">
             <h3><i class="fa-solid fa-crown"></i> 사주 평생 총운 정통 감명서</h3>
-            <span class="report-badge" style="background: #fef3c7; color: #d97706; border-color: #fde047;"><i class="fa-solid fa-stamp"></i> 1:1 평생 명리학 총운</span>
+            <span class="report-badge" style="background: #fef3c7; color: #d97706; border-color: #fde047;"><i class="fa-solid fa-stamp"></i> 1:1 명리학 길흉 분석</span>
           </div>
 
-          <!-- 1. 오행 본성 및 타고난 성향 -->
+          <!-- 1. 오행 본성 (타고난 장점 vs 치명적 약점) -->
           <div class="report-block">
-            <h4><i class="fa-solid fa-fire"></i> <span id="lifeElemTitle">오행(五行) 타고난 기운과 성향</span></h4>
+            <h4><i class="fa-solid fa-fire"></i> <span id="lifeElemTitle">오행(五行) 타고난 빛과 그림자 (장점 & 치명적 헛점)</span></h4>
             <div class="saju-quote-box">
               <p id="lifeElemDesc">
-                타고난 오행의 기운이 강하게 서려 있어 대지를 뚫고 솟아나는 강인한 주체성과 추진력을 보유하고 있습니다. 어떤 난관이 찾아와도 귀인의 조력과 본인만의 탁월한 감각으로 자산을 불려 나가는 사주입니다.
+                강인한 주체성을 보유하고 있으나, 홧김에 지르는 성급함과 타인의 말에 쉽게 휘둘리는 헛점이 존재합니다. 강점은 키우고 치명적인 무모함을 제어할 때 큰 부자가 됩니다.
               </p>
             </div>
           </div>
 
-          <!-- 2. 나이대별 인생 대운 흐름 -->
+          <!-- 2. 나이대별 인생 대운 & 주의할 삼재/풍파 시기 -->
           <div class="report-block">
-            <h4><i class="fa-solid fa-timeline"></i> 나이대별 인생 대운 흐름 (20대 ~ 50대+)</h4>
+            <h4><i class="fa-solid fa-timeline"></i> 나이대별 대운 흐름 & 피해야 할 풍파</h4>
             <div class="solution-steps">
               <div class="time-flow-card morning">
-                <span class="time-flow-badge morning">20대 (연마기)</span>
+                <span class="time-flow-badge morning">20대 (기반 구축기)</span>
                 <div class="time-flow-body">
-                  <h5>씨앗을 심고 경험과 밑천을 다지는 시기</h5>
-                  <p id="age20sText">시드머니와 기술, 직업적 전문성을 차곡차곡 쌓아 올리는 준비 단계입니다.</p>
+                  <h5>경험 축적 시기 & ⚠️ 돈 떼임/친구 보증 주의</h5>
+                  <p id="age20sText">시드머니를 모으는 중요한 성장의 시기이나, 감언이설에 속아 헛돈을 날리거나 인간관계 배신을 당할 위험이 있으니 보증이나 무모한 금전 거래는 절대 금물입니다.</p>
                 </div>
               </div>
 
               <div class="time-flow-card afternoon">
                 <span class="time-flow-badge afternoon">30대 (대운 개막기)</span>
                 <div class="time-flow-body">
-                  <h5>재물과 직업의 혈자리가 뚫리는 대운 승승장구</h5>
-                  <p id="age30sText">인생 최고의 대운이 시작되며 내 집 마련 및 커리어 상승이 폭발하는 시기입니다.</p>
+                  <h5>인생 최고 전성기 & ⚠️ 홧김에 지르는 갭투자 경계</h5>
+                  <p id="age30sText">재물과 관운이 크게 열리는 만복의 시기입니다. 다만 한 번의 대박을 노리고 무리하게 무모한 영끌이나 갭투자를 시도하면 일시적 자금 단절이 오니 내실을 기하세요.</p>
                 </div>
               </div>
 
               <div class="time-flow-card evening">
-                <span class="time-flow-badge evening">40대~50대+ (전성기)</span>
+                <span class="time-flow-badge evening">40대~50대+ (안돈기)</span>
                 <div class="time-flow-body">
-                  <h5>자산가 반열 진입 및 수복강녕 안돈기</h5>
-                  <p id="age40sText">부동산 자가 마련과 안정적인 불로소득으로 가문이 번창하는 최고 황금기입니다.</p>
+                  <h5>부동산 자가 안착 & ⚠️ 만성 피로/건강 소홀 방어</h5>
+                  <p id="age40sText">안정적인 불로소득과 자산이 완성되는 최고 황금기입니다. 과도한 업무 스트레스로 건강을 해칠 수 있으니 수면과 간 보양에 신경 쓰셔야 합니다.</p>
                 </div>
               </div>
             </div>
           </div>
 
-          <!-- 3. 어떤 연애 & 어떤 결혼인가 -->
+          <!-- 3. 연애 & 결혼 (운명적 인연 vs 절대 피해야 할 파멸 악연) -->
           <div class="report-block">
-            <h4><i class="fa-solid fa-heart"></i> 연애운 & 배우자 궁합 가이드</h4>
-            <div class="saju-quote-box" style="border-left-color: #ec4899; background: #fff5f8;">
+            <h4><i class="fa-solid fa-heart-crack"></i> 연애/결혼 - 찰떡 인연 vs 절대 피해야 할 파멸 악연</h4>
+            <div class="saju-quote-box" style="border-left-color: #e11d48; background: #fff5f8;">
               <p id="loveMarriageText">
-                나를 보듬어주고 이해해 주는 다정한 배우자와 인연이 깊습니다. 서로의 경리적 성장을 돕는 찰떡 궁합을 만나 결혼 후 자산이 수 배 이상 불어나는 복 있는 인연을 맺게 됩니다.
+                나를 존중하고 온화하게 보듬어주는 배우자와는 수 배의 재산을 일구지만, 내 자산을 갈아먹고 남 탓만 하는 무책임한 악연을 만나면 사주상 재산이 반토막 나는 풍파를 겪으니 사람을 신중히 가려야 합니다.
               </p>
             </div>
           </div>
 
-          <!-- 4. 미래 재물운 & 개운 비법 -->
+          <!-- 4. 패망을 막는 4대 개운 비방 -->
           <div class="report-block">
-            <h4><i class="fa-solid fa-coins"></i> 재물운, 출세운 & 개운 비방법</h4>
+            <h4><i class="fa-solid fa-shield-halved"></i> 패망을 막고 부자 되는 4대 개운 비방</h4>
             <div class="report-grid-4">
               <div class="r-card" style="background: #fff7ed; border-color: #ffedd5;">
-                <span class="r-label">💰 재물 모으는 법</span>
-                <span class="r-val highlight" id="moneyMethodText">안전자산 + 부동산</span>
+                <span class="r-label">💸 재물 손실 막는 법</span>
+                <span class="r-val highlight" id="moneyMethodText">보증 금지 & 안전자산</span>
               </div>
               <div class="r-card" style="background: #f0f9ff; border-color: #bae6fd;">
-                <span class="r-label">💼 출세 최고 직업</span>
-                <span class="r-val highlight" id="careerFieldText" style="color: #0284c7;">전문직 & 사업</span>
+                <span class="r-label">💼 성공 직업 적성</span>
+                <span class="r-val highlight" id="careerFieldText" style="color: #0284c7;">전문직 & 관리직</span>
               </div>
               <div class="r-card" style="background: #faf5ff; border-color: #f3e8ff;">
-                <span class="r-label">🍀 행운의 색상</span>
-                <span class="r-val" id="luckyColorText" style="color: #7c3aed;">딥 블루 & 골드</span>
+                <span class="r-label">⚠️ 조심할 풍파/나이</span>
+                <span class="r-val warning" id="luckyColorText" style="color: #dc2626;">37세/43세 구설수 경계</span>
               </div>
               <div class="r-card" style="background: #ecfdf5; border-color: #a7f3d0;">
-                <span class="r-label">🧘 건강 관리</span>
-                <span class="r-val warning" id="healthCareText" style="color: #059669;">간/수면 보양</span>
+                <span class="r-label">🧘 필수 건강 비방</span>
+                <span class="r-val warning" id="healthCareText" style="color: #059669;">간 보양 & 숙면</span>
               </div>
+            </div>
+          </div>
+        </div>
             </div>
           </div>
         </div>
