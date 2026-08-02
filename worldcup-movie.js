@@ -41,6 +41,9 @@ function renderPair() {
   document.getElementById('roundTitle').innerHTML = `<i class="fa-solid fa-trophy"></i> ${currentRoundName} (${matchNum}/${totalPairs})`;
   document.getElementById('matchProgress').innerText = `Match ${matchNum}`;
 
+  const candA = roundList[currentPairIndex * 2];
+  const candB = roundList[currentPairIndex * 2 + 1];
+
   const visualA = candA.img ? `<img src="${candA.img}" class="villain-img-illustration" alt="${candA.title}">` : `<span class="villain-emoji-scene">${candA.scene || candA.icon}</span>`;
   const visualB = candB.img ? `<img src="${candB.img}" class="villain-img-illustration" alt="${candB.title}">` : `<span class="villain-emoji-scene">${candB.scene || candB.icon}</span>`;
 
