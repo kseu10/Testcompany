@@ -94,6 +94,19 @@ function calculateInstantDailySaju() {
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
+function toggleDeepReport() {
+  const el = document.getElementById('deepReportDashboard');
+  const btn = document.getElementById('toggleDeepBtn');
+  if (el.classList.contains('hidden')) {
+    el.classList.remove('hidden');
+    btn.innerHTML = '<span><i class="fa-solid fa-chevron-up"></i> 2026 전통 사주 심층 운세 접기 ▲</span>';
+    el.scrollIntoView({ behavior: 'smooth' });
+  } else {
+    el.classList.add('hidden');
+    btn.innerHTML = '<span><i class="fa-solid fa-scroll"></i> 2026 전통 사주 심층 운세 풀이 보기 (클릭시 열림) ▼</span>';
+  }
+}
+
 function resetForm() {
   document.getElementById('resultSection').classList.add('hidden');
   document.getElementById('startSection').classList.remove('hidden');

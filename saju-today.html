@@ -117,6 +117,11 @@
           <button class="share-btn-item kakao" onclick="shareKakao()"><i class="fa-solid fa-comment"></i> 카톡 공유</button>
         </div>
 
+        <!-- 눈에 띄는 1:1 심층 사주 풀이 열기/접기 버튼 -->
+        <button type="button" id="toggleDeepBtn" class="btn-primary" style="background: linear-gradient(135deg, #7c3aed 0%, #d97706 100%); margin-top: 4px; margin-bottom: 14px; box-shadow: 0 4px 20px rgba(124, 58, 237, 0.35);" onclick="toggleDeepReport()">
+          <span><i class="fa-solid fa-scroll"></i> 2026 전통 사주 심층 운세 풀이 보기 (클릭시 열림) ▼</span>
+        </button>
+
         <div id="storyCardContainer" class="story-card-wrapper">
           <div class="story-card">
             <div class="card-brand">
@@ -183,8 +188,8 @@
           </div>
         </div>
 
-        <!-- 전통 사주 심층 총운 & 시간대별 상세 풀이 대시보드 -->
-        <div class="glass-card deep-report-dashboard" style="margin-top: 14px;">
+        <!-- 전통 사주 심층 총운 & 시간대별 상세 풀이 대시보드 (버튼 클릭 시 펼쳐짐) -->
+        <div id="deepReportDashboard" class="glass-card deep-report-dashboard hidden" style="margin-top: 14px;">
           <div class="dashboard-header">
             <h3><i class="fa-solid fa-scroll"></i> 전통 사주 2026 심층 운세 풀이</h3>
             <span class="report-badge"><i class="fa-solid fa-moon"></i> 1:1 명리학 정밀 분석</span>
