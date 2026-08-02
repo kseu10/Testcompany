@@ -76,6 +76,11 @@
           <button class="share-btn-item kakao" onclick="shareKakao()"><i class="fa-solid fa-comment"></i> 카톡 공유</button>
         </div>
 
+        <!-- 눈에 띄는 1:1 오피스 부캐 심층 팩폭 리포트 열기/접기 대형 버튼 -->
+        <button type="button" id="toggleWorkDeepBtn" class="btn-primary" style="background: linear-gradient(135deg, #0284c7 0%, #7c3aed 100%); margin-top: 4px; margin-bottom: 14px; box-shadow: 0 4px 20px rgba(2, 132, 199, 0.35);" onclick="toggleWorkDeepReport()">
+          <span><i class="fa-solid fa-scroll"></i> 📖 2026 오피스 부캐 심층 팩폭 리포트 보기 (클릭시 열림) ▼</span>
+        </button>
+
         <div id="storyCardContainer" class="story-card-wrapper">
           <div class="story-card">
             <div class="card-brand">
@@ -93,6 +98,11 @@
               <h3 class="tier-title" id="workTitle">"칼퇴 보장 갓생 요정"</h3>
               <p class="tier-desc" id="workDesc">업무는 빛의 속도로 마감하고 6시 00분 정각 퇴근합니다!</p>
             </div>
+
+            <!-- 결과 카드 내부 1:1 오피스 심층 리포트 열기 버튼 -->
+            <button type="button" class="btn-primary" style="background: linear-gradient(135deg, #0284c7 0%, #7c3aed 100%); width: 100%; margin: 10px 0 14px 0; border-radius: 14px; font-size: 0.95rem; color: #ffffff; box-shadow: 0 4px 15px rgba(2,132,199,0.4);" onclick="toggleWorkDeepReport()">
+              <span><i class="fa-solid fa-scroll"></i> 📖 2026 오피스 부캐 심층 팩폭 리포트 보기 ▼</span>
+            </button>
 
             <div class="sub-stats-grid">
               <div class="sub-stat-box">
@@ -138,6 +148,71 @@
             <div class="card-footer">
               <span>#2026직장생활 #오피스부캐 #칼퇴보장 #퇴사지수</span>
               <span class="watermark-url">real-asset-2026.app</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 💼 오피스 부캐 심층 팩폭 리포트 대시보드 (버튼 클릭 시 펼쳐짐) -->
+        <div id="workDeepDashboard" class="glass-card deep-report-dashboard hidden" style="margin-top: 14px;">
+          <div class="dashboard-header">
+            <h3><i class="fa-solid fa-briefcase"></i> 오피스 부캐 1:1 심층 팩폭 리포트</h3>
+            <span class="report-badge" style="background: #e0f2fe; color: #0284c7; border-color: #bae6fd;"><i class="fa-solid fa-fire"></i> 2026 직장인 뼈분석</span>
+          </div>
+
+          <!-- 1. 업무 스타일 & 본성 진단 -->
+          <div class="report-block">
+            <h4><i class="fa-solid fa-user-gear"></i> 나만의 업무 스타일 & 오피스 본성</h4>
+            <div class="saju-quote-box" style="border-left-color: #0284c7; background: #f0f9ff;">
+              <p id="workStyleText">
+                업무는 군더더기 없이 깔끔하게 마감하고 6시 정각 빛의 속도로 짐 싸서 칼퇴하는 오피스 실속형 갓생러입니다.
+              </p>
+            </div>
+          </div>
+
+          <!-- 2. 오피스 핵심 장점 vs 치명적 헛점 -->
+          <div class="report-block">
+            <h4><i class="fa-solid fa-bolt"></i> 현실 장점 vs ⚠️ 치명적 헛점 (약점)</h4>
+            <div class="solution-steps">
+              <div class="time-flow-card morning">
+                <span class="time-flow-badge morning" style="background: #0284c7;">오피스 장점 🌟</span>
+                <div class="time-flow-body">
+                  <h5>탁월한 효율성과 깔끔한 시간 관리</h5>
+                  <p id="workStrengthText">할 일은 수식과 단축키로 초스피드 마감하여 남에게 피해를 주지 않고 깔끔합니다.</p>
+                </div>
+              </div>
+
+              <div class="time-flow-card evening">
+                <span class="time-flow-badge evening" style="background: #dc2626;">치명적 약점 ⚠️</span>
+                <div class="time-flow-body">
+                  <h5>상사의 뜬금 오지랖이나 부당한 지시에 표정 관리 불가</h5>
+                  <p id="workWeaknessDetailText">비효율적인 업무 프로세스나 무능한 동료를 보면 표정이 서늘해지며 멘탈이 사르르 녹아내립니다.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 3. 환상의 찰떡 짝꿍 vs 피해야 할 극혐 빌런 -->
+          <div class="report-block">
+            <h4><i class="fa-solid fa-handshake"></i> ❤️ 찰떡 짝꿍 유형 vs 💔 극혐 빌런 궁합</h4>
+            <div class="report-grid-4">
+              <div class="r-card" style="background: #f0fdf4; border-color: #bbf7d0; grid-column: span 2;">
+                <span class="r-label" style="color: #16a34a;">💖 환상의 오피스 찰떡 짝꿍</span>
+                <span class="r-val highlight" id="workBestPartnerText" style="color: #15803d;">말없이 자기 할 일 100% 해내는 갓생러</span>
+              </div>
+              <div class="r-card" style="background: #fef2f2; border-color: #fecaca; grid-column: span 2;">
+                <span class="r-label" style="color: #dc2626;">🚫 절대 피해야 할 극혐 빌런</span>
+                <span class="r-val warning" id="workWorstPartnerText" style="color: #b91c1c;">일 떠넘기고 퇴근 5분 전 일 주는 꼰대</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- 4. 2026 직장생활 생존 & 연봉 펌핑 팩폭 조언 -->
+          <div class="report-block">
+            <h4><i class="fa-solid fa-lightbulb"></i> 🛠️ 2026 직장인 연봉 펌핑 & 생존 팩폭 조언</h4>
+            <div class="saju-quote-box" style="border-left-color: #7c3aed; background: #faf5ff;">
+              <p id="workAdviceText">
+                내 성과를 엑셀 수치로 포트폴리오화하여 연봉 협상 시 당당히 제시하세요! 회사 밖에서도 나만의 부캐/경력을 키우면 멘탈이 흔들리지 않습니다.
+              </p>
             </div>
           </div>
         </div>

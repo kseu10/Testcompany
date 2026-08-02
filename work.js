@@ -1,53 +1,53 @@
 const workQuestions = [
   {
-    title: "Q1. 퇴근 10분 전, 예상치 못한 추가 업무가 내려왔을 때 나의 행동은?",
-    a: { text: "\"내일 출근하자마자 1순위로 빠르게 처리하겠습니다!\" 6시 칼퇴", score: "LEAVE" },
-    b: { text: "한숨 한 번 크게 쉬고 컴퓨터 다시 켜서 야근 시작", score: "OVERTIME" }
+    title: "1. 출근길 지하철/버스 안, 당신의 머릿속을 가득 채우는 생각은?",
+    a: { text: "오늘 할 일 우선순위 정리 & 아이스 아메리카노 들이키기", score: "LEAD" },
+    b: { text: "로또 당첨되면 오늘 당장 사직서 제출하는 상상", score: "RESIGN" }
   },
   {
-    title: "Q2. 점심시간 메뉴를 정할 때 나의 자세는?",
-    a: { text: "\"오늘 은화수식당 돈까스 가시죠!\" 메뉴와 장소 주도적 제안", score: "LEAD" },
-    b: { text: "\"저는 다 좋습니다!\" 무난하게 대세에 합류", score: "FOLLOW" }
+    title: "2. 퇴근 5분 전, 상사가 '잠깐 나 좀 보자' 할 때 당신의 반응은?",
+    a: { text: "속으로 눈물 흘리며 포커페이스 유지 후 자리에 앉는다", score: "SOCIAL" },
+    b: { text: "빛의 속도로 짐 싸서 가방 메고 칼퇴 모드 진입", score: "LEAVE" }
   },
   {
-    title: "Q3. 상사의 썰렁한 아재 개그를 들었을 때 나의 멘탈은?",
-    a: { text: "\"와 부장님 진짜 미쳤다 ㅋㅋㅋ\" 리액션 폭발 사회생활 갓생", score: "SOCIAL" },
-    b: { text: "은은하게 입꼬리만 올려 예의상 미소 발사", score: "QUIET" }
+    title: "3. 팀 회의 중 말도 안 되는 아이디어를 우기는 빌런 동료가 있다면?",
+    a: { text: "팩트와 논리로 조목조목 반박하여 바로잡는다", score: "LEAD" },
+    b: { text: "속으로 '그래 니 마음대로 해라' 하고 얌전히 있는다", score: "RESIGN" }
   },
   {
-    title: "Q4. 월요일 아침 출근길 버스/지하철 안에서 드는 생각은?",
-    a: { text: "\"이번 주도 갓생 살아서 통장 두둑하게 불려야지!\"", score: "WORK" },
-    b: { text: "\"아... 로또 1등 당첨되게 해주세요 제발...\"", score: "RESIGN" }
+    title: "4. 오늘따라 일이 진짜 일찍 끝났다! 남은 1시간 동안 당신은?",
+    a: { text: "엑셀 수식 단축키 연구 및 다음 프로젝트 사전 준비", score: "LEAD" },
+    b: { text: "모니터 보안 필름 믿고 이직 앱 & 쇼핑몰 둘러보기", score: "RESIGN" }
   },
   {
-    title: "Q5. 실수로 일에 오류가 발생했을 때 나의 대처는?",
-    a: { text: "즉시 팀장님께 솔직하게 보고하고 빠르게 수습책 마련", score: "LEAD" },
-    b: { text: "혼자 땀 뻘뻘 흘리며 조용히 원인 조치 후 해결", score: "QUIET" }
+    title: "5. 회식 장소로 무제한 삼겹살집이 결정되었을 때 당신의 자세는?",
+    a: { text: "고기 구우면서 분위기 띄우고 적당히 상사 칭찬해 주기", score: "SOCIAL" },
+    b: { text: "1차만 묵묵히 흡입 후 슬그머니 탈출 찬스 노리기", score: "LEAVE" }
   },
   {
-    title: "Q6. 회의 시간에 아이디어 발표를 요청받았을 때 나는?",
-    a: { text: "미리 준비한 슬라이드와 생각한 안건을 당당하게 발표", score: "LEAD" },
-    b: { text: "남들이 말하는 의견을 청취하며 핵심만 요약 정리", score: "FOLLOW" }
+    title: "6. 회사 탕비실에서 맛있는 신상 간식을 발견했을 때?",
+    a: { text: "친한 동료들에게 나눠주며 오피스 수다 한바탕", score: "SOCIAL" },
+    b: { text: "내 자리 서랍에 2개 챙겨두고 비밀 힐링 타임", score: "LEAVE" }
   },
   {
-    title: "Q7. 금요일 오후 5시 30분의 내 심정은?",
-    a: { text: "이미 마음은 퇴근길! 마우스 쥐는 손이 파르르 떨림", score: "LEAVE" },
-    b: { text: "월요일에 할 업무 리스트 미리 다이어리에 정리", score: "WORK" }
+    title: "7. 상사가 나에게 원래 내 업무가 아닌 뜬금없는 일을 부탁하면?",
+    a: { text: "\"제 일정상 무리입니다\"라고 매몰차게 거절하거나 조율한다", score: "LEAD" },
+    b: { text: "속으로 욕하면서 일단 \"네 알겠습니다\" 하고 수용한다", score: "RESIGN" }
   },
   {
-    title: "Q8. 회사 동료가 개인적인 고민을 털어놓을 때 나는?",
-    a: { text: "동료의 처지에 깊이 공감해주며 함께 사수 다이어트 감정 나누기", score: "SOCIAL" },
-    b: { text: "이직이나 솔루션 등 현실적 이직 루트 분석 조언", score: "QUIET" }
+    title: "8. 직장 생활을 버티게 하는 당신의 가장 큰 원동력은?",
+    a: { text: "꼬박꼬박 통장에 꽂히는 월급과 소소한 쇼핑/맛집", score: "LEAVE" },
+    b: { text: "내 커리어 성장과 더 좋은 곳으로의 이직 스펙", score: "LEAD" }
   },
   {
-    title: "Q9. 연봉 협상 시즌이 다가왔을 때 나의 마음가짐은?",
-    a: { text: "내가 일년 동안 이룬 성과 자료 싹 정리해서 강력하게 요구", score: "LEAD" },
-    b: { text: "회사가 제시하는 연봉 테이블 안에서 원만하게 서명", score: "FOLLOW" }
+    title: "9. 금요일 오후 5시, 긴급 수정 요청 메일이 도착했을 때?",
+    a: { text: "월요일 아침으로 미루고 일단 주말 모드로 전환한다", score: "RESIGN" },
+    b: { text: "15분 만에 초스피드로 처리하고 기분 좋게 퇴근한다", score: "LEAD" }
   },
   {
-    title: "Q10. 나에게 있어서 '회사'란 어떤 의미인가?",
-    a: { text: "내 자아실현과 경력을 쌓아 올리는 무대", score: "WORK" },
-    b: { text: "나의 소중한 취미와 갓생을 유지하기 위한 든든한 월급 창고", score: "RESIGN" }
+    title: "10. 나에게 '직장'이란 어떤 의미인가?",
+    a: { text: "내 자아실현과 연봉 펌핑을 위한 커리어 진딤돌", score: "LEAD" },
+    b: { text: "숨만 쉬어도 돈 나가는 현대 사회의 피할 수 없는 수단", score: "RESIGN" }
   }
 ];
 
@@ -57,26 +57,25 @@ let workScores = [];
 function startWorkQuiz() {
   const name = document.getElementById('workName').value.trim();
   if (!name) {
-    alert('직장인 이름 또는 닉네임을 입력해 주세요!');
+    alert('이름 또는 닉네임을 입력해 주세요!');
     return;
   }
-  workQIdx = 0;
-  workScores = [];
   document.getElementById('startSection').classList.add('hidden');
   document.getElementById('quizSection').classList.remove('hidden');
+  workQIdx = 0;
+  workScores = [];
   renderWorkQuestion();
 }
 
 function renderWorkQuestion() {
   const q = workQuestions[workQIdx];
-  const total = workQuestions.length;
-  const pct = Math.round(((workQIdx + 1) / total) * 100);
+  const progressPercent = Math.round(((workQIdx + 1) / workQuestions.length) * 100);
+  
+  document.getElementById('progressFill').style.width = `${progressPercent}%`;
+  document.getElementById('progressText').innerText = `${workQIdx + 1} / ${workQuestions.length} 문항 (${progressPercent}%)`;
 
-  document.getElementById('progressFill').style.width = `${pct}%`;
-  document.getElementById('progressText').innerText = `${workQIdx + 1} / ${total} 문항 (${pct}%)`;
-
-  const container = document.getElementById('questionContainer');
-  container.innerHTML = `
+  const qContainer = document.getElementById('questionContainer');
+  qContainer.innerHTML = `
     <h3 class="q-title">${q.title}</h3>
     <div class="q-options">
       <button class="option-btn" onclick="answerWorkQuestion('${q.a.score}')">
@@ -109,52 +108,111 @@ function calculateFinalWorkResult() {
   const socialCount = workScores.filter(s => s === 'SOCIAL').length;
   const resignCount = workScores.filter(s => s === 'RESIGN').length;
 
-  let archetype = {
-    badge: "S+ TIER", class: "tier-s-plus",
-    title: `"${name}님은 칼퇴 보장 갓생 요정"`,
-    desc: "업무 스킬 만렙! 6시 정각 빛의 속도로 짐 싸서 칼퇴하는 오피스 엘리트.",
-    weapon: "아이스 아메리카노 + 노이즈 캔슬링 헤드폰",
-    weakness: "퇴근 5분 전 \"잠깐 나 좀 보자\""
-  };
-
-  if (leadCount >= 3 && socialCount >= 2) {
-    archetype = {
+  const archetypes = [
+    {
+      badge: "S+ TIER", class: "tier-s-plus",
+      title: `"${name}님은 칼퇴 보장 갓생 요정"`,
+      desc: "업무 스킬 만렙! 6시 정각 빛의 속도로 짐 싸서 칼퇴하는 최고 가성비 오피스 엘리트.",
+      weapon: "아이스 아메리카노 + 노이즈 캔슬링 헤드폰",
+      weakness: "퇴근 5분 전 \"잠깐 나 좀 보자\"",
+      leaveSpeed: "SSS Grade (빛의 칼퇴)", villainIndex: "12% (클린)", resignIndex: "25% (멘탈 우수)", salaryWin: "S Grade (수익성 우수)",
+      style: `${name}님은 주어진 업무를 군더더기 없이 마감하고, 6시 정각 초스피드로 퇴근하는 '실속형 오피스 갓생러'입니다.`,
+      strength: "시간 관리가 완벽하며, 엑셀/업무 자동화 단축키로 남들에게 피해를 주지 않고 깔끔하게 일을 마무리합니다.",
+      weaknessDetail: "상사의 뜬금없는 오지랖이나 비효율적인 업무 프로세스를 보면 표정이 차갑게 식으며 멘탈이 사르르 녹아내립니다.",
+      bestPartner: "💖 말없이 자기 할 일 100% 깔끔하게 처리하는 '독립적 갓생러'",
+      worstPartner: "🚫 본인 할 일 남에게 떠넘기고 퇴근 5분 전 일 주는 '꼰대 빌런'",
+      advice: "내 업무 성과를 숫자로 시각화해 연봉 협상 시 당당히 제시하세요! 회사 밖에서의 갓생 라이프가 멘탈의 강력한 방어막이 됩니다."
+    },
+    {
       badge: "SSS TIER", class: "tier-sss-plus",
       title: `"${name}님은 오피스 실세 총괄 리더"`,
-      desc: "팀원들의 절대적 신뢰! 일도 잘하고 분위기도 만드는 최강 하드캐리어.",
+      desc: "팀원들의 절대적 신뢰! 일도 잘하고 분위기까지 하드캐리하는 최강 총괄 리더 유형.",
       weapon: "듀얼 모니터 + 만능 엑셀 숏컷 키보드",
-      weakness: "무임승차하고 일 안 미루는 빌런 동료"
-    };
-  } else if (resignCount >= 3) {
-    archetype = {
+      weakness: "무임승차하고 일 미루는 빌런 동료",
+      leaveSpeed: "S Grade (일 깔끔 처리)", villainIndex: "5% (클린 리더)", resignIndex: "15% (회사 체질)", salaryWin: "SSS Grade (수직 상승)",
+      style: `${name}님은 탁월한 업무 리더십과 추진력으로 팀의 성과와 분위기를 동시에 하드캐리하는 '오피스 총괄 리더'입니다.`,
+      strength: "막힌 프로젝트가 있을 때 솔선수범하여 판을 엎고 명확한 방향성을 제시하는 결단력이 탁월합니다.",
+      weaknessDetail: "무임승차하거나 일 미루는 무능한 동료를 보면 화가 치밀어 올라 모든 일을 본인이 다 떠안는 번아웃 위험이 있습니다.",
+      bestPartner: "💖 든든하게 뒤에서 지원해 주고 일 센스 넘치는 '슬기로운 수호신'",
+      worstPartner: "🚫 무임승차하고 남의 성과에 숟가락 올리는 '월급 루팡 빌런'",
+      advice: "모든 일을 혼자 안고 가지 말고 팀원들에게 적절히 임파워먼트(권한 위임)하세요. 휴식이 최고의 생산성 리뉴얼입니다."
+    },
+    {
       badge: "SS TIER", class: "tier-ss",
       title: `"${name}님은 마음속 퇴직금 10억 장전러"`,
-      desc: "주머니 속에 서류 봉투 품고 다니는 조용한 영웅! 월급 루팡 시크 전문가.",
+      desc: "주머니 속에 사직서 품고 다니는 조용한 이직 대기자! 월급 루팡 시크 전문가.",
       weapon: "모니터 보안 필름 + 이직 스카우트 앱",
-      weakness: "갑작스러운 뜬금 일요일 야간 카톡"
-    };
-  }
+      weakness: "갑작스러운 뜬금 일요일 야간 카톡",
+      leaveSpeed: "SS Grade (전광석화)", villainIndex: "30% (시크 마이웨이)", resignIndex: "95% (다음 달 이직 가능)", salaryWin: "A Grade (연봉 펌핑 노림)",
+      style: `${name}님은 모니터 보안 필름 너머로 조용히 이직 시장을 타겟팅하고 계신 '시크한 이직 준비자'입니다.`,
+      strength: "회사 일에 과도하게 감정을 이입하지 않아 어떤 스트레스나 꼰대 질타에도 서늘하게 포커페이스를 유지합니다.",
+      weaknessDetail: "회사에 대한 애정이 이미 떠나 있어 꼭 필요한 업무 교류 외에는 대화가 단절되어 일시적 고립감을 느낄 수 있습니다.",
+      bestPartner: "💖 불필요한 참견 안 하고 서로 존중해 주는 '마이웨이 갓생러'",
+      worstPartner: "🚫 수시로 야간 카톡 보내고 개인사 꼬치꼬치 묻는 '오지랖 빌런'",
+      advice: "현재 회사에서의 성과도 이직용 포트폴리오의 훌륭한 무기가 됩니다! 차분히 이직할 곳을 확정한 후 기분 좋게 사직서를 던지세요."
+    }
+  ];
+
+  let archetype = archetypes[0];
+  if (leadCount >= 4) archetype = archetypes[1];
+  else if (resignCount >= 4) archetype = archetypes[2];
+  else if (leaveCount >= 4) archetype = archetypes[0];
+  else archetype = archetypes[(leadCount + resignCount) % archetypes.length];
 
   document.getElementById('workBadge').innerText = archetype.badge;
   document.getElementById('workBanner').className = `tier-banner ${archetype.class}`;
   document.getElementById('workTitle').innerText = archetype.title;
   document.getElementById('workDesc').innerText = archetype.desc;
+
+  document.getElementById('statLeaveHome').innerText = archetype.leaveSpeed;
+  document.getElementById('statVillainIndex').innerText = archetype.villainIndex;
+  document.getElementById('statResignIndex').innerText = archetype.resignIndex;
+  document.getElementById('statSalaryWin').innerText = archetype.salaryWin;
+
   document.getElementById('workWeapon').innerText = archetype.weapon;
   document.getElementById('workWeakness').innerText = archetype.weakness;
 
-  document.getElementById('statLeaveHome').innerText = leaveCount >= 2 ? 'SSS Grade' : 'A Grade';
-  document.getElementById('statVillainIndex').innerText = socialCount >= 2 ? '8% (클린)' : '20%';
-  document.getElementById('statResignIndex').innerText = resignCount >= 2 ? '92% (위험)' : '55%';
-  document.getElementById('statSalaryWin').innerText = leadCount >= 2 ? 'SSS Grade' : 'S Grade';
+  /* 심층 팩폭 리포트 렌더링 */
+  document.getElementById('workStyleText').innerText = archetype.style;
+  document.getElementById('workStrengthText').innerText = archetype.strength;
+  document.getElementById('workWeaknessDetailText').innerText = archetype.weaknessDetail;
+  document.getElementById('workBestPartnerText').innerText = archetype.bestPartner;
+  document.getElementById('workWorstPartnerText').innerText = archetype.worstPartner;
+  document.getElementById('workAdviceText').innerText = archetype.advice;
 
+  document.getElementById('startSection').classList.add('hidden');
   document.getElementById('quizSection').classList.add('hidden');
   document.getElementById('resultSection').classList.remove('hidden');
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
+function toggleWorkDeepReport() {
+  const el = document.getElementById('workDeepDashboard');
+  const btns = document.querySelectorAll('#toggleWorkDeepBtn');
+  if (el.classList.contains('hidden')) {
+    el.classList.remove('hidden');
+    btns.forEach(btn => {
+      btn.innerHTML = '<span><i class="fa-solid fa-chevron-up"></i> 2026 오피스 심층 리포트 접기 ▲</span>';
+    });
+    el.scrollIntoView({ behavior: 'smooth' });
+  } else {
+    el.classList.add('hidden');
+    btns.forEach(btn => {
+      btn.innerHTML = '<span><i class="fa-solid fa-scroll"></i> 📖 2026 오피스 부캐 심층 팩폭 리포트 보기 (클릭시 열림) ▼</span>';
+    });
+  }
+}
+
+function resetForm() {
+  document.getElementById('resultSection').classList.add('hidden');
+  document.getElementById('quizSection').classList.add('hidden');
+  document.getElementById('startSection').classList.remove('hidden');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
 function copyWorkLink() {
   navigator.clipboard.writeText(window.location.href).then(() => {
-    alert('직장생활 테스트 링크가 복사되었습니다! 인스타/스레드에 자랑해보세요!');
+    alert('직장생활 유형 테스트 링크가 복사되었습니다!');
   });
 }
 
