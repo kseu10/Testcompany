@@ -100,7 +100,11 @@ function showWinner(winner) {
   document.getElementById('winnerDesc').innerText = winner.desc;
 
   if (document.getElementById('winnerIcon')) {
-    document.getElementById('winnerIcon').innerHTML = `<span style="font-size: 5rem;">${winner.scene || winner.icon || '🎬'}</span>`;
+    if (winner.img) {
+      document.getElementById('winnerIcon').innerHTML = `<img src="${winner.img}" class="villain-img-illustration" style="width: 140px; height: 140px; object-fit: contain; filter: drop-shadow(0 8px 18px rgba(0,0,0,0.15)); border-radius: 16px;" alt="${winner.title}">`;
+    } else {
+      document.getElementById('winnerIcon').innerHTML = `<div style="font-size: 4rem; filter: drop-shadow(0 6px 12px rgba(0,0,0,0.15));">${winner.icon || '🎬'}</div>`;
+    }
   }
 
   const stored = getStoredVotes();

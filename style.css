@@ -381,15 +381,24 @@ body.theme-today .orb-3 { background: #fbbf24; opacity: 0.2; }
 .candidate-card:hover .villain-emoji-scene {
   transform: scale(1.15) rotate(-4deg);
 }
-.villain-action-badge {
-  font-size: 0.72rem;
-  font-weight: 800;
-  padding: 4px 10px;
+.story-card .archetype-img-frame {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px 16px;
   border-radius: 20px;
-  background: #dc2626;
-  color: #ffffff;
-  box-shadow: 0 2px 6px rgba(220, 38, 38, 0.25);
-  letter-spacing: -0.3px;
+  border: 1.5px solid #e2e8f0;
+  margin-bottom: 16px;
+  overflow: hidden;
+}
+#winnerIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 120px;
+  margin-bottom: 8px;
 }
 .candidate-title {
   font-size: 1.15rem;
