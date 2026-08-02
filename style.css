@@ -367,6 +367,17 @@ body.theme-today .orb-3 { background: #fbbf24; opacity: 0.2; }
   filter: drop-shadow(0 6px 14px rgba(0,0,0,0.15));
   transition: transform 0.25s ease;
 }
+.villain-img-illustration {
+  width: 130px;
+  height: 130px;
+  object-fit: contain;
+  filter: drop-shadow(0 8px 16px rgba(0,0,0,0.12));
+  border-radius: 16px;
+  transition: transform 0.25s ease;
+}
+.candidate-card:hover .villain-img-illustration {
+  transform: scale(1.08);
+}
 .candidate-card:hover .villain-emoji-scene {
   transform: scale(1.15) rotate(-4deg);
 }

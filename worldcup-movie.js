@@ -13,7 +13,7 @@ const movieCandidates = [
   { id: 12, title: "쩍벌 자리 침범러 🧘", desc: "옆사람 좌석 영역까지 몸 기울이고 다리 쩍벌하는 쩍벌남녀", icon: "🧘", scene: "🧘‍♂️💥💺", badge: "💥 무단 영역 침범", votes: 3670 },
   { id: 13, title: "공포 비명 데시벨 😱", desc: "공포 영화 볼 때 비명 질러서 영화보다 더 놀라게 하는 관객", icon: "😱", scene: "😱📢🔊", badge: "📢 초고주파 비명", votes: 2450 },
   { id: 14, title: "엔딩 바로 벌떡이 🚶", desc: "영화 끝나자마자 엔딩 크레딧 올라가기도 전에 불쑥 일어나 가로막는 사람", icon: "🚶", scene: "🚶‍♂️💥📺", badge: "🚶 시야 불쑥 차단", votes: 1980 },
-  { id: 15, title: "타코야끼 냄새 빌런 🐙", desc: "영화관에 냄새 강한 타코야끼/오징어 사들고 와서 냄새 풍기는 타입", icon: "🐙", scene: "🐙💨🍿", badge: "🚨 극장 냄새 테러", votes: 3150 },
+  { id: 15, title: "타코야끼 냄새 빌런 🐙", desc: "영화관에 냄새 강한 타코야끼/오징어 사들고 와서 냄새 풍기는 타입", icon: "🐙", scene: "🐙💨🍿", img: "wc_movie_takoyaki.jpg", badge: "🚨 극장 냄새 테러", votes: 3150 },
   { id: 16, title: "지루함 불평 러버 🥱", desc: "자기가 보자고 해놓고 정작 본인은 재미없다고 지루해하는 타입", icon: "🥱", scene: "🥱📱💤", badge: "🥱 자기가 보자해놓고 불평", votes: 3560 }
 ];
 
@@ -41,12 +41,12 @@ function renderPair() {
   document.getElementById('roundTitle').innerHTML = `<i class="fa-solid fa-trophy"></i> ${currentRoundName} (${matchNum}/${totalPairs})`;
   document.getElementById('matchProgress').innerText = `Match ${matchNum}`;
 
-  const candA = roundList[currentPairIndex * 2];
-  const candB = roundList[currentPairIndex * 2 + 1];
+  const visualA = candA.img ? `<img src="${candA.img}" class="villain-img-illustration" alt="${candA.title}">` : `<span class="villain-emoji-scene">${candA.scene || candA.icon}</span>`;
+  const visualB = candB.img ? `<img src="${candB.img}" class="villain-img-illustration" alt="${candB.title}">` : `<span class="villain-emoji-scene">${candB.scene || candB.icon}</span>`;
 
   document.getElementById('candAIcon').innerHTML = `
     <div class="villain-scene-frame" style="background: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 100%); border-color: #7dd3fc;">
-      <span class="villain-emoji-scene">${candA.scene || candA.icon}</span>
+      ${visualA}
       <span class="villain-action-badge" style="background: #0284c7;">${candA.badge || '🚨 극장 민폐'}</span>
     </div>
   `;
@@ -55,7 +55,7 @@ function renderPair() {
 
   document.getElementById('candBIcon').innerHTML = `
     <div class="villain-scene-frame" style="background: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 100%); border-color: #7dd3fc;">
-      <span class="villain-emoji-scene">${candB.scene || candB.icon}</span>
+      ${visualB}
       <span class="villain-action-badge" style="background: #0284c7;">${candB.badge || '🚨 극장 민폐'}</span>
     </div>
   `;

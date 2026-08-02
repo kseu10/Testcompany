@@ -1,7 +1,5 @@
 const pettyCandidates = [
-  { id: 1, title: "양말 신었는데 물 밟음 🧦", desc: "새 양말 신었는데 화장실 바닥 젖은 물 밟았을 때", icon: "🧦", votes: 6890 },
-  { id: 2, title: "이어폰 줄 문고리 팍 🎧", desc: "이어폰 줄이 문고리에 팍 걸려서 귀에서 튕겨 나갔을 때", icon: "🎧", votes: 5890 },
-  { id: 1, title: "양말 신었는데 물 밟음 🧦", desc: "새 양말 신었는데 화장실 바닥 젖은 물 밟았을 때", icon: "🧦", scene: "🧦💦😱", badge: "🚨 젖은 양말 악몽", votes: 6780 },
+  { id: 1, title: "양말 신었는데 물 밟음 🧦", desc: "새 양말 신었는데 화장실 바닥 젖은 물 밟았을 때", icon: "🧦", scene: "🧦💦😱", img: "wc_petty_socks.jpg", badge: "🚨 젖은 양말 악몽", votes: 6780 },
   { id: 2, title: "눈앞에서 버스 출발 🚌", desc: "신호등 건너서 버스 정류장 도착하자마자 버스 출발할 때", icon: "🚌", scene: "🚌💨🏃‍♂️", badge: "🏃‍♂️ 눈앞 버스 놓침", votes: 5920 },
   { id: 3, title: "휴지 끝 지점 못 찾음 🧻", desc: "휴지나 테이프 쓰려고 하는데 끝 지점을 못 찾아서 헤맬 때", icon: "🧻", scene: "🧻🔍🤯", badge: "🤯 테이프 끝 탐색", votes: 4120 },
   { id: 4, title: "국물 옷에 튐 🍜", desc: "흰 옷 입은 날 빨간 짬뽕 국물 딱 한 방울 가슴 한가운데 튈 때", icon: "🍜", scene: "👔💥🍜", badge: "👔 흰 옷 국물 테러", votes: 6150 },
@@ -43,12 +41,12 @@ function renderPair() {
   document.getElementById('roundTitle').innerHTML = `<i class="fa-solid fa-trophy"></i> ${currentRoundName} (${matchNum}/${totalPairs})`;
   document.getElementById('matchProgress').innerText = `Match ${matchNum}`;
 
-  const candA = roundList[currentPairIndex * 2];
-  const candB = roundList[currentPairIndex * 2 + 1];
+  const visualA = candA.img ? `<img src="${candA.img}" class="villain-img-illustration" alt="${candA.title}">` : `<span class="villain-emoji-scene">${candA.scene || candA.icon}</span>`;
+  const visualB = candB.img ? `<img src="${candB.img}" class="villain-img-illustration" alt="${candB.title}">` : `<span class="villain-emoji-scene">${candB.scene || candB.icon}</span>`;
 
   document.getElementById('candAIcon').innerHTML = `
     <div class="villain-scene-frame" style="background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%); border-color: #fde68a;">
-      <span class="villain-emoji-scene">${candA.scene || candA.icon}</span>
+      ${visualA}
       <span class="villain-action-badge" style="background: #d97706;">${candA.badge || '🚨 딥빡 상황'}</span>
     </div>
   `;
@@ -57,7 +55,7 @@ function renderPair() {
 
   document.getElementById('candBIcon').innerHTML = `
     <div class="villain-scene-frame" style="background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%); border-color: #fde68a;">
-      <span class="villain-emoji-scene">${candB.scene || candB.icon}</span>
+      ${visualB}
       <span class="villain-action-badge" style="background: #d97706;">${candB.badge || '🚨 딥빡 상황'}</span>
     </div>
   `;

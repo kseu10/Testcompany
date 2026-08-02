@@ -1,6 +1,5 @@
 const bossCandidates = [
-  { id: 1, title: "퇴근 5분 전 업무 폭탄 💣", desc: "퇴근 5분 전에 메일로 긴급 업무 폭탄 던지는 꼰대", icon: "💣", votes: 5420 },
-  { id: 1, title: "퇴근 5분 전 업무 폭탄 ⏰", desc: "퇴근 5분 전에 메일로 긴급 업무 폭탄 던지는 꼰대", icon: "⏰", scene: "⏰💣📧", badge: "💣 칼퇴 파괴 폭탄", votes: 6420 },
+  { id: 1, title: "퇴근 5분 전 업무 폭탄 ⏰", desc: "퇴근 5분 전에 메일로 긴급 업무 폭탄 던지는 꼰대", icon: "⏰", scene: "⏰💣📧", img: "wc_boss_bomb.jpg", badge: "💣 칼퇴 파괴 폭탄", votes: 6420 },
   { id: 2, title: "성과 얌체 훔치기 🦊", desc: "팀원이 만든 부자료 본인이 만든 척 상사한테 직보고하는 얌체", icon: "🦊", scene: "🦊🕵️‍♂️📄", badge: "🦊 성과 무단 횡령", votes: 5890 },
   { id: 3, title: "휴일 카톡 시도 때도 없이 📱", desc: "주말 일요일 밤 10시에 카톡으로 업무 물어보는 상사", icon: "📱", scene: "📱💥🌙", badge: "📱 주말 카톡 테러", votes: 6150 },
   { id: 4, title: "감정 기복 폭풍우 🌊", desc: "기분 좋은 날엔 천사, 기분 나쁜 날엔 꼬투리 잡는 폭풍우", icon: "🌊", scene: "🌊🤬⛈️", badge: "⛈️ 감정 분노 조절 장애", votes: 4780 },
@@ -42,12 +41,12 @@ function renderPair() {
   document.getElementById('roundTitle').innerHTML = `<i class="fa-solid fa-trophy"></i> ${currentRoundName} (${matchNum}/${totalPairs})`;
   document.getElementById('matchProgress').innerText = `Match ${matchNum}`;
 
-  const candA = roundList[currentPairIndex * 2];
-  const candB = roundList[currentPairIndex * 2 + 1];
+  const visualA = candA.img ? `<img src="${candA.img}" class="villain-img-illustration" alt="${candA.title}">` : `<span class="villain-emoji-scene">${candA.scene || candA.icon}</span>`;
+  const visualB = candB.img ? `<img src="${candB.img}" class="villain-img-illustration" alt="${candB.title}">` : `<span class="villain-emoji-scene">${candB.scene || candB.icon}</span>`;
 
   document.getElementById('candAIcon').innerHTML = `
     <div class="villain-scene-frame" style="background: linear-gradient(135deg, #fff1f2 0%, #ffe4e6 100%); border-color: #fecdd3;">
-      <span class="villain-emoji-scene">${candA.scene || candA.icon}</span>
+      ${visualA}
       <span class="villain-action-badge" style="background: #dc2626;">${candA.badge || '🚨 상사 빌런'}</span>
     </div>
   `;
@@ -56,7 +55,7 @@ function renderPair() {
 
   document.getElementById('candBIcon').innerHTML = `
     <div class="villain-scene-frame" style="background: linear-gradient(135deg, #fff1f2 0%, #ffe4e6 100%); border-color: #fecdd3;">
-      <span class="villain-emoji-scene">${candB.scene || candB.icon}</span>
+      ${visualB}
       <span class="villain-action-badge" style="background: #dc2626;">${candB.badge || '🚨 상사 빌런'}</span>
     </div>
   `;

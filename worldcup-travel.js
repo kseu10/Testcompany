@@ -1,8 +1,5 @@
 const travelCandidates = [
-  { id: 1, title: "숙소 굼뱅이 🛌", desc: "무조건 숙소에서 뒹굴거리며 배달 음식만 먹자는 굼뱅이", icon: "🛌", votes: 3420 },
-  { id: 2, title: "분 단위 교관 ⏱️", desc: "분 단위로 일정 짜놓고 안 지키면 표정 차가워지는 군대 교관", icon: "⏱️", votes: 2980 },
-  { id: 3, title: "짠돌이 깍쟁이 💸", desc: "지갑 한 번 안 열고 10원 단위로 가성비만 따지는 짠돌이", icon: "💸", votes: 4150 },
-  { id: 1, title: "지갑 닫는 짠돌이 💸", desc: "지갑 한 번 안 열고 10원 단위로 가성비만 따지는 짠돌이", icon: "💸", scene: "💸🚫👛", badge: "🚨 무임승차 짠돌이", votes: 5420 },
+  { id: 1, title: "지갑 닫는 짠돌이 💸", desc: "지갑 한 번 안 열고 10원 단위로 가성비만 따지는 짠돌이", icon: "💸", scene: "💸🚫👛", img: "wc_travel_stingy.jpg", badge: "🚨 무임승차 짠돌이", votes: 5420 },
   { id: 2, title: "숙소 굼뱅이 🏨", desc: "무조건 숙소에서 뒹굴거리며 배달 음식만 먹자는 굼뱅이", icon: "🏨", scene: "🏨💤🛵", badge: "🛌 숙소 콕 집돌이", votes: 3890 },
   { id: 3, title: "분 단위 교관 ⏱️", desc: "분 단위로 일정 짜놓고 안 지키면 표정 차가워지는 교관", icon: "⏱️", scene: "⏱️📐🤬", badge: "⚔️ 일정 교관", votes: 4910 },
   { id: 4, title: "무소유 핑거 공주 👑", desc: "계획은 1도 안 짜면서 막상 오면 '여긴 별로다' 불평만 하는 핑공", icon: "👑", scene: "👑💅💬", badge: "👑 무임승차 핑공", votes: 6120 },
@@ -47,11 +44,24 @@ function renderPair() {
   const candA = roundList[currentPairIndex * 2];
   const candB = roundList[currentPairIndex * 2 + 1];
 
-  document.getElementById('candAIcon').innerText = candA.icon;
+  const visualA = candA.img ? `<img src="${candA.img}" class="villain-img-illustration" alt="${candA.title}">` : `<span class="villain-emoji-scene">${candA.scene || candA.icon}</span>`;
+  const visualB = candB.img ? `<img src="${candB.img}" class="villain-img-illustration" alt="${candB.title}">` : `<span class="villain-emoji-scene">${candB.scene || candB.icon}</span>`;
+
+  document.getElementById('candAIcon').innerHTML = `
+    <div class="villain-scene-frame" style="background: linear-gradient(135deg, #fff7ed 0%, #ffedd5 100%); border-color: #fed7aa;">
+      ${visualA}
+      <span class="villain-action-badge" style="background: #c2410c;">${candA.badge || '🚨 여행 빌런'}</span>
+    </div>
+  `;
   document.getElementById('candATitle').innerText = candA.title;
   document.getElementById('candADesc').innerText = candA.desc;
 
-  document.getElementById('candBIcon').innerText = candB.icon;
+  document.getElementById('candBIcon').innerHTML = `
+    <div class="villain-scene-frame" style="background: linear-gradient(135deg, #fff7ed 0%, #ffedd5 100%); border-color: #fed7aa;">
+      ${visualB}
+      <span class="villain-action-badge" style="background: #c2410c;">${candB.badge || '🚨 여행 빌런'}</span>
+    </div>
+  `;
   document.getElementById('candBTitle').innerText = candB.title;
   document.getElementById('candBDesc').innerText = candB.desc;
 }
