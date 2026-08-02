@@ -1,159 +1,105 @@
-const sajuQuestions = [
-  {
-    title: "Q1. 내 인생에서 가장 소중하게 생각하는 인생의 가치는?",
-    a: { text: "통장 잔고 든든한 안정적 재물과 자산", score: "MONEY" },
-    b: { text: "나를 알아주는 명예와 자유로운 라이프스타일", score: "HONOR" }
-  },
-  {
-    title: "Q2. 새로운 도전을 앞두고 주저될 때 나의 선택은?",
-    a: { text: "\"실패해도 경험이다!\" 화끈하게 기회를 잡고 본다", score: "FIRE" },
-    b: { text: "돌다리도 10번 두들겨보고 철저히 검증 후 시작", score: "EARTH" }
-  },
-  {
-    title: "Q3. 나에게 뜻밖의 행운(횡재수)이 찾아온다면 어떤 형태일까?",
-    a: { text: "로또 당첨이나 부동산 값 급등 등 현금/자산 폭발", score: "MONEY" },
-    b: { text: "귀인을 만나 내 분야에서 일약 유명해지는 스타성", score: "HONOR" }
-  },
-  {
-    title: "Q4. 사람들과의 인연에서 나를 상징하는 분위기는?",
-    a: { text: "주변 사람들을 따뜻하게 품어주고 경청해 주는 넓은 대지", score: "EARTH" },
-    b: { text: "차가운 이성과 똑부러지는 정답을 제시하는 황금 칼날", score: "METAL" }
-  },
-  {
-    title: "Q5. 스트레스를 받을 때 나만의 마인드 컨트롤 방식은?",
-    a: { text: "맛있는 음식 먹고 푹 자며 육체적 에너지를 충전", score: "EARTH" },
-    b: { text: "혼자만의 시간을 가지며 명상하거나 좋아하는 취미에 몰입", score: "WATER" }
-  },
-  {
-    title: "Q6. 내 사주에 꼭 하나 있었으면 하는 운은?",
-    a: { text: "마르지 않는 샘물 같은 평생 재물운(財運)", score: "MONEY" },
-    b: { text: "나를 평생 도우는 인복과 귀인운(貴人運)", score: "HONOR" }
-  },
-  {
-    title: "Q7. 직감이나 늑대가 뇌리를 스칠 때 나의 느낌은?",
-    a: { text: "내 직감은 90% 이상 맞아떨어지는 촉의 소유자", score: "WATER" },
-    b: { text: "직감보다는 객관적 데이터와 수치를 신뢰", score: "METAL" }
-  },
-  {
-    title: "Q8. 재테크나 돈 관리할 때 나의 스타일은?",
-    a: { text: "공격적인 과감한 투자로 단기 대박 노리기", score: "FIRE" },
-    b: { text: "안정적인 적금, 파킹통장, 안전자산 중심으로 모으기", score: "EARTH" }
-  },
-  {
-    title: "Q9. 내 인생 최고의 전성기는 몇 세일까?",
-    a: { text: "30대! 가장 젊고 정력적일 때 자산을 불리고 싶다", score: "FIRE" },
-    b: { text: "40~50대! 묵직하게 숙성되어 자산가로 군림할 때", score: "EARTH" }
-  },
-  {
-    title: "Q10. 내가 바라는 나의 노년 모습은?",
-    a: { text: "한강뷰 아파트에서 여유롭게 여행 다디는 조물주 위 건물주", score: "MONEY" },
-    b: { text: "모든 사람들에게 존경받고 대우받는 인품의 어른", score: "HONOR" }
-  }
-];
+function calculateInstantSajuLife() {
+  const nameInput = document.getElementById('sajuName').value.trim();
+  const name = nameInput || '홍길동';
+  const birthDate = document.getElementById('birthDate').value || '1997-05-15';
+  const gender = document.querySelector('input[name="gender"]:checked')?.value || 'M';
+  const calType = document.querySelector('input[name="calendarType"]:checked')?.value || 'SOLAR';
+  const timeType = document.getElementById('birthTime').value;
 
-let sajuQIdx = 0;
-let sajuScores = [];
+  const birthYear = parseInt(birthDate.split('-')[0]) || 1997;
+  const birthMonth = parseInt(birthDate.split('-')[1]) || 5;
+  const birthDay = parseInt(birthDate.split('-')[2]) || 15;
 
-function startSajuQuiz() {
-  const name = document.getElementById('sajuName').value.trim();
-  if (!name) {
-    alert('이름 또는 닉네임을 입력해 주세요!');
-    return;
-  }
-  sajuQIdx = 0;
-  sajuScores = [];
+  // 12지신 띠
+  const zodiacs = ['원숭이띠', '닭띠', '개띠', '돼지띠', '쥐띠', '소띠', '범띠', '토끼띠', '용띠', '뱀띠', '말띠', '양띠'];
+  const myZodiac = zodiacs[birthYear % 12];
+
+  // 오행 기운 결정 (생년에 따른 사주 오행)
+  const elements = [
+    { name: "목(木) 푸른 청룡", bg: "수(水) / 목(木) 기운", color: "#16a34a" },
+    { name: "화(火) 붉은 주작", bg: "목(木) / 화(火) 기운", color: "#dc2626" },
+    { name: "토(土) 황금 황룡", bg: "화(火) / 토(土) 기운", color: "#d97706" },
+    { name: "금(金) 백색 백호", bg: "토(土) / 금(金) 기운", color: "#475569" },
+    { name: "수(水) 흑색 현무", bg: "금(金) / 수(水) 기운", color: "#2563eb" }
+  ];
+  const myElem = elements[(birthYear + birthMonth + birthDay) % elements.length];
+
+  const hash = (birthYear * 11 + birthMonth * 19 + birthDay * 23) % 100;
+
+  const sajuProfiles = [
+    {
+      badge: "대운 만발 (大運)", class: "tier-sss-plus",
+      title: `"${name}님 (${myZodiac}), ${myElem.name} 사주 만세력"`,
+      desc: "대지를 뚫고 솟구치는 강인한 개척자! 30대 후반부터 인생 최고의 재물 대운이 찾아오는 사주입니다.",
+      money: "SSS Grade (자산 폭발)", career: "SS Grade (승승장구)", love: "S Grade (운명적 인연)",
+      luckyAge: "32세 ~ 44세 (최고의 재물 전성기)",
+      luckyItem: "행운 색상: 딥 블루 & 골드 | 행운 숫자: 7, 3",
+      elemTitle: `${name}님 (${myZodiac})의 본성: ${myElem.name} 기운`,
+      elemDesc: `${name}님은 타고난 주체성과 곧은 결단력을 지닌 사주입니다. 남 밑에 길들여지기보다 본인만의 비전과 사업/전문성으로 판을 짜는 거목(巨木)의 기운을 가졌습니다. 시련이 와도 귀인의 도우미로 1초 만에 반등합니다.`,
+      age20s: "시드머니와 기술, 직업적 전문성을 차곡차곡 쌓아 올리는 준비와 경험의 시기입니다. 헛돈 쓰지 않고 투자 밑천을 다집니다.",
+      age30s: "인생 최고의 대운이 시작되는 승승장구 시기! 부동산 자가 마련 및 직업적 최고 성과로 내 삶의 주도권을 잡게 됩니다.",
+      age40s: "자산가 반열 진입 및 불로소득 시스템 완성기! 가문이 번창하고 수복강녕의 복을 누리며 존경받는 인물이 됩니다.",
+      loveMarriage: `배우자는 나를 진심으로 존중하고 보듬어주는 온화한 기운의 소유자입니다. 결이 잘 맞는 사람과 조화를 이루어 결혼 후 재산이 수 배 이상 늘어나는 '경사스러운 인연'을 맺게 됩니다.`,
+      moneyMethod: "안전자산 + 핵심 부동산", careerField: "전문직, IT, 사업, 관리직", luckyColor: "딥 블루 & 백색", healthCare: "간 보양 & 숙면 필수"
+    },
+    {
+      badge: "귀인 조력 (貴人)", class: "tier-ss",
+      title: `"${name}님 (${myZodiac}), 온화한 인복과 재물이 마르지 않는 사주"`,
+      desc: "주변 사람들과의 조화가 뛰어나고, 시간이 흐를수록 귀인이 꼬리를 물고 이어지는 만복의 사주입니다.",
+      money: "SS Grade (안정적 축재)", career: "SSS Grade (명예 승진)", love: "SS Grade (찰떡 궁합)",
+      luckyAge: "28세 ~ 39세 (인복 및 재물 만발기)",
+      luckyItem: "행운 색상: 에메랄드 그린 | 행운 숫자: 8, 2",
+      elemTitle: `${name}님 (${myZodiac})의 본성: ${myElem.name} 조화의 기운`,
+      elemDesc: `${name}님은 친화력과 뛰어난 공감 능력으로 대인관계에서 큰 명예를 얻는 사주입니다. 타인에게 신뢰를 주어 중요한 보직이나 사업 파트너로 낙점되며, 평생 재물이 끊이지 않는 복을 타고났습니다.`,
+      age20s: "넓은 인맥과 좋은 평판을 쌓아 올리는 인복 구축기입니다. 상사나 선배의 귀인을 만나 빠른 성장을 경험합니다.",
+      age30s: "안정적인 고수익과 명예를 동시에 안게 되는 전성기! 가정을 이루고 직장에서 핵심 간부로 승진합니다.",
+      age40s: "풍요로운 삶과 여유로운 리더십을 발휘하는 안정기! 자녀들의 성장과 축적된 부로 주변의 부러움을 받습니다.",
+      loveMarriage: `친구처럼 편안하면서도 서로에게 감정적 안식처가 되어주는 최상의 배우자를 만납니다. 서로의 명운을 보완해주어 평생 금슬이 좋을 사주입니다.`,
+      moneyMethod: "월세/배당소득 + 저축", careerField: "금융, 서비스, 기획, 교육", luckyColor: "파스텔 핑크 & 그린", healthCare: "심혈관 & 영양 관리"
+    }
+  ];
+
+  const res = sajuProfiles[hash % sajuProfiles.length];
+
+  document.getElementById('sajuBadge').innerText = res.badge;
+  document.getElementById('sajuBanner').className = `tier-banner ${res.class}`;
+  document.getElementById('sajuTitle').innerText = res.title;
+  document.getElementById('sajuDesc').innerText = res.desc;
+  document.getElementById('sajuLuckyAge').innerText = res.luckyAge;
+  document.getElementById('sajuLuckyItem').innerText = res.luckyItem;
+
+  document.getElementById('statSajuMoney').innerText = res.money;
+  document.getElementById('statSajuCareer').innerText = res.career;
+  document.getElementById('statSajuLove').innerText = res.love;
+  document.getElementById('statSajuElement').innerText = myElem.bg;
+
+  /* 사주 평생 총운 종합 감명서 렌더링 */
+  document.getElementById('lifeElemTitle').innerText = res.elemTitle;
+  document.getElementById('lifeElemDesc').innerText = res.elemDesc;
+  document.getElementById('age20sText').innerText = res.age20s;
+  document.getElementById('age30sText').innerText = res.age30s;
+  document.getElementById('age40sText').innerText = res.age40s;
+  document.getElementById('loveMarriageText').innerText = res.loveMarriage;
+
+  document.getElementById('moneyMethodText').innerText = res.moneyMethod;
+  document.getElementById('careerFieldText').innerText = res.careerField;
+  document.getElementById('luckyColorText').innerText = res.luckyColor;
+  document.getElementById('healthCareText').innerText = res.healthCare;
+
   document.getElementById('startSection').classList.add('hidden');
-  document.getElementById('quizSection').classList.remove('hidden');
-  renderSajuQuestion();
-}
-
-function renderSajuQuestion() {
-  const q = sajuQuestions[sajuQIdx];
-  const total = sajuQuestions.length;
-  const pct = Math.round(((sajuQIdx + 1) / total) * 100);
-
-  document.getElementById('progressFill').style.width = `${pct}%`;
-  document.getElementById('progressText').innerText = `${sajuQIdx + 1} / ${total} 문항 (${pct}%)`;
-
-  const container = document.getElementById('questionContainer');
-  container.innerHTML = `
-    <h3 class="q-title">${q.title}</h3>
-    <div class="q-options">
-      <button class="option-btn" onclick="answerSajuQuestion('${q.a.score}')">
-        <span class="opt-icon">🔮</span>
-        <span>${q.a.text}</span>
-      </button>
-      <button class="option-btn" onclick="answerSajuQuestion('${q.b.score}')">
-        <span class="opt-icon">🌟</span>
-        <span>${q.b.text}</span>
-      </button>
-    </div>
-  `;
-}
-
-function answerSajuQuestion(score) {
-  sajuScores.push(score);
-  sajuQIdx++;
-  if (sajuQIdx < sajuQuestions.length) {
-    renderSajuQuestion();
-  } else {
-    calculateFinalSajuResult();
-  }
-}
-
-function calculateFinalSajuResult() {
-  const name = document.getElementById('sajuName').value.trim() || '사주 주주';
-
-  const moneyCount = sajuScores.filter(s => s === 'MONEY').length;
-  const fireCount = sajuScores.filter(s => s === 'FIRE').length;
-  const earthCount = sajuScores.filter(s => s === 'EARTH').length;
-
-  let archetype = {
-    badge: "대운 만발", class: "tier-sss-plus",
-    title: `"${name}님은 화(火) 기운 만발! 재물 대운의 수호자"`,
-    desc: "열정과 행동력이 넘치며 30대 후반 최고의 재물 대운이 찾아오는 사주입니다!",
-    luckyAge: "30대 후반 ~ 40대 초반 (재물 폭발기)",
-    luckyItem: "행운 색상: 딥 블루 | 행운 숫자: 7, 3"
-  };
-
-  if (earthCount >= 3) {
-    archetype = {
-      badge: "황금 건물주", class: "tier-ss",
-      title: `"${name}님은 토(土) 기운 충만! 땅과 주택 황금 사주"`,
-      desc: "대지처럼 묵직하게 자산이 축적되며, 부동산과 내 집 마련으로 10억 클럽에 진입하는 대기만성형 사주입니다.",
-      luckyAge: "40대 초반 (부동산/자가 횡재수)",
-      luckyItem: "행운 색상: 골드 & 에메랄드 | 행운 숫자: 8, 5"
-    };
-  } else if (moneyCount >= 4) {
-    archetype = {
-      badge: "재물 폭발", class: "tier-sss",
-      title: `"${name}님은 평생 금전운 마르지 않는 샘물 사주"`,
-      desc: "돈을 당기는 강력한 자석! 사업이든 재테크든 돈 냄새를 맡는 능력이 일품인 횡재수 최고조 사주.",
-      luckyAge: "30대 중반 (재물 스노우볼 결실)",
-      luckyItem: "행운 색상: 바이올렛 & 블랙 | 행운 숫자: 1, 9"
-    };
-  }
-
-  document.getElementById('sajuBadge').innerText = archetype.badge;
-  document.getElementById('sajuBanner').className = `tier-banner ${archetype.class}`;
-  document.getElementById('sajuTitle').innerText = archetype.title;
-  document.getElementById('sajuDesc').innerText = archetype.desc;
-  document.getElementById('sajuLuckyAge').innerText = archetype.luckyAge;
-  document.getElementById('sajuLuckyItem').innerText = archetype.luckyItem;
-
-  document.getElementById('statSajuMoney').innerText = moneyCount >= 3 ? 'SSS Grade' : 'S Grade';
-  document.getElementById('statSajuCareer').innerText = fireCount >= 2 ? 'SS Grade' : 'A Grade';
-  document.getElementById('statSajuLove').innerText = 'S Grade';
-  document.getElementById('statSajuElement').innerText = earthCount >= 2 ? '토(土) 기운' : '화(火) 기운';
-
-  document.getElementById('quizSection').classList.add('hidden');
   document.getElementById('resultSection').classList.remove('hidden');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function resetForm() {
+  document.getElementById('resultSection').classList.add('hidden');
+  document.getElementById('startSection').classList.remove('hidden');
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
 function copySajuLink() {
   navigator.clipboard.writeText(window.location.href).then(() => {
-    alert('사주 테스트 링크가 복사되었습니다! 인스타/스레드에 자랑해보세요!');
+    alert('사주 평생 총운 링크가 복사되었습니다! 친구들에게 공유해보세요!');
   });
 }
 
@@ -167,7 +113,7 @@ function captureStoryCard() {
   html2canvas(cardNode, { scale: 2, backgroundColor: '#ffffff', useCORS: true }).then(canvas => {
     const a = document.createElement('a');
     a.href = canvas.toDataURL("image/png");
-    a.download = `2026_사주인생총운_귀염부캐카드.png`;
+    a.download = `2026_전통사주_평생총운카드.png`;
     a.click();
   });
 }
