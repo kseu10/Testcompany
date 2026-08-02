@@ -44,29 +44,70 @@
     <main class="main-content">
       <section id="startSection" class="glass-card">
         <div class="card-header">
-          <h2><i class="fa-solid fa-calendar-day"></i> 오늘 하루 운세 뽑기</h2>
-          <span class="step-indicator">총 10문항</span>
+          <h2><i class="fa-solid fa-compass"></i> 전통 사주 오늘의 운세 풀이</h2>
+          <span class="step-indicator">1초 무료 풀이</span>
         </div>
-        <div class="input-group">
-          <label for="todayName"><span class="label-title">👤 이름 / 닉네임 입력</span></label>
-          <div class="input-wrapper">
-            <input type="text" id="todayName" placeholder="예: 오늘 대박날이" required>
+        <form id="todaySajuForm" onsubmit="return false;">
+          
+          <div class="input-group">
+            <label for="todayName"><span class="label-title">👤 이름 / 닉네임</span></label>
+            <div class="input-wrapper">
+              <input type="text" id="todayName" placeholder="예: 홍길동" required>
+            </div>
           </div>
-        </div>
-        <button type="button" class="btn-primary" onclick="startTodayQuiz()">
-          <span><i class="fa-solid fa-play"></i> 10문항 오늘 운세 & 부적 뽑기!</span>
-        </button>
-      </section>
 
-      <section id="quizSection" class="glass-card hidden">
-        <div class="progress-bar-container">
-          <div id="progressFill" class="progress-bar-fill"></div>
-        </div>
-        <div id="progressText" class="progress-text">1 / 10 문항 (10%)</div>
+          <div class="input-group">
+            <label for="todayBirthDate"><span class="label-title">📅 생년월일</span></label>
+            <div class="input-wrapper">
+              <input type="date" id="todayBirthDate" value="1998-08-20" required>
+            </div>
+          </div>
 
-        <div id="questionContainer" class="question-step">
-          <!-- JS 렌더링 -->
-        </div>
+          <div class="input-group">
+            <label><span class="label-title">☯️ 양력 / 음력 선택</span></label>
+            <div class="radio-grid">
+              <label class="radio-card">
+                <input type="radio" name="calendarType" value="SOLAR" checked>
+                <div class="radio-content">
+                  <span class="icon">☀️</span>
+                  <div class="text"><strong>양력 (Solar)</strong></div>
+                </div>
+              </label>
+              <label class="radio-card">
+                <input type="radio" name="calendarType" value="LUNAR">
+                <div class="radio-content">
+                  <span class="icon">🌙</span>
+                  <div class="text"><strong>음력 (Lunar)</strong></div>
+                </div>
+              </label>
+            </div>
+          </div>
+
+          <div class="input-group">
+            <label for="birthTime"><span class="label-title">⏰ 태어난 시간 (선택)</span></label>
+            <div class="select-wrapper">
+              <select id="birthTime">
+                <option value="UNKNOWN">태어난 시간 모름 / 상관없음</option>
+                <option value="RAT">자시 (23:30 ~ 01:29)</option>
+                <option value="OX">축시 (01:30 ~ 03:29)</option>
+                <option value="TIGER">인시 (03:30 ~ 05:29)</option>
+                <option value="RABBIT">묘시 (05:30 ~ 07:29)</option>
+                <option value="DRAGON">진시 (07:30 ~ 09:29)</option>
+                <option value="SNAKE">사시 (09:30 ~ 11:29)</option>
+                <option value="HORSE">오시 (11:30 ~ 13:29)</option>
+                <option value="GOAT">미시 (13:30 ~ 15:29)</option>
+                <option value="MONKEY">신시 (15:30 ~ 17:29)</option>
+                <option value="ROOSTER">유시 (17:30 ~ 19:29)</option>
+                <option value="DOG">술시 (19:30 ~ 21:29)</option>
+                <option value="PIG">해시 (21:30 ~ 23:29)</option>
+              </select>
+            </div>
+          </div>
+
+          <button type="button" class="btn-primary" onclick="calculateInstantDailySaju()">
+            <span><i class="fa-solid fa-wand-magic-sparkles"></i> 전통 사주 1초 오늘의 운세 보기</span>
+          </button>
+        </form>
       </section>
 
       <section id="resultSection" class="result-section hidden">
