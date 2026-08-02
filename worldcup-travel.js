@@ -77,6 +77,13 @@ function selectCandidate(index) {
   }
 }
 
+function getStoredVotes() {
+  try {
+    const data = localStorage.getItem('wc_travel_votes');
+    return data ? JSON.parse(data) : {};
+  } catch (e) { return {}; }
+}
+
 function showWinner(winner) {
   document.getElementById('gameSection').classList.add('hidden');
   document.getElementById('resultSection').classList.remove('hidden');
@@ -84,7 +91,11 @@ function showWinner(winner) {
   document.getElementById('winnerTitle').innerText = `"${winner.title}"`;
   document.getElementById('winnerDesc').innerText = winner.desc;
 
-  // 폭죽 이펙트
+  // 우승 후보 표수 저장
+  const stored = getStoredVotes();
+  stored[winner.id] = (stored[winner.id] || 0) + 1;
+  localStorage.setItem('wc_travel_votes', JSON.stringify(stored));
+
   if (typeof confetti === 'function') {
     confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } });
   }
@@ -94,10 +105,14 @@ function showWinner(winner) {
 }
 
 function renderRankings(winner) {
-  // 랭킹 정렬
-  const sorted = [...travelCandidates].sort((a, b) => b.votes - a.votes);
+  const stored = getStoredVotes();
+  const updatedCandidates = travelCandidates.map(c => ({
+    ...c,
+    votes: c.votes + (stored[c.id] || 0)
+  }));
+
+  const sorted = updatedCandidates.sort((a, b) => b.votes - a.votes);
   const container = document.getElementById('rankingContainer');
-  
   const totalVotes = sorted.reduce((acc, cur) => acc + cur.votes, 0);
 
   container.innerHTML = sorted.slice(0, 5).map((item, idx) => {
@@ -107,7 +122,7 @@ function renderRankings(winner) {
         <span class="time-flow-badge ${idx === 0 ? 'morning' : 'evening'}">${idx + 1}위 (${percent}%)</span>
         <div class="time-flow-body">
           <h5>${item.title}</h5>
-          <p>${item.desc}</p>
+          <p>${item.desc} (총 ${item.votes.toLocaleString()}표)</p>
         </div>
       </div>
     `;
