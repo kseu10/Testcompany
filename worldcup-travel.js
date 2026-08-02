@@ -2,19 +2,22 @@ const travelCandidates = [
   { id: 1, title: "숙소 굼뱅이 🛌", desc: "무조건 숙소에서 뒹굴거리며 배달 음식만 먹자는 굼뱅이", icon: "🛌", votes: 3420 },
   { id: 2, title: "분 단위 교관 ⏱️", desc: "분 단위로 일정 짜놓고 안 지키면 표정 차가워지는 군대 교관", icon: "⏱️", votes: 2980 },
   { id: 3, title: "짠돌이 깍쟁이 💸", desc: "지갑 한 번 안 열고 10원 단위로 가성비만 따지는 짠돌이", icon: "💸", votes: 4150 },
-  { id: 4, title: "숏폼 중독자 📱", desc: "여행 가서 하루 종일 핸드폰 숏폼만 보고 멍때리는 타입", icon: "📱", votes: 2100 },
-  { id: 5, title: "사진 10분 아이돌 📸", desc: "음식 나올 때마다 10분 동안 사진 촬영하느라 못 먹게 하는 타입", icon: "📸", votes: 2540 },
-  { id: 6, title: "뒤끝 징징이 😭", desc: "남들이 가자고 한 곳 가놓고 뒤에서 투덜투덜 징징거리는 징징이", icon: "😭", votes: 3890 },
-  { id: 7, title: "물건 잃어버리는 길치 🧭", desc: "가방과 소지품 수시로 잃어버려서 수습하느라 지치게 하는 길치", icon: "🧭", votes: 1950 },
-  { id: 8, title: "인생샷 500장 집착러 👗", desc: "사진 안 예쁘게 나왔다고 500장 다시 찍어달라는 집착러", icon: "👗", votes: 3120 },
-  { id: 9, title: "정산 깍쟁이 🧾", desc: "1/N 청구할 때마다 '나 저거 안 먹었는데' 빼달라는 깍쟁이", icon: "🧾", votes: 3670 },
-  { id: 10, title: "한국 라면만 찾는 아재 🍜", desc: "현지 음식 향신료 심하다고 한국 라면만 찾는 아재 입맛", icon: "🍜", votes: 1840 },
-  { id: 11, title: "새벽 6시 알람 부지런이 ⏰", desc: "아침 6시부터 일어나서 알람 울리며 잔소리로 다 깨우는 부지런이", icon: "⏰", votes: 2780 },
-  { id: 12, title: "쇼핑몰 유령 🛍️", desc: "쇼핑몰만 가면 3시간 동안 사라져서 안 나오는 쇼핑 마왕", icon: "🛍️", votes: 2310 },
-  { id: 13, title: "술주정 꼬장 🍺", desc: "술 마시고 숙소에서 꼬장 부리며 울거나 시비 거는 술주정뱅이", icon: "🍺", votes: 4520 },
-  { id: 14, title: "헌팅 이탈 럭비공 🕺", desc: "여행지에서 헌팅/이성한테 눈 팔려 단체 행동 이탈하는 럭비공", icon: "🕺", votes: 2890 },
-  { id: 15, title: "남의 물건 뺏는 민폐 🧴", desc: "자기 세면도구 안 챙기고 남의 선크림/치약 다 뺏어 쓰는 민폐", icon: "🧴", votes: 2650 },
-  { id: 16, title: "입 가리고 삐친이 😤", desc: "자기 생각 조금만 안 받아주면 삐쳐서 입 닫고 쌩 까는 타입", icon: "😤", votes: 3740 }
+  { id: 1, title: "지갑 닫는 짠돌이 💸", desc: "지갑 한 번 안 열고 10원 단위로 가성비만 따지는 짠돌이", icon: "💸", scene: "💸🚫👛", badge: "🚨 무임승차 짠돌이", votes: 5420 },
+  { id: 2, title: "숙소 굼뱅이 🏨", desc: "무조건 숙소에서 뒹굴거리며 배달 음식만 먹자는 굼뱅이", icon: "🏨", scene: "🏨💤🛵", badge: "🛌 숙소 콕 집돌이", votes: 3890 },
+  { id: 3, title: "분 단위 교관 ⏱️", desc: "분 단위로 일정 짜놓고 안 지키면 표정 차가워지는 교관", icon: "⏱️", scene: "⏱️📐🤬", badge: "⚔️ 일정 교관", votes: 4910 },
+  { id: 4, title: "무소유 핑거 공주 👑", desc: "계획은 1도 안 짜면서 막상 오면 '여긴 별로다' 불평만 하는 핑공", icon: "👑", scene: "👑💅💬", badge: "👑 무임승차 핑공", votes: 6120 },
+  { id: 5, title: "프로 투덜이 🗣️", desc: "덥다, 춥다, 다리 아프다 내내 입 툭 튀어나와 투덜거리는 사람", icon: "🗣️", scene: "🗣️🗯️😫", badge: "😫 입툭튀 투덜이", votes: 4150 },
+  { id: 6, title: "인스타 지옥 파파라치 📸", desc: "인생샷 건질 때까지 1,000장 찍게 시키고 안 마음에 들면 재촬영 시키는 사람", icon: "📸", scene: "📸🔥📷", badge: "📸 1000장 지옥", votes: 5780 },
+  { id: 7, title: "식성 빌런 🌶️", desc: "해외 와놓고 한식 아니면 입도 대지 않는 극단적 식성 빌런", icon: "🌶️", scene: "🌶️🍚🚫", badge: "🍚 무조건 한식파", votes: 3120 },
+  { id: 8, title: "길치 고집왕 🗺️", desc: "네비 지도 절대 안 보고 자기 감대로 가다가 길 잃고 화내는 고집왕", icon: "🗺️", scene: "🗺️❌😡", badge: "🗺️ 길치 고집왕", votes: 3950 },
+  { id: 9, title: "쇼핑봇 짐꾼러 🛍️", desc: "관광은 안 하고 기념품샵만 전전하며 내 가방에 짐 쑤셔 넣는 사람", icon: "🛍️", scene: "🛍️🛒🎒", badge: "🛍️ 짐 쑤셔넣기", votes: 2890 },
+  { id: 10, title: "숙취 시체 🍻", desc: "첫날밤 술 너무 마셔서 다음날 오후 3시까지 누워만 있는 시체", icon: "🍻", scene: "🍻🤮🛌", badge: "🤮 숙취 시체", votes: 4320 },
+  { id: 11, title: "택시 전용 징징이 🚕", desc: "걸어서 5분 거리고 무조건 택시 타자고 징징대는 징징이", icon: "🚕", scene: "🚕💸😫", badge: "🚕 5분 거리 택시파", votes: 2650 },
+  { id: 12, title: "현지인 과몰입러 🗣️", desc: "영어도 못 하면서 현지인한테 콩글리시로 계속 말 걸어서 곤란하게 하는 사람", icon: "🗣️", scene: "🗣️❓😅", badge: "😅 콩글리시 폭주", votes: 2180 },
+  { id: 13, title: "지갑 분실 소동꾼 👛", desc: "여권, 지갑, 핸드폰 하루에 3번씩 잃어버렸다고 난리 치는 사람", icon: "👛", scene: "👛❓😱", badge: "😱 분실 난리법석", votes: 3740 },
+  { id: 14, title: "단독 행동 마이웨이 🚶", desc: "말도 없이 혼자 사라졌다가 저녁 먹을 때 슥 나타나는 마이웨이", icon: "🚶", scene: "🚶‍♂️❓🌆", badge: "🚶‍♂️ 무단 이탈자", votes: 3210 },
+  { id: 15, title: "정산 미루기 마스터 💳", desc: "엔빵 정산하자고 하면 '나중에 한꺼번에 줄게' 하고 까먹는 얌체", icon: "💳", scene: "💳🙈⏳", badge: "🙈 정산 미루기", votes: 4980 },
+  { id: 16, title: "체력 방전 징징이 🔋", desc: "일정 시작 30분 만에 다리 아프다며 카페 가서 앉아만 있자는 징징이", icon: "🔋", scene: "🔋🪫☕", badge: "🪫 30분 방전러", votes: 3410 }
 ];
 
 let roundList = [];
@@ -26,7 +29,6 @@ function startWorldCup() {
   document.getElementById('startSection').classList.add('hidden');
   document.getElementById('gameSection').classList.remove('hidden');
   
-  // 셔플
   roundList = [...travelCandidates].sort(() => Math.random() - 0.5);
   nextRoundList = [];
   currentPairIndex = 0;
@@ -92,7 +94,7 @@ function showWinner(winner) {
   document.getElementById('winnerDesc').innerText = winner.desc;
 
   if (document.getElementById('winnerIcon')) {
-    document.getElementById('winnerIcon').innerText = winner.icon || '✈️';
+    document.getElementById('winnerIcon').innerHTML = `<span style="font-size: 5rem;">${winner.scene || winner.icon || '✈️'}</span>`;
   }
 
   // 우승 후보 표수 저장

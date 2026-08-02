@@ -1,20 +1,21 @@
 const bossCandidates = [
   { id: 1, title: "퇴근 5분 전 업무 폭탄 💣", desc: "퇴근 5분 전에 메일로 긴급 업무 폭탄 던지는 꼰대", icon: "💣", votes: 5420 },
-  { id: 2, title: "말 뒤집는 붕어빵 🐟", desc: "지시해놓고 '내가 언제 그랬냐' 수시로 말 뒤집는 상사", icon: "🐟", votes: 4980 },
-  { id: 3, title: "성과 숟가락 얌체 🥄", desc: "팀원이 밤새 만든 성과 본인이 홀랑 숟가락 얹는 얌체", icon: "🥄", votes: 4150 },
-  { id: 4, title: "주말 카톡 업무 폭격 📲", desc: "주말/휴가 때 수시로 카톡으로 업무 물어보는 공사 구분 제로", icon: "📲", votes: 4890 },
-  { id: 5, title: "사내 정치 무능력자 🦊", desc: "일은 안 하고 사내 정치와 아부만 떨며 팀원 쥐어짜는 상사", icon: "🦊", votes: 3870 },
-  { id: 6, title: "감정 기복 폭탄 💣", desc: "기분 기복 심해서 아침 인상 따라 그날 팀 분위기 좌우되는 폭탄", icon: "💣", votes: 3540 },
-  { id: 7, title: "소리 지르는 판소리꾼 📢", desc: "남들 다 듣는 데서 소리 지르고 망신 주는 소리꾼 상사", icon: "📢", votes: 3120 },
-  { id: 8, title: "회식 강요 라떼왕 🍺", desc: "퇴근 후 억지 회식 강요하고 라떼 이야기 무한 리필하는 상사", icon: "🍺", votes: 4210 },
-  { id: 9, title: "이중 팩폭 지적왕 🤷", desc: "질문하면 핀잔주고 지시 안 해주면 왜 안 물어봤냐는 상사", icon: "🤷", votes: 3670 },
-  { id: 10, title: "사생활 오지랖왕 🕵️", desc: "개인 사생활 꼬치꼬치 묻고 연애/결혼 지적하는 오지랖왕", icon: "🕵️", votes: 2840 },
-  { id: 11, title: "피드백 묵히기 장인 ⏳", desc: "마감 기한 임박할 때까지 묵혀두다 10분 전에 엎어버리는 상사", icon: "⏳", votes: 3780 },
-  { id: 12, title: "전사 유포 남탓러 🗣️", desc: "자기 실수는 슥 넘어가고 팀원 작은 실수는 전사 유포하는 남탓러", icon: "🗣️", votes: 3310 },
-  { id: 13, title: "종이 서류 틀꼰대 📄", desc: "엑셀 수식 안 쓰고 모든 자료 종이 서류로 갖고 오라는 틀꼰대", icon: "📄", votes: 2150 },
-  { id: 14, title: "점심 메뉴 핑계왕 🍱", desc: "점심 메뉴 정하라 해놓고 모든 메뉴 다 까다롭게 거절하는 핑계왕", icon: "🍱", votes: 2690 },
-  { id: 15, title: "휴가 눈치 차단러 🏖️", desc: "연차/휴가 쓸 때마다 이유 꼬치꼬치 묻고 눈치 주는 휴가 차단러", icon: "🏖️", votes: 4650 },
-  { id: 16, title: "가문 자랑 훈장님 👑", desc: "자기 자식 칭찬과 가문 플렉스 자랑 하루 종일 들어줘야 하는 상사", icon: "👑", votes: 2430 }
+  { id: 1, title: "퇴근 5분 전 업무 폭탄 ⏰", desc: "퇴근 5분 전에 메일로 긴급 업무 폭탄 던지는 꼰대", icon: "⏰", scene: "⏰💣📧", badge: "💣 칼퇴 파괴 폭탄", votes: 6420 },
+  { id: 2, title: "성과 얌체 훔치기 🦊", desc: "팀원이 만든 부자료 본인이 만든 척 상사한테 직보고하는 얌체", icon: "🦊", scene: "🦊🕵️‍♂️📄", badge: "🦊 성과 무단 횡령", votes: 5890 },
+  { id: 3, title: "휴일 카톡 시도 때도 없이 📱", desc: "주말 일요일 밤 10시에 카톡으로 업무 물어보는 상사", icon: "📱", scene: "📱💥🌙", badge: "📱 주말 카톡 테러", votes: 6150 },
+  { id: 4, title: "감정 기복 폭풍우 🌊", desc: "기분 좋은 날엔 천사, 기분 나쁜 날엔 꼬투리 잡는 폭풍우", icon: "🌊", scene: "🌊🤬⛈️", badge: "⛈️ 감정 분노 조절 장애", votes: 4780 },
+  { id: 5, title: "답정너 무한 수정 ✏️", desc: "기획서 10번 고치게 만들고 결국 맨 처음 제출안 선택하는 답정너", icon: "✏️", scene: "✏️🔄📑", badge: "🔄 무한 노가다 수정", votes: 5320 },
+  { id: 6, title: "라떼는 말이야 ☕", desc: "자기 젊을 땐 야근 주 7일 했다며 요즘 애들 태도 따지는 꼰대", icon: "☕", scene: "☕🗣️🕸️", badge: "☕ 라떼 꼰대 훈수", votes: 4950 },
+  { id: 7, title: "책임 회피 마스터 🏃", desc: "문제 생기면 '부하 직원이 보고 안 했다'며 뒤집어씌우는 상사", icon: "🏃", scene: "🏃‍♂️💨🎯", badge: "🎯 부하 핑계 뒤집어씌우기", votes: 5110 },
+  { id: 8, title: "개인 심부름 요청 ☕", desc: "자기 커피 사 오라거나 개인 경조사 예약 시키는 상사", icon: "☕", scene: "☕🏃‍♀️💳", badge: "🏃‍♀️ 사적 심부름 핑계", votes: 3450 },
+  { id: 9, title: "사생활 미어캣 🦝", desc: "주말에 뭐 했냐, 연애는 언제 하냐 사생활 집요하게 묻는 미어캣", icon: "🦝", scene: "🦝❓💬", badge: "🦝 사생활 집요 캐묻기", votes: 3120 },
+  { id: 10, title: "점심 메뉴 강요 🍲", desc: "무조건 자기가 좋아하는 국밥/부대찌개만 먹자는 국밥 마왕", icon: "🍲", scene: "🍲🥄🤬", badge: "🍲 메뉴 독재자", votes: 2890 },
+  { id: 11, title: "회식 강요 인싸병 🍻", desc: "오늘 단합대회라며 부서 회식 안 오면 팀워크 없다며 협박하는 타입", icon: "🍻", scene: "🍻🍶🤮", badge: "🍻 불금 회식 강요", votes: 4670 },
+  { id: 12, title: "마이크로 매니징 감시 🔍", desc: "10분마다 책상 와서 메신저 화면 화면 훔쳐보는 사르만", icon: "🔍", scene: "🔍👀🖥️", badge: "🖥️ 모니터 등뒤 감시", votes: 4210 },
+  { id: 13, title: "반말 지거리 무례러 🗣️", desc: "처음 본 부하 직원한테 대놓고 반말하고 팩폭이랍시고 외모 지적하는 사람", icon: "🗣️", scene: "🗣️💥🤐", badge: "🤐 무례한 반말 폭격", votes: 3980 },
+  { id: 14, title: "업무 시도 때도 없이 체인지 🌪️", desc: "오전에 방향 A라 해놓고 오후에 '내가 언제?' 하며 B로 바꾸는 붕어", icon: "🌪️", scene: "🌪️🧠❓", badge: "❓ 아침저녁 딴소리", votes: 4340 },
+  { id: 15, title: "자랑질 자랑 몬스터 👑", desc: "업무 미팅 때 자기 자랑, 자기 집안 자랑만 30분 동안 하는 몬스터", icon: "👑", scene: "👑💬😴", badge: "😴 30분 자기자랑", votes: 2540 },
+  { id: 16, title: "메일 CC 테러범 📧", desc: "사소한 실수 하나에 전 부서장, 이사님 CC 넣어서 공개 처형하는 빌런", icon: "📧", scene: "📧📢💥", badge: "📢 전사 공개 처형 CC", votes: 5670 }
 ];
 
 let roundList = [];
@@ -44,11 +45,21 @@ function renderPair() {
   const candA = roundList[currentPairIndex * 2];
   const candB = roundList[currentPairIndex * 2 + 1];
 
-  document.getElementById('candAIcon').innerText = candA.icon;
+  document.getElementById('candAIcon').innerHTML = `
+    <div class="villain-scene-frame" style="background: linear-gradient(135deg, #fff1f2 0%, #ffe4e6 100%); border-color: #fecdd3;">
+      <span class="villain-emoji-scene">${candA.scene || candA.icon}</span>
+      <span class="villain-action-badge" style="background: #dc2626;">${candA.badge || '🚨 상사 빌런'}</span>
+    </div>
+  `;
   document.getElementById('candATitle').innerText = candA.title;
   document.getElementById('candADesc').innerText = candA.desc;
 
-  document.getElementById('candBIcon').innerText = candB.icon;
+  document.getElementById('candBIcon').innerHTML = `
+    <div class="villain-scene-frame" style="background: linear-gradient(135deg, #fff1f2 0%, #ffe4e6 100%); border-color: #fecdd3;">
+      <span class="villain-emoji-scene">${candB.scene || candB.icon}</span>
+      <span class="villain-action-badge" style="background: #dc2626;">${candB.badge || '🚨 상사 빌런'}</span>
+    </div>
+  `;
   document.getElementById('candBTitle').innerText = candB.title;
   document.getElementById('candBDesc').innerText = candB.desc;
 }
@@ -90,7 +101,7 @@ function showWinner(winner) {
   document.getElementById('winnerDesc').innerText = winner.desc;
 
   if (document.getElementById('winnerIcon')) {
-    document.getElementById('winnerIcon').innerText = winner.icon || '👔';
+    document.getElementById('winnerIcon').innerHTML = `<span style="font-size: 5rem;">${winner.scene || winner.icon || '👔'}</span>`;
   }
 
   const stored = getStoredVotes();

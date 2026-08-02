@@ -345,9 +345,40 @@ body.theme-today .orb-3 { background: #fbbf24; opacity: 0.2; }
   box-shadow: 0 12px 28px rgba(239, 68, 68, 0.18);
 }
 .candidate-icon {
-  font-size: 3.2rem;
-  margin-bottom: 12px;
-  filter: drop-shadow(0 4px 10px rgba(0,0,0,0.1));
+  width: 100%;
+  margin-bottom: 14px;
+}
+.villain-scene-frame {
+  width: 100%;
+  padding: 18px 12px;
+  border-radius: 16px;
+  background: linear-gradient(135deg, #fff1f2 0%, #ffe4e6 100%);
+  border: 1.5px solid #fecdd3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  box-shadow: inset 0 2px 6px rgba(255,255,255,0.8), 0 4px 12px rgba(239, 68, 68, 0.08);
+}
+.villain-emoji-scene {
+  font-size: 3.8rem;
+  line-height: 1.1;
+  filter: drop-shadow(0 6px 14px rgba(0,0,0,0.15));
+  transition: transform 0.25s ease;
+}
+.candidate-card:hover .villain-emoji-scene {
+  transform: scale(1.15) rotate(-4deg);
+}
+.villain-action-badge {
+  font-size: 0.72rem;
+  font-weight: 800;
+  padding: 4px 10px;
+  border-radius: 20px;
+  background: #dc2626;
+  color: #ffffff;
+  box-shadow: 0 2px 6px rgba(220, 38, 38, 0.25);
+  letter-spacing: -0.3px;
 }
 .candidate-title {
   font-size: 1.15rem;

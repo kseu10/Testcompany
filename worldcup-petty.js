@@ -1,20 +1,22 @@
 const pettyCandidates = [
   { id: 1, title: "양말 신었는데 물 밟음 🧦", desc: "새 양말 신었는데 화장실 바닥 젖은 물 밟았을 때", icon: "🧦", votes: 6890 },
   { id: 2, title: "이어폰 줄 문고리 팍 🎧", desc: "이어폰 줄이 문고리에 팍 걸려서 귀에서 튕겨 나갔을 때", icon: "🎧", votes: 5890 },
-  { id: 3, title: "눈앞에서 버스 떠남 🚌", desc: "버스 정류장 30m 남았는데 눈앞에서 버스 떠날 때", icon: "🚌", votes: 6120 },
-  { id: 4, title: "라면 면발 혓바닥 데임 🍜", desc: "갓 끓인 라면 면발 입에 넣었는데 혓바닥 데였을 때", icon: "🍜", votes: 3450 },
-  { id: 5, title: "누워서 스마트폰 얼굴 쿵 📱", desc: "스마트폰 들고 침대에 누워있다가 얼굴로 폰 떨어뜨렸을 때", icon: "📱", votes: 4780 },
-  { id: 6, title: "흰 옷에 국물 튐 👕", desc: "새 옷 입고 국물 요리 먹다가 흰 옷에 빨간 국물 튈 때", icon: "👕", votes: 5340 },
-  { id: 7, title: "신발 뒤꿈치 구겨짐 👟", desc: "신발 뒤꿈치 접혀 신겨서 길 한복판에서 신발 다시 신을 때", icon: "👟", votes: 2980 },
-  { id: 8, title: "휴지 마지막 빈 심 🧻", desc: "화장실 휴지 마지막 한 칸 남았는데 다음 사람이 다 쓴 상태일 때", icon: "🧻", votes: 4120 },
-  { id: 9, title: "엘베 닫힘 눌렀는데 탑승 🛗", desc: "엘리베이터 닫힘 누르는 순간 사람 타서 뻘쭘할 때", icon: "🛗", votes: 2670 },
-  { id: 10, title: "한영키 안 누르고 줌 ⌨️", desc: "키보드 타이핑 열심히 쳤는데 한영키 안 눌려서 영어로 다 입력됐을 때", icon: "⌨️", votes: 4890 },
-  { id: 11, title: "캔 고리 부러짐 🥫", desc: "음료수 캔 고리 따다가 캔 고리만 톡 부러졌을 때", icon: "🥫", votes: 3890 },
-  { id: 12, title: "급할 때 차키 사라짐 🔑", desc: "아침에 급하게 나가는데 열쇠/차키 안 보여서 집안 뒤질 때", icon: "🔑", votes: 4210 },
-  { id: 13, title: "치킨 무 빠져서 옴 🍗", desc: "치킨 주문했는데 소스나 치킨무 빠져서 왔을 때", icon: "🍗", votes: 3120 },
-  { id: 14, title: "누웠는데 방 불 안 끔 💡", desc: "잠들기 직전 불 다 껐는데 불 키고 잘 걸 깨달았을 때", icon: "💡", votes: 4560 },
-  { id: 15, title: "충전 스위치 안 켬 🔌", desc: "배터리 1% 남아서 충전기 꽂았는데 콘센트 스위치 안 켜져 있었을 때", icon: "🔌", votes: 5980 },
-  { id: 16, title: "손톱 바짝 잘라 얼얼 💅", desc: "손톱 자르다가 실수로 손톱 너무 바짝 잘라서 얼얼할 때", icon: "💅", votes: 2310 }
+  { id: 1, title: "양말 신었는데 물 밟음 🧦", desc: "새 양말 신었는데 화장실 바닥 젖은 물 밟았을 때", icon: "🧦", scene: "🧦💦😱", badge: "🚨 젖은 양말 악몽", votes: 6780 },
+  { id: 2, title: "눈앞에서 버스 출발 🚌", desc: "신호등 건너서 버스 정류장 도착하자마자 버스 출발할 때", icon: "🚌", scene: "🚌💨🏃‍♂️", badge: "🏃‍♂️ 눈앞 버스 놓침", votes: 5920 },
+  { id: 3, title: "휴지 끝 지점 못 찾음 🧻", desc: "휴지나 테이프 쓰려고 하는데 끝 지점을 못 찾아서 헤맬 때", icon: "🧻", scene: "🧻🔍🤯", badge: "🤯 테이프 끝 탐색", votes: 4120 },
+  { id: 4, title: "국물 옷에 튐 🍜", desc: "흰 옷 입은 날 빨간 짬뽕 국물 딱 한 방울 가슴 한가운데 튈 때", icon: "🍜", scene: "👔💥🍜", badge: "👔 흰 옷 국물 테러", votes: 6150 },
+  { id: 5, title: "블루투스 이어폰 방전 🎧", desc: "지하철 탔는데 블루투스 이어폰 배터리 1% 나오면서 꺼질 때", icon: "🎧", scene: "🎧🪫🚇", badge: "🪫 지하철 이어폰 방전", votes: 5410 },
+  { id: 6, title: "음식 사진 찍기 전 젓가락 🥢", desc: "인스타 사진 찍으려고 세팅해놨는데 친구가 젓가락 먼저 댈 때", icon: "🥢", scene: "📸💥🥢", badge: "📸 플레이팅 붕괴", votes: 3290 },
+  { id: 7, title: "엘리베이터 닫힘 🛗", desc: "엘리베이터 층 버튼 누르고 들어가려는 순간 닫힘 버튼 누르고 홀랑 올라갈 때", icon: "🛗", scene: "🛗🚪🏃‍♀️", badge: "🛗 닫힘 얌체", votes: 4890 },
+  { id: 8, title: "자동 완성 오타 전송 💬", desc: "부장님한테 카톡 보내는데 자동 완성으로 웃긴 오타 그대로 보내졌을 때", icon: "💬", scene: "💬😱📲", badge: "📲 대참사 오타 전송", votes: 5120 },
+  { id: 9, title: "새끼손가락 문틀 강타 🦶", desc: "집에서 걸어가다가 침대 다리나 문틀에 새끼발가락 강하게 찍힐 때", icon: "🦶", scene: "🦶💥🪵", badge: "⚡ 새끼발가락 파괴", votes: 6450 },
+  { id: 10, title: "과자 봉지 찢어짐 🍪", desc: "과자 예쁘게 뜯으려다 비닐 봉지 옆으로 쫙 찢어져서 다 쏟아질 때", icon: "🍪", scene: "🍪💥🗯️", badge: "🍪 봉지 찢어짐 쏟아질 때", votes: 3780 },
+  { id: 11, title: "영화 클라이맥스 카톡 알림 📱", desc: "영화 하이라이트 씬에 휴대폰 징 진동 계속 울릴 때", icon: "📱", scene: "📱🔊🎬", badge: "🎬 하이라이트 진동", votes: 2980 },
+  { id: 12, title: "샤워 중 찬물 세례 🚿", desc: "샤워 잘하고 있는데 갑자기 얼음 같은 찬물 세례 쏟아질 때", icon: "🚿", scene: "🚿🧊😱", badge: "🧊 샤워 찬물 폭탄", votes: 4670 },
+  { id: 13, title: "배달 음식 젓가락 누락 🥢", desc: "배달 음식 도착해서 뜯었는데 젓가락/숟가락 안 들어있을 때", icon: "🥢", scene: "🛵🍱❓", badge: "🍱 수저 누락 멘붕", votes: 4190 },
+  { id: 14, title: "손톱 옆 살점 뜯김 💅", desc: "손톱 옆에 조그만 가시 살점 뜯으려다 피나고 얼얼할 때", icon: "💅", scene: "💅🩸😭", badge: "😭 살점 뜯김 고통", votes: 3540 },
+  { id: 15, title: "우산 가져온 날 해 쨍쨍 ☂️", desc: "일기예보 보고 긴 우산 챙겨서 나왔는데 하루 종일 햇빛 쨍쨍할 때", icon: "☂️", scene: "☂️☀️😅", badge: "☀️ 우산 짐 덩어리", votes: 2890 },
+  { id: 16, title: "키보드 틈새 과자 가루 ⌨️", desc: "노트북 키보드 사이로 과자 부스러기 들어가서 안 빼질 때", icon: "⌨️", scene: "⌨️🍪🗯️", badge: "⌨️ 키보드 과자 가루", votes: 3120 }
 ];
 
 let roundList = [];
@@ -44,11 +46,21 @@ function renderPair() {
   const candA = roundList[currentPairIndex * 2];
   const candB = roundList[currentPairIndex * 2 + 1];
 
-  document.getElementById('candAIcon').innerText = candA.icon;
+  document.getElementById('candAIcon').innerHTML = `
+    <div class="villain-scene-frame" style="background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%); border-color: #fde68a;">
+      <span class="villain-emoji-scene">${candA.scene || candA.icon}</span>
+      <span class="villain-action-badge" style="background: #d97706;">${candA.badge || '🚨 딥빡 상황'}</span>
+    </div>
+  `;
   document.getElementById('candATitle').innerText = candA.title;
   document.getElementById('candADesc').innerText = candA.desc;
 
-  document.getElementById('candBIcon').innerText = candB.icon;
+  document.getElementById('candBIcon').innerHTML = `
+    <div class="villain-scene-frame" style="background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%); border-color: #fde68a;">
+      <span class="villain-emoji-scene">${candB.scene || candB.icon}</span>
+      <span class="villain-action-badge" style="background: #d97706;">${candB.badge || '🚨 딥빡 상황'}</span>
+    </div>
+  `;
   document.getElementById('candBTitle').innerText = candB.title;
   document.getElementById('candBDesc').innerText = candB.desc;
 }
@@ -90,7 +102,7 @@ function showWinner(winner) {
   document.getElementById('winnerDesc').innerText = winner.desc;
 
   if (document.getElementById('winnerIcon')) {
-    document.getElementById('winnerIcon').innerText = winner.icon || '⚡';
+    document.getElementById('winnerIcon').innerHTML = `<span style="font-size: 5rem;">${winner.scene || winner.icon || '⚡'}</span>`;
   }
 
   const stored = getStoredVotes();
