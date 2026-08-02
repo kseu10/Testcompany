@@ -13,11 +13,24 @@
   --text-main: #f3f4f6;
   --text-muted: #9ca3af;
   --text-dim: #6b7280;
-  --tier-s-grad: linear-gradient(135deg, #ff007a, #9600ff);
-  --tier-a-grad: linear-gradient(135deg, #00c6ff, #0072ff);
-  --tier-b-grad: linear-gradient(135deg, #11998e, #38ef7d);
-  --tier-c-grad: linear-gradient(135deg, #f857a6, #ff5858);
-  --tier-f-grad: linear-gradient(135deg, #434343, #000000);
+
+  /* 15-TIER GRADIENTS */
+  --tier-sss-plus-grad: linear-gradient(135deg, #ffe066 0%, #f72585 50%, #7209b7 100%);
+  --tier-sss-grad: linear-gradient(135deg, #ff007a 0%, #9600ff 100%);
+  --tier-ss-grad: linear-gradient(135deg, #7000ff 0%, #00c6ff 100%);
+  --tier-s-plus-grad: linear-gradient(135deg, #0052d4 0%, #4364f7 50%, #6fb1fc 100%);
+  --tier-s-grad: linear-gradient(135deg, #00c6ff 0%, #0072ff 100%);
+  --tier-a-plus-grad: linear-gradient(135deg, #0575e6 0%, #00f260 100%);
+  --tier-a-grad: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+  --tier-b-plus-grad: linear-gradient(135deg, #f7971e 0%, #ffd200 100%);
+  --tier-b-grad: linear-gradient(135deg, #f857a6 0%, #ff5858 100%);
+  --tier-b-minus-grad: linear-gradient(135deg, #e65c00 0%, #F9D423 100%);
+  --tier-c-plus-grad: linear-gradient(135deg, #e52d27 0%, #b31217 100%);
+  --tier-c-grad: linear-gradient(135deg, #8a2387 0%, #e94057 50%, #f27121 100%);
+  --tier-d-grad: linear-gradient(135deg, #616161 0%, #9bc5c3 100%);
+  --tier-f-grad: linear-gradient(135deg, #434343 0%, #000000 100%);
+  --tier-fff-grad: linear-gradient(135deg, #1a0000 0%, #ff0000 100%);
+
   --radius-lg: 24px;
   --radius-md: 16px;
   --radius-sm: 10px;
@@ -91,18 +104,38 @@ body { background-color: var(--bg-dark); color: var(--text-main); min-height: 10
 .story-card-wrapper { width: 100%; display: flex; justify-content: center; }
 .story-card { width: 100%; max-width: 480px; background: #0f121d; border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 28px; padding: 24px; box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6); }
 .card-brand { display: flex; justify-content: space-between; font-size: 0.7rem; font-weight: 800; color: var(--text-dim); margin-bottom: 16px; padding-bottom: 8px; border-bottom: 1px solid rgba(255, 255, 255, 0.08); }
-.tier-banner { border-radius: var(--radius-md); padding: 20px; text-align: center; margin-bottom: 14px; color: #fff; }
-.tier-s { background: var(--tier-s-grad); }
-.tier-a { background: var(--tier-a-grad); }
-.tier-b { background: var(--tier-b-grad); }
-.tier-c { background: var(--tier-c-grad); }
-.tier-f { background: var(--tier-f-grad); }
-.tier-badge { display: inline-block; font-family: 'Outfit', sans-serif; font-size: 0.8rem; font-weight: 900; background: rgba(0, 0, 0, 0.35); padding: 4px 12px; border-radius: 100px; margin-bottom: 6px; }
-.tier-title { font-size: 1.5rem; font-weight: 900; margin-bottom: 6px; }
-.tier-desc { font-size: 0.8rem; opacity: 0.9; }
 
-.age-rank-banner { background: rgba(255, 184, 0, 0.12); border: 1px solid rgba(255, 184, 0, 0.35); color: var(--accent-gold); font-size: 0.85rem; font-weight: 700; padding: 10px 14px; border-radius: var(--radius-sm); text-align: center; margin-bottom: 16px; display: flex; align-items: center; justify-content: center; gap: 8px; }
+/* 15 TIER BANNER CLASSES */
+.tier-banner { border-radius: var(--radius-md); padding: 20px; text-align: center; margin-bottom: 14px; color: #fff; box-shadow: 0 8px 24px rgba(0,0,0,0.3); }
+.tier-sss-plus { background: var(--tier-sss-plus-grad); }
+.tier-sss { background: var(--tier-sss-grad); }
+.tier-ss { background: var(--tier-ss-grad); }
+.tier-s-plus { background: var(--tier-s-plus-grad); }
+.tier-s { background: var(--tier-s-grad); }
+.tier-a-plus { background: var(--tier-a-plus-grad); }
+.tier-a { background: var(--tier-a-grad); }
+.tier-b-plus { background: var(--tier-b-plus-grad); }
+.tier-b { background: var(--tier-b-grad); }
+.tier-b-minus { background: var(--tier-b-minus-grad); }
+.tier-c-plus { background: var(--tier-c-plus-grad); }
+.tier-c { background: var(--tier-c-grad); }
+.tier-d { background: var(--tier-d-grad); }
+.tier-f { background: var(--tier-f-grad); }
+.tier-fff { background: var(--tier-fff-grad); }
+
+.tier-badge { display: inline-block; font-family: 'Outfit', sans-serif; font-size: 0.85rem; font-weight: 900; background: rgba(0, 0, 0, 0.4); padding: 4px 14px; border-radius: 100px; margin-bottom: 6px; letter-spacing: 1px; }
+.tier-title { font-size: 1.5rem; font-weight: 900; margin-bottom: 6px; }
+.tier-desc { font-size: 0.8rem; opacity: 0.95; }
+
+.age-rank-banner { background: rgba(255, 184, 0, 0.12); border: 1px solid rgba(255, 184, 0, 0.35); color: var(--accent-gold); font-size: 0.85rem; font-weight: 700; padding: 10px 14px; border-radius: var(--radius-sm); text-align: center; margin-bottom: 14px; display: flex; align-items: center; justify-content: center; gap: 8px; }
 .age-rank-banner strong { color: #fff; text-decoration: underline; }
+
+/* 4-STAT SUB GRADES GRID (새로 추가) */
+.sub-stats-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; margin-bottom: 16px; }
+.sub-stat-box { background: rgba(255, 255, 255, 0.04); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: var(--radius-sm); padding: 8px 12px; display: flex; justify-content: space-between; align-items: center; }
+.sub-stat-title { font-size: 0.72rem; color: var(--text-muted); font-weight: 700; }
+.sub-stat-grade { font-family: 'Outfit', sans-serif; font-size: 0.85rem; font-weight: 900; color: var(--primary-cyan); }
+.sub-stat-grade.danger { color: var(--accent-pink); }
 
 .card-stats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 20px; }
 .stat-box { background: rgba(255, 255, 255, 0.04); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: var(--radius-sm); padding: 10px 8px; text-align: center; }
@@ -121,7 +154,6 @@ body { background-color: var(--bg-dark); color: var(--text-main); min-height: 10
 .card-footer { display: flex; justify-content: space-between; font-size: 0.7rem; color: var(--text-dim); border-top: 1px dashed rgba(255, 255, 255, 0.1); padding-top: 12px; }
 .watermark-url { color: var(--primary-purple); font-weight: 700; }
 
-/* FEATURE LINKS CARD (새로 추가) */
 .card-sub-desc { font-size: 0.8rem; color: var(--text-muted); margin-top: -8px; margin-bottom: 16px; }
 .feature-links-card h3 { font-size: 1.1rem; font-weight: 800; color: var(--primary-cyan); margin-bottom: 12px; }
 .quick-link-group { display: flex; flex-direction: column; gap: 16px; }
@@ -138,7 +170,6 @@ body { background-color: var(--bg-dark); color: var(--text-main); min-height: 10
 .link-btn.zigbang { background: rgba(255, 118, 117, 0.15); border-color: rgba(255, 118, 117, 0.4); color: #ff7675; }
 .link-btn.modal-trigger { background: rgba(255, 255, 255, 0.08); }
 
-/* FINANCIAL RECIPE CARD (새로 추가) */
 .financial-recipe-card h3 { font-size: 1.1rem; font-weight: 800; color: var(--accent-gold); margin-bottom: 12px; }
 .recipe-grid { display: flex; flex-direction: column; gap: 12px; }
 .recipe-card { background: rgba(0, 0, 0, 0.35); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 16px; display: flex; flex-direction: column; gap: 8px; }
@@ -171,7 +202,6 @@ body { background-color: var(--bg-dark); color: var(--text-main); min-height: 10
 
 .app-footer { text-align: center; font-size: 0.75rem; color: var(--text-dim); padding: 20px 0; }
 
-/* MODALS (새로 추가) */
 .modal-overlay { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0, 0, 0, 0.75); backdrop-filter: blur(8px); display: flex; align-items: center; justify-content: center; z-index: 999; padding: 16px; }
 .modal-content { width: 100%; max-width: 580px; max-height: 90vh; overflow-y: auto; position: relative; border: 1px solid var(--border-highlight); animation: modalFadeIn 0.25s ease-out; }
 @keyframes modalFadeIn { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }

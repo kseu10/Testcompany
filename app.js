@@ -57,6 +57,75 @@ function getAgeRankText(ageGroup, annualIncome) {
   return `${b.name} 내 소득 위치: <strong>${percentile}</strong> (${b.name} 중위소득 대비 ${ratio}배)`;
 }
 
+/* 2026 15단계 현실 계급 판정 알고리즘 */
+function get15TierInfo(savings, monthlyAvailable, carPoorIndex, annualIncome) {
+  if (savings >= 300000 || (savings >= 150000 && monthlyAvailable >= 1000)) {
+    return { badge: "SSS+ TIER", class: "tier-sss-plus", title: "👑 재벌집 막내아들 & 불로소득 수호자", desc: "압도적 다이아 자산! 숨만 쉬어도 불로소득이 쌓입니다." };
+  } else if (savings >= 150000 || monthlyAvailable >= 700) {
+    return { badge: "SSS TIER", class: "tier-sss", title: "💎 상위 0.1% 한강뷰 아파트 대기자", desc: "현금 흐름 최상위권! 강남/상급지 진입 프리패스." };
+  } else if (savings >= 80000 || monthlyAvailable >= 500) {
+    return { badge: "SS TIER", class: "tier-ss", title: "⚡ 영앤리치 갓생 수호자", desc: "탄탄한 자산과 막강한 현금창출력을 보유했습니다." };
+  } else if (savings >= 40000 || monthlyAvailable >= 350) {
+    return { badge: "S+ TIER", class: "tier-s-plus", title: "🌟 수도권 상급지 수호자", desc: "상위 10%대 현금 흐름으로 자산 증식이 매우 빠릅니다." };
+  } else if (savings >= 25000 || monthlyAvailable >= 250) {
+    return { badge: "S TIER", class: "tier-s", title: "🥇 통장 튼튼 갓생 1황", desc: "안정적인 자산 기반과 여유 있는 생활 수준입니다." };
+  } else if (savings >= 15000 || monthlyAvailable >= 200) {
+    return { badge: "A+ TIER", class: "tier-a-plus", title: "🚀 자산 형성 속도 5G", desc: "갓생 엘리트 코스를 밟고 있는 우수한 현금 흐름!" };
+  } else if (savings >= 9000 || monthlyAvailable >= 150) {
+    return { badge: "A TIER", class: "tier-a", title: "🛡️ 평화로운 통장 수호자", desc: "통장이 튼튼하며 카푸어 위험에서 멀리 떨어져 있습니다." };
+  } else if (savings >= 5000 || monthlyAvailable >= 120) {
+    return { badge: "B+ TIER", class: "tier-b-plus", title: "🏠 내 집 마련 궤도 진입자", desc: "안정적 저축으로 내 집 마련 꿈에 직진 중입니다." };
+  } else if (savings >= 3000 || monthlyAvailable >= 80) {
+    return { badge: "B TIER", class: "tier-b", title: "⚖️ 무난무난 표준 직장인", desc: "대한민국 표준 직장인! 밸런스를 잘 지키고 있습니다." };
+  } else if (savings >= 1500 || monthlyAvailable >= 50) {
+    return { badge: "B- TIER", class: "tier-b-minus", title: "🌱 모으기 시작한 갓생 뉴비", desc: "시드머니 3,000만 원을 향해 힘차게 달리는 중!" };
+  } else if (monthlyAvailable >= 30) {
+    return { badge: "C+ TIER", class: "tier-c-plus", title: "⚠️ 고정비 다이어트 주의보", desc: "월세 및 필수 고정비를 줄이면 자산 속도가 빨라집니다." };
+  } else if (monthlyAvailable >= 20) {
+    return { badge: "C TIER", class: "tier-c", title: "💸 월급이 통장을 스쳐가는 찰나", desc: "통장 잔고 유지가 아슬아슬! 짠테크 전환 권장." };
+  } else if (monthlyAvailable >= 0) {
+    return { badge: "D TIER", class: "tier-d", title: "🔋 숨만 쉬어도 통장 방전", desc: "여유 자금이 부족합니다. 비상금 펀드 구축이 시급합니다." };
+  } else if (carPoorIndex < 80) {
+    return { badge: "F TIER", class: "tier-f", title: "🚨 차 할부금에 뼈 맞추는 중", desc: "지출이 소득을 초과함! 무리한 소비 다이어트 필수." };
+  } else {
+    return { badge: "FFF TIER", class: "tier-fff", title: "💥 언데드 마이너스 통장", desc: "숨 쉴 때마다 마이너스 적자! 통장 긴급 구조 조치 필요." };
+  }
+}
+
+/* 4대 세부 지표 스탯 계산기 */
+function calculateSubStats(annualIncome, savings, fixedExpenses, carPoorIndex) {
+  let incomeGrade = "F Grade";
+  if (annualIncome >= 10000) incomeGrade = "SSS Grade";
+  else if (annualIncome >= 8000) incomeGrade = "SS Grade";
+  else if (annualIncome >= 6000) incomeGrade = "S Grade";
+  else if (annualIncome >= 4500) incomeGrade = "A Grade";
+  else if (annualIncome >= 3500) incomeGrade = "B Grade";
+  else if (annualIncome >= 3000) incomeGrade = "C Grade";
+
+  let savingsGrade = "F Grade";
+  if (savings >= 10000) savingsGrade = "SSS Grade";
+  else if (savings >= 5000) savingsGrade = "SS Grade";
+  else if (savings >= 3000) savingsGrade = "S Grade";
+  else if (savings >= 1500) savingsGrade = "A Grade";
+  else if (savings >= 500) savingsGrade = "B Grade";
+  else if (savings >= 100) savingsGrade = "C Grade";
+
+  let expenseGrade = "F Grade";
+  if (fixedExpenses <= 40) expenseGrade = "S Grade";
+  else if (fixedExpenses <= 70) expenseGrade = "A Grade";
+  else if (fixedExpenses <= 110) expenseGrade = "B Grade";
+  else if (fixedExpenses <= 150) expenseGrade = "C Grade";
+
+  let carPoorStatus = "안전권";
+  let dangerClass = false;
+  if (carPoorIndex >= 70) { carPoorStatus = `위험 (${carPoorIndex}%)`; dangerClass = true; }
+  else if (carPoorIndex >= 50) { carPoorStatus = `경고 (${carPoorIndex}%)`; dangerClass = true; }
+  else if (carPoorIndex >= 35) { carPoorStatus = `주의 (${carPoorIndex}%)`; }
+  else { carPoorStatus = `안전권 (${carPoorIndex}%)`; }
+
+  return { incomeGrade, savingsGrade, expenseGrade, carPoorStatus, dangerClass };
+}
+
 function calculateResult() {
   const ageGroup = document.getElementById('ageGroup').value;
   const annualIncome = parseInt(document.getElementById('annualIncome').value);
@@ -80,14 +149,16 @@ function calculateResult() {
   const carInfo = getCarRecommendation(monthlyCarBudget, monthlyAvailable);
   const houseInfo = getHousingRecommendation(savings, monthlyAvailable);
   const carPoorIndex = Math.min(100, Math.max(5, Math.round((fixedExpenses + monthlyCarBudget * 1.5) / monthlyNet * 100)));
-  const tierInfo = getTierInfo(savings, monthlyAvailable, carPoorIndex);
+  
+  const tierInfo = get15TierInfo(savings, monthlyAvailable, carPoorIndex, annualIncome);
+  const subStats = calculateSubStats(annualIncome, savings, fixedExpenses, carPoorIndex);
 
   const ageRankText = getAgeRankText(ageGroup, annualIncome);
 
   const coffeeCount = Math.max(0, Math.floor((monthlyAvailable * 10000 * 0.4) / 4500));
   const deliveryCount = Math.max(0, Math.floor((monthlyAvailable * 10000 * 0.4) / 28000));
 
-  renderResults({ annualIncome, savings, fixedExpenses, monthlyNet, monthlyAvailable, carPoorIndex, carInfo, houseInfo, tierInfo, ageRankText, coffeeCount, deliveryCount, lifestyle });
+  renderResults({ annualIncome, savings, fixedExpenses, monthlyNet, monthlyAvailable, carPoorIndex, carInfo, houseInfo, tierInfo, subStats, ageRankText, coffeeCount, deliveryCount, lifestyle });
 
   document.getElementById('formSection').classList.add('hidden');
   document.getElementById('resultSection').classList.remove('hidden');
@@ -112,14 +183,6 @@ function getHousingRecommendation(savings, monthlyAvailable) {
   else if (maxHomePrice < 7.0) return { title: "수도권 24~32평형 아파트 (매매 5~6억 대)", note: `약 ${maxHomePrice}억 원 아파트 진입 가능` };
   else if (maxHomePrice < 12.0) return { title: "서울 준상급지/수도권 대장 아파트 (8~11억)", note: `약 ${maxHomePrice}억 원 대 내 집 마련 한도` };
   else return { title: "서울 마용성/강남권 상급지 아파트 (15억 이상)", note: "자산 가치 상위 1%대 주거 영역" };
-}
-
-function getTierInfo(savings, monthlyAvailable, carPoorIndex) {
-  if (savings >= 20000 && monthlyAvailable >= 250) return { badge: "S TIER", class: "tier-s", title: "💎 재벌집 막내아들급 자산 수호자", desc: "압도적인 자산과 강력한 현금 흐름!" };
-  else if (savings >= 8000 || monthlyAvailable >= 150) return { badge: "A TIER", class: "tier-a", title: "🥇 탄탄한 갓생 수호자", desc: "통장이 튼튼하며 카푸어 위험 지대에서 멀리 있습니다." };
-  else if (monthlyAvailable >= 80) return { badge: "B TIER", class: "tier-b", title: "🥈 평화로운 밸런스 유지자", desc: "안정적 현금 흐름을 유지하고 있습니다." };
-  else if (monthlyAvailable >= 30) return { badge: "C TIER", class: "tier-c", title: "⚠️ 카푸어 경계선 주의보!", desc: "고정 지출 다이어트가 필요합니다." };
-  else return { badge: "F TIER", class: "tier-f", title: "🚨 통장 비상사태!", desc: "숨만 쉬어도 마이너스 위험! 짠테크 모드 전환 필요." };
 }
 
 function renderFinancialRecipes(lifestyle, savings, monthlyAvailable) {
@@ -189,6 +252,16 @@ function renderResults(data) {
 
   document.getElementById('ageRankText').innerHTML = data.ageRankText;
 
+  /* Render 4 Sub-Stats */
+  document.getElementById('statIncomeGrade').innerText = data.subStats.incomeGrade;
+  document.getElementById('statSavingsGrade').innerText = data.subStats.savingsGrade;
+  document.getElementById('statExpenseGrade').innerText = data.subStats.expenseGrade;
+  
+  const carPoorEl = document.getElementById('statCarPoorGrade');
+  carPoorEl.innerText = data.subStats.carPoorStatus;
+  if (data.subStats.dangerClass) carPoorEl.classList.add('danger');
+  else carPoorEl.classList.remove('danger');
+
   document.getElementById('monthlyNetPay').innerText = `${data.monthlyNet.toLocaleString()}만 원`;
   document.getElementById('monthlyAvailable').innerText = `${data.monthlyAvailable.toLocaleString()}만 원`;
   document.getElementById('carPoorIndex').innerText = `${data.carPoorIndex}%`;
@@ -226,7 +299,7 @@ function captureStoryCard() {
   html2canvas(cardNode, { scale: 2, backgroundColor: '#090a10', useCORS: true }).then(canvas => {
     const a = document.createElement('a');
     a.href = canvas.toDataURL("image/png");
-    a.download = `2026_현실연봉진단_결과카드.png`;
+    a.download = `2026_현실연봉계급_결과카드.png`;
     a.click();
   });
 }
