@@ -176,11 +176,12 @@ function getCarRecommendation(monthlyCarBudget, monthlyAvailable) {
 function getHousingRecommendation(savings, monthlyAvailable) {
   const maxMortgageLoan = Math.max(0, monthlyAvailable * 150);
   const maxHomePrice = Math.round((savings + maxMortgageLoan) / 10000 * 10) / 10;
-  if (maxHomePrice < 1.5) return { title: "청년 안심주택 / 보증금 전세 (원룸)", note: `순자산 ${savings}만 원 기준 대출 활용 권장` };
-  else if (maxHomePrice < 3.5) return { title: "수도권 투룸 오피스텔 / 빌라 (매매 2~3억 대)", note: `최대 전세/매매 한도 약 ${maxHomePrice}억 원 수준` };
-  else if (maxHomePrice < 7.0) return { title: "수도권 24~32평형 아파트 (매매 5~6억 대)", note: `약 ${maxHomePrice}억 원 아파트 진입 가능` };
-  else if (maxHomePrice < 12.0) return { title: "서울 준상급지/수도권 대장 아파트 (8~11억)", note: `약 ${maxHomePrice}억 원 대 내 집 마련 한도` };
-  else return { title: "서울 마용성/강남권 상급지 아파트 (15억 이상)", note: "자산 가치 상위 1%대 주거 영역" };
+  if (maxHomePrice < 2.0) return { title: "청년 안심주택 / 보증금 전세 (원룸·투룸)", note: `순자산 ${savings}만 원 기준 전세 대출 활용 권장` };
+  else if (maxHomePrice < 4.5) return { title: "수도권 투룸 오피스텔 / 신축 빌라 (매매 2~4억 대)", note: `최대 전세/매매 구매 한도 약 ${maxHomePrice}억 원 수준` };
+  else if (maxHomePrice < 8.5) return { title: "수도권 외곽/경기·인천 24평형 아파트 (매매 5~8억 대)", note: `약 ${maxHomePrice}억 원 내 집 마련 진입 한도 (LTV/DSR 기준)` };
+  else if (maxHomePrice < 14.0) return { title: "수도권 선호지역/서울 외곽 24~32평형 (매매 9~13억 대)", note: `약 ${maxHomePrice}억 원 대 아파트 진입 한도` };
+  else if (maxHomePrice < 22.0) return { title: "서울 마용성/주요 상급지 24~32평형 (매매 14~21억 대)", note: `약 ${maxHomePrice}억 원 수준 서울 핵심지 아파트 진입 한도` };
+  else return { title: "서울 강남3구(강남·서초·송파) 32평형 (매매 22억 이상)", note: "대한민국 최고 자산 상위 1%대 하이엔드 주거 영역" };
 }
 
 function renderFinancialRecipes(lifestyle, savings, monthlyAvailable) {
