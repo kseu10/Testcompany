@@ -75,9 +75,32 @@ body.theme-today .orb-3 { background: #fbbf24; opacity: 0.2; }
 .gradient-text { background: var(--primary-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
 .sub-title { font-size: 0.95rem; color: var(--text-muted); line-height: 1.5; }
 
-.header-quick-nav { display: flex; justify-content: center; gap: 8px; margin-top: 14px; flex-wrap: wrap; }
-.nav-chip { background: #ffffff; border: 1px solid rgba(0, 0, 0, 0.08); color: #1e293b; font-size: 0.8rem; font-weight: 700; padding: 8px 15px; border-radius: 100px; cursor: pointer; transition: all 0.2s ease; display: inline-flex; align-items: center; gap: 6px; text-decoration: none; box-shadow: 0 2px 8px rgba(0,0,0,0.04); }
-.nav-chip:hover { background: var(--primary-purple); color: #fff; border-color: var(--primary-purple); transform: translateY(-2px); box-shadow: 0 4px 12px rgba(124, 58, 237, 0.25); }
+.header-quick-nav { display: flex; justify-content: center; gap: 8px; margin-top: 16px; flex-wrap: wrap; }
+.nav-chip {
+  background: #ffffff;
+  border: 1.5px solid rgba(0, 0, 0, 0.08);
+  color: #0f172a;
+  font-size: 0.85rem;
+  font-weight: 800;
+  padding: 10px 16px;
+  border-radius: 100px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  text-decoration: none;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+.nav-chip:hover {
+  transform: translateY(-3px);
+  filter: brightness(1.08);
+}
+.nav-chip.chip-love { background: #ffe4e6; border-color: #fecdd3; color: #e11d48; }
+.nav-chip.chip-work { background: #e0f2fe; border-color: #bae6fd; color: #0284c7; }
+.nav-chip.chip-saju-life { background: #f3e8ff; border-color: #ddd6fe; color: #7c3aed; }
+.nav-chip.chip-saju-today { background: #d1fae5; border-color: #a7f3d0; color: #059669; }
+.nav-chip.chip-asset { background: #fef3c7; border-color: #fde68a; color: #d97706; }
 
 .adsense-slot { background: rgba(255, 255, 255, 0.6); border: 1px dashed rgba(0, 0, 0, 0.15); border-radius: var(--radius-md); padding: 10px; text-align: center; }
 .ad-label { font-size: 0.65rem; color: var(--text-dim); margin-bottom: 6px; font-weight: 700; }
@@ -193,11 +216,77 @@ body.theme-today .orb-3 { background: #fbbf24; opacity: 0.2; }
 .card-footer { display: flex; justify-content: space-between; font-size: 0.7rem; color: var(--text-dim); border-top: 1px dashed rgba(0, 0, 0, 0.08); padding-top: 12px; }
 .watermark-url { color: var(--primary-purple); font-weight: 800; }
 
-/* FEATURE LINKS & FINANCIAL RECIPE */
-.feature-links-card h3 { font-size: 1.1rem; font-weight: 800; color: var(--primary-purple); margin-bottom: 12px; }
-.btn-cluster { display: flex; flex-wrap: wrap; gap: 8px; }
-.link-btn { text-decoration: none; font-size: 0.78rem; font-weight: 700; padding: 9px 13px; border-radius: var(--radius-sm); border: 1px solid rgba(0, 0, 0, 0.08); background: #ffffff; color: #1e293b; display: inline-flex; align-items: center; gap: 6px; transition: all 0.2s; cursor: pointer; box-shadow: 0 2px 6px rgba(0,0,0,0.03); }
-.link-btn:hover { transform: translateY(-2px); border-color: var(--primary-purple); background: var(--primary-purple); color: #fff; }
+/* FEATURE LINKS & VIBRANT OTHER TEST BUTTONS */
+.feature-links-card {
+  background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%) !important;
+  border: 2px solid #e2e8f0 !important;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06) !important;
+  border-radius: var(--radius-lg);
+  padding: 22px 20px;
+}
+.feature-links-card h3 {
+  font-size: 1.15rem;
+  font-weight: 900;
+  color: #0f172a;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.btn-cluster {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.link-btn {
+  text-decoration: none;
+  font-size: 0.95rem;
+  font-weight: 800;
+  padding: 14px 20px;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+  border: none !important;
+  width: 100%;
+}
+.link-btn:hover {
+  transform: translateY(-3px) scale(1.01);
+  filter: brightness(1.08);
+}
+.link-btn:active {
+  transform: translateY(0) scale(0.99);
+}
+
+/* 각 테스트별 개성 있는 비비드 그라데이션 컬러 */
+.link-btn.btn-asset {
+  background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%) !important;
+  color: #ffffff !important;
+  box-shadow: 0 6px 18px rgba(217, 119, 6, 0.35) !important;
+}
+.link-btn.btn-love {
+  background: linear-gradient(135deg, #f43f5e 0%, #e11d48 100%) !important;
+  color: #ffffff !important;
+  box-shadow: 0 6px 18px rgba(225, 29, 72, 0.35) !important;
+}
+.link-btn.btn-work {
+  background: linear-gradient(135deg, #0284c7 0%, #2563eb 100%) !important;
+  color: #ffffff !important;
+  box-shadow: 0 6px 18px rgba(2, 132, 199, 0.35) !important;
+}
+.link-btn.btn-saju-life {
+  background: linear-gradient(135deg, #8b5cf6 0%, #6d28d9 100%) !important;
+  color: #ffffff !important;
+  box-shadow: 0 6px 18px rgba(109, 40, 217, 0.35) !important;
+}
+.link-btn.btn-saju-today {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%) !important;
+  color: #ffffff !important;
+  box-shadow: 0 6px 18px rgba(5, 150, 105, 0.35) !important;
+}
 
 /* SPACIOUS AIRY DEEP REPORT STYLING */
 .deep-report-dashboard {
