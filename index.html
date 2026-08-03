@@ -29,10 +29,10 @@
       <h1 class="main-title">현실 연봉·자산 <span class="gradient-text">시뮬레이터</span></h1>
       <p class="sub-title">내 소득으로 <b>살 수 있는 차·집</b>, <b>15단계 세부 계급도</b>, <b>10년 미래 자산 심층 리포트</b>를 3초 만에 진단해보세요.</p>
       
-      <!-- 별도 통계 데이터 참고 팝업 버튼 (게임과 확연히 구분) -->
-      <div style="margin-top: 14px;">
-        <button type="button" class="nav-chip" style="background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); color: #fde047; border: 1.5px solid #fde047; font-weight: 800; padding: 10px 22px; box-shadow: 0 6px 18px rgba(0,0,0,0.15);" onclick="openModal('ageSalaryModal')">
-          <i class="fa-solid fa-chart-line"></i> 📊 대한민국 20~50대 연봉 & 중위소득 팩트 통계표 보기 (클릭)
+      <!-- 통계 데이터 참고 팝업 전용 고급 버튼 -->
+      <div class="header-stats-btn-wrap">
+        <button type="button" class="btn-stats-header" onclick="openModal('ageSalaryModal')">
+          <i class="fa-solid fa-chart-pie"></i> 📊 대한민국 20~50대 연봉 & 중위소득 팩트 통계표 보기 (클릭)
         </button>
       </div>
     </header>
@@ -44,97 +44,75 @@
 
     <main class="main-content">
       <section id="formSection" class="glass-card form-card">
-        <div class="card-header">
-          <h2><i class="fa-solid fa-sliders"></i> 내 재정 정보 입력하기</h2>
-          <span class="step-indicator">10초 완성</span>
+        <div class="form-header">
+          <h2><i class="fa-solid fa-calculator"></i> 2026 내 소득 & 자산 정보 입력</h2>
+          <p class="form-sub-desc">정확한 진단을 위해 세전 연봉과 자산을 입력해주세요. (100% 개인정보 미저장)</p>
         </div>
-        <form id="simulatorForm" onsubmit="return false;">
-          
+
+        <form id="simulatorForm" onsubmit="event.preventDefault();">
           <div class="input-group">
-            <label for="userAge">
-              <span class="label-title"><span class="icon">🎂</span> 내 정확한 나이</span>
-              <span class="label-desc">단위: 세 (정확한 나이별 연봉/중위소득 산출)</span>
-            </label>
-            <div class="input-wrapper">
-              <input type="number" id="userAge" placeholder="예: 29" min="18" max="75" step="1" required>
-              <span class="input-unit">세</span>
+            <label for="age"><i class="fa-solid fa-user"></i> 연령대 선택</label>
+            <select id="age" class="input-field">
+              <option value="20s">20대 (20~29세)</option>
+              <option value="30s" selected>30대 (30~39세)</option>
+              <option value="40s">40대 (40~49세)</option>
+              <option value="50s">50대 이상 (50세~)</option>
+            </select>
+          </div>
+
+          <div class="input-group">
+            <label for="annualIncome"><i class="fa-solid fa-won-sign"></i> 현재 세전 연봉 (단위: 만 원)</label>
+            <div class="input-with-unit">
+              <input type="number" id="annualIncome" class="input-field" placeholder="예: 4500" value="4500">
+              <span class="unit-text">만 원</span>
             </div>
-            <div class="quick-buttons">
-              <button type="button" onclick="setValue('userAge', 25)">25세</button>
-              <button type="button" onclick="setValue('userAge', 29)">29세</button>
-              <button type="button" onclick="setValue('userAge', 33)">33세</button>
-              <button type="button" onclick="setValue('userAge', 38)">38세</button>
-              <button type="button" onclick="setValue('userAge', 45)">45세</button>
+            <div class="quick-btn-group">
+              <button type="button" class="quick-btn" onclick="setValue('annualIncome', 3000)">3천만</button>
+              <button type="button" class="quick-btn" onclick="setValue('annualIncome', 4500)">4.5천만</button>
+              <button type="button" class="quick-btn" onclick="setValue('annualIncome', 6000)">6천만</button>
+              <button type="button" class="quick-btn" onclick="setValue('annualIncome', 8000)">8천만</button>
+              <button type="button" class="quick-btn" onclick="setValue('annualIncome', 10000)">1억</button>
             </div>
           </div>
 
           <div class="input-group">
-            <label for="annualIncome">
-              <span class="label-title"><i class="fa-solid fa-won-sign"></i> 세전 연봉</span>
-              <span class="label-desc">단위: 만 원</span>
-            </label>
-            <div class="input-wrapper">
-              <input type="number" id="annualIncome" placeholder="예: 4500" min="0" max="100000" step="50" required>
-              <span class="input-unit">만 원</span>
+            <label for="savings"><i class="fa-solid fa-piggy-bank"></i> 보유 순자산 / 현금 (단위: 만 원)</label>
+            <div class="input-with-unit">
+              <input type="number" id="savings" class="input-field" placeholder="예: 3000" value="3000">
+              <span class="unit-text">만 원</span>
             </div>
-            <div class="quick-buttons">
-              <button type="button" onclick="addValue('annualIncome', 3000)">3,000만</button>
-              <button type="button" onclick="addValue('annualIncome', 4500)">4,500만</button>
-              <button type="button" onclick="addValue('annualIncome', 6000)">6,000만</button>
-              <button type="button" onclick="addValue('annualIncome', 8000)">8,000만</button>
-              <button type="button" onclick="addValue('annualIncome', 10000)">1억</button>
+            <div class="quick-btn-group">
+              <button type="button" class="quick-btn" onclick="setValue('savings', 1000)">1천만</button>
+              <button type="button" class="quick-btn" onclick="setValue('savings', 3000)">3천만</button>
+              <button type="button" class="quick-btn" onclick="setValue('savings', 5000)">5천만</button>
+              <button type="button" class="quick-btn" onclick="setValue('savings', 10000)">1억</button>
+              <button type="button" class="quick-btn" onclick="setValue('savings', 30000)">3억</button>
             </div>
           </div>
 
           <div class="input-group">
-            <label for="savings">
-              <span class="label-title"><i class="fa-solid fa-vault"></i> 순 모은 자산 (보증금+예적금+주식)</span>
-              <span class="label-desc">단위: 만 원 (대출금 제외 순자산)</span>
-            </label>
-            <div class="input-wrapper">
-              <input type="number" id="savings" placeholder="예: 3000" min="0" max="1000000" step="100" required>
-              <span class="input-unit">만 원</span>
-            </div>
-            <div class="quick-buttons">
-              <button type="button" onclick="addValue('savings', 1000)">1,000만</button>
-              <button type="button" onclick="addValue('savings', 3000)">3,000만</button>
-              <button type="button" onclick="addValue('savings', 5000)">5,000만</button>
-              <button type="button" onclick="addValue('savings', 10000)">1억</button>
-              <button type="button" onclick="addValue('savings', 30000)">3억</button>
+            <label for="monthlyExpense"><i class="fa-solid fa-credit-card"></i> 월 순수 생활비 / 고정 지출 (단위: 만 원)</label>
+            <div class="input-with-unit">
+              <input type="number" id="monthlyExpense" class="input-field" placeholder="예: 150" value="150">
+              <span class="unit-text">만 원</span>
             </div>
           </div>
 
           <div class="input-group">
-            <label for="fixedExpenses">
-              <span class="label-title"><i class="fa-solid fa-receipt"></i> 월 필수 고정 지출</span>
-              <span class="label-desc">월세, 통신비, 보험료, 부모님 용돈 등 필수금액</span>
-            </label>
-            <div class="input-wrapper">
-              <input type="number" id="fixedExpenses" placeholder="예: 70" min="0" max="2000" step="5" required>
-              <span class="input-unit">만 원</span>
-            </div>
-            <div class="quick-buttons">
-              <button type="button" onclick="setValue('fixedExpenses', 40)">40만(자가/부모님집)</button>
-              <button type="button" onclick="setValue('fixedExpenses', 80)">80만(월세+기본)</button>
-              <button type="button" onclick="setValue('fixedExpenses', 130)">130만(원룸+숨만쉬어도)</button>
-            </div>
-          </div>
-
-          <div class="input-group">
-            <label><span class="label-title"><i class="fa-solid fa-heart-pulse"></i> 내 성향 & 가치관</span></label>
+            <label><i class="fa-solid fa-face-smile"></i> 소비 및 가치관 스타일</label>
             <div class="radio-grid">
               <label class="radio-card">
                 <input type="radio" name="lifestyle" value="frugal" checked>
                 <div class="radio-content">
                   <span class="icon">🌱</span>
-                  <div class="text"><strong>짠테크 갓생러</strong><small>최대한 아끼고 자산을 빠르게 모으고 싶음</small></div>
+                  <div class="text"><strong>알뜰 저축파 (갓생)</strong><small>시드머니 모아서 집 사고 자산 증식이 최우선!</small></div>
                 </div>
               </label>
               <label class="radio-card">
                 <input type="radio" name="lifestyle" value="balanced">
                 <div class="radio-content">
                   <span class="icon">⚖️</span>
-                  <div class="text"><strong>밸런스 유지형</strong><small>적당히 즐기면서 미래도 챙김</small></div>
+                  <div class="text"><strong>밸런스 파 (적당히)</strong><small>저축도 하고 적당히 취미 생활과 소비 즐기기</small></div>
                 </div>
               </label>
               <label class="radio-card">
@@ -160,8 +138,8 @@
 
       <section id="resultSection" class="result-section hidden">
         <div class="result-actions-top">
-          <button class="btn-secondary" onclick="resetForm()"><i class="fa-solid fa-rotate-left"></i> 다시 진단하기</button>
-          <button class="btn-highlight" onclick="captureStoryCard()"><i class="fa-brands fa-instagram"></i> 인스타 스토리 카드 다운로드</button>
+          <button class="btn-secondary btn-reset-custom" onclick="resetForm()"><i class="fa-solid fa-rotate-left"></i> 다시 진단하기</button>
+          <button class="btn-highlight btn-share-custom" onclick="captureStoryCard()"><i class="fa-brands fa-instagram"></i> 인스타 스토리 카드 다운로드</button>
         </div>
 
         <div id="storyCardContainer" class="story-card-wrapper">
@@ -178,25 +156,19 @@
               <p class="tier-sub" id="tierDesc">통장이 튼튼하며 카푸어 위험 지대에서 멀리 떨어져 있습니다!</p>
             </div>
 
-            <!-- 내 연령대 연봉 위치 진단 배너 -->
-            <div class="age-rank-banner">
-              <i class="fa-solid fa-ranking-star"></i>
-              <span id="ageRankText">30대 소득 위치: <strong>상위 25%</strong> (연령대 평균 이상)</span>
-            </div>
-
-            <!-- 4대 세부 스탯 그리드 -->
-            <div class="sub-stats-grid">
+            <!-- 세부 진단 요약 박스 (4가지 서브 등급) -->
+            <div class="sub-stats-banner">
               <div class="sub-stat-box">
-                <span class="sub-stat-title">💰 소득 스탯</span>
-                <span class="sub-stat-grade" id="statIncomeGrade">S Grade</span>
+                <span class="sub-stat-title">💰 소득 백분위</span>
+                <span class="sub-stat-grade" id="statIncomeGrade">상위 25%</span>
               </div>
               <div class="sub-stat-box">
-                <span class="sub-stat-title">🪙 저축 레버리지</span>
-                <span class="sub-stat-grade" id="statSavingsGrade">A Grade</span>
+                <span class="sub-stat-title">🏦 자산 수준</span>
+                <span class="sub-stat-grade" id="statSavingsGrade">중위 50%</span>
               </div>
               <div class="sub-stat-box">
-                <span class="sub-stat-title">🛒 지출 다이어트</span>
-                <span class="sub-stat-grade" id="statExpenseGrade">B Grade</span>
+                <span class="sub-stat-title">⚖️ 지출 건강도</span>
+                <span class="sub-stat-grade" id="statExpenseGrade">적정</span>
               </div>
               <div class="sub-stat-box">
                 <span class="sub-stat-title">🚨 카푸어 위험도</span>
@@ -275,8 +247,15 @@
           </div>
         </div>
 
-        <!-- 2026 대폭 강화된 심층 재정 분석 리포트 대시보드 (새로 업그레이드) -->
-        <div class="glass-card deep-report-dashboard">
+        <!-- 심층 리포트 상세보기 토글 버튼 -->
+        <div class="toggle-report-btn-wrap">
+          <button type="button" id="btnToggleReport" class="btn-toggle-report" onclick="toggleDeepReport()">
+            <span id="toggleReportText"><i class="fa-solid fa-square-caret-down"></i> 🔍 2026 심층 재정 컨설팅 리포트 상세보기 (클릭하여 펼치기)</span>
+          </button>
+        </div>
+
+        <!-- 2026 대폭 강화된 심층 재정 분석 리포트 대시보드 (기본 접힘) -->
+        <div id="deepReportDashboard" class="glass-card deep-report-dashboard hidden-report">
           <div class="dashboard-header">
             <h3><i class="fa-solid fa-chart-line"></i> 2026 종합 심층 재정 컨설팅 리포트</h3>
             <span class="report-badge"><i class="fa-solid fa-certificate"></i> AI FINANCIAL REPORT</span>

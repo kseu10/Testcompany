@@ -366,9 +366,26 @@ function renderResults(data) {
   renderFinancialRecipes(data.lifestyle, data.savings, data.monthlyAvailable);
 }
 
+function toggleDeepReport() {
+  const dash = document.getElementById('deepReportDashboard');
+  const txt = document.getElementById('toggleReportText');
+  if (!dash) return;
+  if (dash.classList.contains('hidden-report')) {
+    dash.classList.remove('hidden-report');
+    if (txt) txt.innerHTML = `<i class="fa-solid fa-square-caret-up"></i> 🔍 2026 심층 재정 컨설팅 리포트 접기`;
+  } else {
+    dash.classList.add('hidden-report');
+    if (txt) txt.innerHTML = `<i class="fa-solid fa-square-caret-down"></i> 🔍 2026 심층 재정 컨설팅 리포트 상세보기 (클릭하여 펼치기)`;
+  }
+}
+
 function resetForm() {
   document.getElementById('resultSection').classList.add('hidden');
   document.getElementById('formSection').classList.remove('hidden');
+  const dash = document.getElementById('deepReportDashboard');
+  if (dash) dash.classList.add('hidden-report');
+  const txt = document.getElementById('toggleReportText');
+  if (txt) txt.innerHTML = `<i class="fa-solid fa-square-caret-down"></i> 🔍 2026 심층 재정 컨설팅 리포트 상세보기 (클릭하여 펼치기)`;
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
