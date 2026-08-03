@@ -99,11 +99,28 @@ def main():
             print(f"❌ 로그인 실패: {e}")
             return
 
-    print(f"\n📸 이미지 업로드 중: {os.path.basename(image_path)}")
+    print(f"\n📸 이미지 검증 및 전처리 중: {os.path.basename(image_path)}")
     try:
-        media = cl.photo_upload(image_path, post_info["caption"])
-        print("\n🎉 [100% 성공] 인스타그램 게시물이 성공적으로 발행되었습니다!")
-        print(f"🔗 게시물 URL: https://www.instagram.com/p/{media.code}/")
+        from PIL import Image
+        with Image.open(image_path) as img:
+            img = img.convert('RGB')
+            img = img.resize((1080, 1080), Image.Resampling.LANCZOS)
+            processed_path = os.path.join(os.path.dirname(__file__), "upload_temp.jpg")
+            img.save(processed_path, "JPEG", quality=95)
+            upload_target = processed_path
+    except Exception as e:
+        upload_target = image_path
+
+    print(f"🚀 인스타그램 게시글 업로드 전송 중...")
+    try:
+        media = cl.photo_upload(upload_target, post_info["caption"])
+        post_url = f"https://www.instagram.com/p/{media.code}/"
+        print("\n🎉 [100% 성공] 인스타그램 게시물이 정상적으로 업로드되었습니다!")
+        print(f"🔗 게시물 직링크: {post_url}")
+        
+        # 브라우저로 업로드된 게시물 즉시 자동 열기
+        import webbrowser
+        webbrowser.open(post_url)
     except Exception as e:
         print(f"❌ 업로드 중 오류 발생: {e}")
 
