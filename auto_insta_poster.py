@@ -64,16 +64,22 @@ def safe_print(msg):
             pass
 
 def main():
+    is_auto = "--auto" in sys.argv
     safe_print("============================================================")
     safe_print("[2026 연봉계급도] 인스타그램 무인 자동 업로더")
     safe_print("============================================================")
-    safe_print(" 1) Day 1: 2026 연봉 세부계급 & 소득 팩트 분석")
-    safe_print(" 2) Day 2: 2026 연봉별 현실 자동차 추천 가이드")
-    safe_print("============================================================")
 
-    choice = input("발행할 콘텐츠 번호 선택 (기본 1): ").strip()
-    if choice not in POSTS:
-        choice = "1"
+    if is_auto:
+        from datetime import datetime
+        choice = str(datetime.now().day % 2 + 1)
+        safe_print(f"[자동 모드] 날짜 기준 콘텐츠 {choice}번 자동 선택됨")
+    else:
+        safe_print(" 1) Day 1: 2026 연봉 세부계급 & 소득 팩트 분석")
+        safe_print(" 2) Day 2: 2026 연봉별 현실 자동차 추천 가이드")
+        safe_print("============================================================")
+        choice = input("발행할 콘텐츠 번호 선택 (기본 1): ").strip()
+        if choice not in POSTS:
+            choice = "1"
 
     post_info = POSTS[choice]
     safe_print(f"\n선택된 콘텐츠: {post_info['title']}")
@@ -87,12 +93,25 @@ def main():
         safe_print(f"[오류] 이미지 파일을 찾을 수 없습니다: {image_path}")
         return
 
-    username = input("\n인스타그램 로그인 아이디(이메일 또는 전화번호/사용자명) 입력: ").strip()
-    if not username:
-        print("❌ 아이디를 입력해야 진행할 수 있습니다!")
-        return
+    # 저장된 세션 파일명 자동 탐색
+    saved_session = None
+    for file in os.listdir(os.path.dirname(os.path.abspath(__file__))):
+        if file.startswith("session_") and file.endswith(".json"):
+            saved_session = file
+            break
+            
+    if saved_session:
+        username = saved_session.replace("session_", "").replace(".json", "")
+    else:
+        if is_auto:
+            safe_print("[오류] 자동 모드 실패: 저장된 세션 파일이 없습니다. 수동으로 1회 실행하여 로그인하세요.")
+            return
+        username = input("\n인스타그램 로그인 아이디(이메일 또는 전화번호/사용자명) 입력: ").strip()
+        if not username:
+            safe_print("❌ 아이디를 입력해야 진행할 수 있습니다!")
+            return
 
-    session_file = f"session_{username}.json"
+    session_file = os.path.join(os.path.dirname(os.path.abspath(__file__)), f"session_{username}.json")
     cl = Client()
 
     logged_in = False
@@ -100,12 +119,16 @@ def main():
         try:
             cl.load_settings(session_file)
             cl.login(username, "")
-            safe_print("[성공] 기존 저장된 세션으로 자동 로그인되었습니다!")
+            safe_print(f"[성공] 기존 세션({username})으로 자동 로그인 완료!")
             logged_in = True
         except Exception:
-            safe_print("[안내] 기존 세션 만료. 로그인 정보를 입력하세요.")
+            safe_print("[안내] 기존 세션 만료. 로그인 정보를 재입력하세요.")
 
     if not logged_in:
+        if is_auto:
+            safe_print("[오류] 자동 모드 실패: 로그인이 풀렸습니다. 수동으로 1회 로그인하세요.")
+            return
+            
         password = input(f"[{username}] 비밀번호 입력 (최초 1회만 저장됨): ").strip()
         if not password:
             safe_print("[오류] 비밀번호를 입력해야 합니다!")
@@ -137,8 +160,9 @@ def main():
         safe_print("\n[축하합니다!] 인스타그램 게시물이 100% 정상 업로드되었습니다!")
         safe_print(f"게시물 URL: {post_url}")
         
-        import webbrowser
-        webbrowser.open(post_url)
+        if not is_auto:
+            import webbrowser
+            webbrowser.open(post_url)
     except Exception as e:
         safe_print(f"[오류] 업로드 중 예외 발생: {e}")
 
