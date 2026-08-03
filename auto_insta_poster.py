@@ -69,31 +69,35 @@ def main():
         print(f"❌ 이미지 파일을 찾을 수 없습니다: {image_path}")
         return
 
-    username = input("\n인스타그램 아이디 입력 (예: info.test1234): ").strip()
-    password = input("인스타그램 비밀번호 입력: ").strip()
+    DEFAULT_USERNAME = "info.test1234"
+    username_input = input(f"\n인스타그램 아이디 입력 [기본값: {DEFAULT_USERNAME}]: ").strip()
+    username = username_input if username_input else DEFAULT_USERNAME
 
-    if not username or not password:
-        print("❌ 아이디와 비밀번호를 모두 입력해야 합니다!")
-        return
-
-    print(f"\n🔑 계정 (@{username}) 로그인 중...")
-    cl = Client()
-    
     session_file = f"session_{username}.json"
+    cl = Client()
+
+    logged_in = False
     if os.path.exists(session_file):
         try:
             cl.load_settings(session_file)
-            print("💾 세션 설정 로드 완료!")
+            cl.login(username, "")
+            print("💾 기존 저장된 세션으로 자동 로그인 성공!")
+            logged_in = True
         except Exception as e:
-            print(f"⚠️ 세션 로드 실패: {e}")
+            print("⚠️ 세션 재인증 필요...")
 
-    try:
-        cl.login(username, password)
-        cl.dump_settings(session_file)
-        print("✅ 인스타그램 로그인 성공!")
-    except Exception as e:
-        print(f"❌ 로그인 실패: {e}")
-        return
+    if not logged_in:
+        password = input("인스타그램 비밀번호 입력 (최초 1회만 저장됨): ").strip()
+        if not password:
+            print("❌ 비밀번호를 입력해야 합니다!")
+            return
+        try:
+            cl.login(username, password)
+            cl.dump_settings(session_file)
+            print("✅ 인스타그램 로그인 및 세션 저장 성공!")
+        except Exception as e:
+            print(f"❌ 로그인 실패: {e}")
+            return
 
     print(f"\n📸 이미지 업로드 중: {os.path.basename(image_path)}")
     try:
