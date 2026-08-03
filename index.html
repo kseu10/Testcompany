@@ -535,60 +535,83 @@
 
   <!-- MODALS -->
 
-  <!-- 1. 20대~50대 연봉 및 중위소득 표 모달 -->
+  <!-- 1. 20대~50대 연령별 세부 연봉 및 중위소득 표 모달 -->
   <div id="ageSalaryModal" class="modal-overlay hidden" onclick="closeModalOnOverlay(event, 'ageSalaryModal')">
-    <div class="modal-content glass-card">
+    <div class="modal-content glass-card modal-large">
       <div class="modal-header">
-        <h3><i class="fa-solid fa-users"></i> 2026 연령별 평균연봉 & 중위소득 표</h3>
+        <h3><i class="fa-solid fa-users"></i> 2026 연령 세부구간별 평균연봉 & 중위소득 팩트 통계표</h3>
         <button type="button" class="close-btn" onclick="closeModal('ageSalaryModal')">&times;</button>
       </div>
       <div class="modal-body">
-        <p class="modal-desc">통계청 및 고용노동부 최신 임금근로자 소득 데이터 기준입니다.</p>
+        <p class="modal-desc"><i class="fa-solid fa-database"></i> 통계청 및 고용노동부 최신 임금근로자 세부 소득 데이터 기준 (단위: 만 원)</p>
+        
         <div class="table-responsive">
-          <table class="data-table">
+          <table class="data-table styled-data-table">
             <thead>
               <tr>
-                <th>연령대</th>
+                <th>연령 세부 구간</th>
                 <th>평균 연봉</th>
-                <th>중위 소득 (월)</th>
-                <th>상위 10% 연봉</th>
+                <th>월 세전 중위소득</th>
                 <th>상위 25% 연봉</th>
+                <th>상위 10% 연봉</th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <td><strong>20대 (20~29세)</strong></td>
-                <td>3,450만 원</td>
-                <td>245만 원</td>
-                <td>5,200만 원</td>
+                <td><span class="age-tag tag-20s">20대 초반 (20~24세)</span></td>
+                <td>2,850만 원</td>
+                <td>205만 원</td>
+                <td>3,300만 원</td>
                 <td>4,100만 원</td>
               </tr>
               <tr>
-                <td><strong>30대 (30~39세)</strong></td>
-                <td>4,980만 원</td>
-                <td>350만 원</td>
-                <td>8,200만 원</td>
-                <td>6,300만 원</td>
+                <td><span class="age-tag tag-20s">20대 후반 (25~29세)</span></td>
+                <td>3,780만 원</td>
+                <td>275만 원</td>
+                <td>4,500만 원</td>
+                <td>5,600만 원</td>
               </tr>
               <tr>
-                <td><strong>40대 (40~49세)</strong></td>
-                <td>6,120만 원</td>
-                <td>415만 원</td>
-                <td>1억 500만 원</td>
-                <td>7,800만 원</td>
+                <td><span class="age-tag tag-30s">30대 초반 (30~34세)</span></td>
+                <td>4,620만 원</td>
+                <td>325만 원</td>
+                <td>5,800만 원</td>
+                <td>7,400만 원</td>
               </tr>
               <tr>
-                <td><strong>50대 이상 (50세~)</strong></td>
-                <td>5,850만 원</td>
-                <td>375만 원</td>
-                <td>1억 1,000만 원</td>
-                <td>7,200만 원</td>
+                <td><span class="age-tag tag-30s">30대 후반 (35~39세)</span></td>
+                <td>5,450만 원</td>
+                <td>380만 원</td>
+                <td>6,900만 원</td>
+                <td>9,100만 원</td>
+              </tr>
+              <tr>
+                <td><span class="age-tag tag-40s">40대 초반 (40~44세)</span></td>
+                <td>6,150만 원</td>
+                <td>420만 원</td>
+                <td>7,700만 원</td>
+                <td>1억 300만 원</td>
+              </tr>
+              <tr>
+                <td><span class="age-tag tag-40s">40대 후반 (45~49세)</span></td>
+                <td>6,680만 원</td>
+                <td>450만 원</td>
+                <td>8,400만 원</td>
+                <td>1억 1,200만 원</td>
+              </tr>
+              <tr>
+                <td><span class="age-tag tag-50s">50대 이상 (50세~)</span></td>
+                <td>5,950만 원</td>
+                <td>385만 원</td>
+                <td>7,300만 원</td>
+                <td>1억 800만 원</td>
               </tr>
             </tbody>
           </table>
         </div>
+
         <div class="modal-tip">
-          <strong>💡 중위소득이란?</strong> 대한민국 전체 근로자를 소득 순으로 나열했을 때 정확히 중앙에 위치한 사람의 소득입니다. 평균 소득보다 더 현실적인 내 소득 위치를 보여줍니다.
+          <strong>💡 중위소득이란?</strong> 대한민국 전체 근로자를 소득 순으로 정렬했을 때 정확히 중앙에 위치한 사람의 소득입니다. 평균 연봉은 고소득자가 평균을 올리므로, 중위소득이 훨씬 현실적인 내 소득 위치 기준입니다.
         </div>
       </div>
     </div>
