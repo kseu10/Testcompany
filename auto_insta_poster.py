@@ -1,5 +1,14 @@
 import os
 import sys
+
+# Windows CP949 인코딩 유니코드(이모지) 에러 방지
+if sys.platform.startswith('win'):
+    try:
+        sys.stdout.reconfigure(encoding='utf-8')
+        sys.stderr.reconfigure(encoding='utf-8')
+    except Exception:
+        pass
+
 from instagrapi import Client
 
 POSTS = {
@@ -45,20 +54,29 @@ POSTS = {
     }
 }
 
+def safe_print(msg):
+    try:
+        print(msg)
+    except Exception:
+        try:
+            print(msg.encode('utf-8', 'ignore').decode('cp949', 'ignore'))
+        except Exception:
+            pass
+
 def main():
-    print("=" * 60)
-    print("🚀 2026 연봉계급도 인스타그램 무인 자동 업로더 (instagrapi)")
-    print("=" * 60)
-    print(" 1) Day 1: 2026 연봉 세부계급 & 소득 팩트 분석")
-    print(" 2) Day 2: 2026 연봉별 현실 자동차 추천 가이드")
-    print("=" * 60)
+    safe_print("============================================================")
+    safe_print("[2026 연봉계급도] 인스타그램 무인 자동 업로더")
+    safe_print("============================================================")
+    safe_print(" 1) Day 1: 2026 연봉 세부계급 & 소득 팩트 분석")
+    safe_print(" 2) Day 2: 2026 연봉별 현실 자동차 추천 가이드")
+    safe_print("============================================================")
 
     choice = input("발행할 콘텐츠 번호 선택 (기본 1): ").strip()
     if choice not in POSTS:
         choice = "1"
 
     post_info = POSTS[choice]
-    print(f"\n선택된 콘텐츠: {post_info['title']}")
+    safe_print(f"\n선택된 콘텐츠: {post_info['title']}")
 
     image_filename = post_info["image"]
     image_path = os.path.join(os.path.expanduser("~"), "OneDrive", "바탕 화면", image_filename)
@@ -66,7 +84,7 @@ def main():
         image_path = os.path.join(os.path.dirname(__file__), image_filename)
 
     if not os.path.exists(image_path):
-        print(f"❌ 이미지 파일을 찾을 수 없습니다: {image_path}")
+        safe_print(f"[오류] 이미지 파일을 찾을 수 없습니다: {image_path}")
         return
 
     DEFAULT_USERNAME = "info.test1234"
@@ -81,25 +99,25 @@ def main():
         try:
             cl.load_settings(session_file)
             cl.login(username, "")
-            print("💾 기존 저장된 세션으로 자동 로그인 성공!")
+            safe_print("[성공] 기존 저장된 세션으로 자동 로그인되었습니다!")
             logged_in = True
-        except Exception as e:
-            print("⚠️ 세션 재인증 필요...")
+        except Exception:
+            safe_print("[안내] 기존 세션 만료. 로그인 정보를 입력하세요.")
 
     if not logged_in:
-        password = input("인스타그램 비밀번호 입력 (최초 1회만 저장됨): ").strip()
+        password = input(f"[{username}] 비밀번호 입력 (최초 1회만 저장됨): ").strip()
         if not password:
-            print("❌ 비밀번호를 입력해야 합니다!")
+            safe_print("[오류] 비밀번호를 입력해야 합니다!")
             return
         try:
             cl.login(username, password)
             cl.dump_settings(session_file)
-            print("✅ 인스타그램 로그인 및 세션 저장 성공!")
+            safe_print("[성공] 로그인 성공 및 세션 저장 완료!")
         except Exception as e:
-            print(f"❌ 로그인 실패: {e}")
+            safe_print(f"[오류] 로그인 실패: {e}")
             return
 
-    print(f"\n📸 이미지 검증 및 전처리 중: {os.path.basename(image_path)}")
+    safe_print(f"\n[진행중] 이미지 전처리 및 업로드 준비: {os.path.basename(image_path)}")
     try:
         from PIL import Image
         with Image.open(image_path) as img:
@@ -108,21 +126,20 @@ def main():
             processed_path = os.path.join(os.path.dirname(__file__), "upload_temp.jpg")
             img.save(processed_path, "JPEG", quality=95)
             upload_target = processed_path
-    except Exception as e:
+    except Exception:
         upload_target = image_path
 
-    print(f"🚀 인스타그램 게시글 업로드 전송 중...")
+    safe_print("[진행중] 인스타그램 게시글 업로드 전송 중...")
     try:
         media = cl.photo_upload(upload_target, post_info["caption"])
         post_url = f"https://www.instagram.com/p/{media.code}/"
-        print("\n🎉 [100% 성공] 인스타그램 게시물이 정상적으로 업로드되었습니다!")
-        print(f"🔗 게시물 직링크: {post_url}")
+        safe_print("\n[축하합니다!] 인스타그램 게시물이 100% 정상 업로드되었습니다!")
+        safe_print(f"게시물 URL: {post_url}")
         
-        # 브라우저로 업로드된 게시물 즉시 자동 열기
         import webbrowser
         webbrowser.open(post_url)
     except Exception as e:
-        print(f"❌ 업로드 중 오류 발생: {e}")
+        safe_print(f"[오류] 업로드 중 예외 발생: {e}")
 
 if __name__ == "__main__":
     main()
