@@ -139,43 +139,179 @@ function calculateSubStats(annualIncome, savings, fixedExpenses, carPoorIndex) {
   return { incomeGrade, savingsGrade, expenseGrade, carPoorStatus, dangerClass };
 }
 
-function calculateResult() {
-  const userAge = parseInt(document.getElementById('userAge').value);
-  const annualIncome = parseInt(document.getElementById('annualIncome').value);
-  const savings = parseInt(document.getElementById('savings').value);
-  const fixedExpenses = parseInt(document.getElementById('fixedExpenses').value);
-  const lifestyle = document.querySelector('input[name="lifestyle"]:checked').value;
+function safeText(id, text) {
+  const el = document.getElementById(id);
+  if (el) el.innerText = text;
+}
+function safeHTML(id, html) {
+  const el = document.getElementById(id);
+  if (el) el.innerHTML = html;
+}
 
-  if (isNaN(userAge) || isNaN(annualIncome) || isNaN(savings) || isNaN(fixedExpenses)) {
-    alert('모든 입력값(나이, 연봉, 자산, 고정지출)을 정확히 입력해주세요!');
-    return;
+function renderDeepReport(data) {
+  const { annualIncome, savings, fixedExpenses, monthlyNet, monthlyAvailable, carPoorIndex } = data;
+  
+  const annualNet = monthlyNet * 12;
+  const taxDeductions = (annualIncome * 10000) - (annualNet * 10000);
+  const expRatio = Math.round((fixedExpenses / Math.max(1, monthlyNet)) * 100);
+
+  safeText('repAnnualIncome', `${annualIncome.toLocaleString()} 만 원`);
+  safeText('repAnnualNet', `${Math.round(annualNet).toLocaleString()} 만 원`);
+  safeText('repTaxDeductions', `약 ${Math.round(taxDeductions / 10000).toLocaleString()} 만 원`);
+  
+  const expRatioEl = document.getElementById('repExpenseRatio');
+  if (expRatioEl) {
+    expRatioEl.innerText = `${expRatio}% (${expRatio > 40 ? '주의' : '적정'})`;
+    if (expRatio > 40) expRatioEl.classList.add('warning');
+    else expRatioEl.classList.remove('warning');
   }
 
-  const monthlyNet = calculateMonthlyNetPay(annualIncome);
-  const monthlyAvailable = monthlyNet - fixedExpenses;
+  // 2. 10년 자산 타임라인
+  const seedTarget = 10000;
+  const timeEl = document.getElementById('repOneHundredMillionTime');
+  if (timeEl) {
+    if (savings >= seedTarget) {
+      timeEl.innerText = "이미 1억 달성 완료! 🎉";
+    } else if (monthlyAvailable <= 0) {
+      timeEl.innerText = "달성 안 됨 (적자 상태)";
+    } else {
+      const needed = seedTarget - savings;
+      const monthsNeeded = Math.ceil(needed / monthlyAvailable);
+      const yrs = Math.floor(monthsNeeded / 12);
+      const mos = monthsNeeded % 12;
+      timeEl.innerText = yrs > 0 ? `${yrs}년 ${mos}개월 소요 예정` : `${mos}개월 소요 예정`;
+    }
+  }
 
-  let carBudgetRate = 0.25;
-  if (lifestyle === 'frugal') carBudgetRate = 0.15;
-  if (lifestyle === 'yolo') carBudgetRate = 0.40;
-  const monthlyCarBudget = Math.max(0, monthlyAvailable * carBudgetRate);
+  const emgTarget = fixedExpenses * 6;
+  const emgRate = Math.min(100, Math.round((savings / Math.max(1, emgTarget)) * 100));
+  safeText('repEmergencyFundRate', `${emgRate}% (${emgRate >= 100 ? '충분' : '부족'})`);
 
-  const carInfo = getCarRecommendation(monthlyCarBudget, monthlyAvailable);
-  const houseInfo = getHousingRecommendation(savings, monthlyAvailable);
-  const carPoorIndex = Math.min(100, Math.max(5, Math.round((fixedExpenses + monthlyCarBudget * 1.5) / monthlyNet * 100)));
+  // 3/5/10년 복리 계산 (연 5% 가정)
+  const r = 0.05;
+  const asset3Y = Math.round(savings * Math.pow(1 + r, 3) + (monthlyAvailable * 12 * (Math.pow(1 + r, 3) - 1) / r));
+  const asset5Y = Math.round(savings * Math.pow(1 + r, 5) + (monthlyAvailable * 12 * (Math.pow(1 + r, 5) - 1) / r));
+  const asset10Y = Math.round(savings * Math.pow(1 + r, 10) + (monthlyAvailable * 12 * (Math.pow(1 + r, 10) - 1) / r));
+
+  safeText('repSavingsCurrent', `${savings.toLocaleString()} 만 원`);
+  safeText('repAsset3Y', `${asset3Y.toLocaleString()} 만 원`);
+  safeText('repAsset5Y', `${asset5Y.toLocaleString()} 만 원`);
+  safeText('repAsset10Y', `${asset10Y.toLocaleString()} 만 원`);
+
+  safeText('repMilestone3Y', asset3Y >= 10000 ? '수도권 아파트 전세 / 시드머니 완성' : '원룸 전세 / 자산 스노우볼 진입');
+  safeText('repMilestone5Y', asset5Y >= 30000 ? '수도권 24평 아파트 매매 진입 한도' : '투룸 매매 / 안정적 전세 자금');
+  safeText('repMilestone10Y', asset10Y >= 70000 ? '서울 준상급지 매매 & 은퇴 자유권' : '수도권 아파트 자가 / 자산가 영역');
+
+  // 3. DSR 대출 한도 & 차·집 리스크
+  const dsrMaxMonthly = monthlyNet * 0.40; // DSR 40%
+  const maxLoan = Math.round((dsrMaxMonthly * 180) / 10000 * 10) / 10; // 30년 상환 대출 한도 추정
+  safeText('repMaxLoanAmount', `약 ${maxLoan}억 원 한도`);
+  safeText('repMortgageMonthly', `${Math.round(dsrMaxMonthly).toLocaleString()} 만 원 / 월`);
+
+  const carStressEl = document.getElementById('repCarStressIndex');
+  if (carStressEl) {
+    if (carPoorIndex >= 65) carStressEl.innerText = `고위험 (${carPoorIndex}%)`;
+    else if (carPoorIndex >= 40) carStressEl.innerText = `주의 (${carPoorIndex}%)`;
+    else carStressEl.innerText = `안전 (${carPoorIndex}%)`;
+  }
+
+  // 4. 3단계 맞춤 컨설팅 솔루션
+  safeText('solStep1', expRatio > 40 ? 
+    `현재 고정비 비중이 실수령액의 ${expRatio}%로 높은 편입니다. 월세/알뜰폰/구독 서비스 다이어트로 월 20만 원을 아끼면 5년 후 모이는 자산이 약 1,400만 원 커집니다.` : 
+    `현재 고정비 비중이 ${expRatio}%로 매우 우수합니다. 현재의 알뜰한 지출 구조를 유지하면서 순 잉여 현금을 파킹통장에 즉시 집행하세요.`);
+
+  safeText('solStep2', savings < 3000 ? 
+    `시드머니 3,000만 원 달성 시점까지는 예적금과 연 3.5%~7% 고금리 파킹통장에 자금의 80%를 몰아넣어 안전하게 자산 덩치를 키우는 것이 핵심입니다.` : 
+    `이미 시드머니가 마련되어 있으므로 청년도약계좌, ISA(비과세 계좌)를 적극 활용해 투자 수익에 대한 세금을 0원으로 방어하세요.`);
+
+  safeText('solStep3', annualIncome >= 4500 ? 
+    `연봉 ${annualIncome}만 원 소득 구간은 연금저축펀드(연 600만 한도)를 활용하면 연말정산 시 매년 66만 원~99만 원을 국세청으로부터 현금 환급받을 수 있습니다.` : 
+    `청년 우대 주택청약저축을 유지하면서, 남는 여유자금 일부는 미국 S&P500 지수 ETF에 적립식으로 긴 호흡 투자를 시작할 타이밍입니다.`);
+}
+
+function renderResults(data) {
+  const banner = document.getElementById('tierBanner');
+  if (banner) banner.className = `tier-banner ${data.tierInfo.class}`;
+  safeText('tierBadge', data.tierInfo.badge);
+  safeText('tierTitle', data.tierInfo.title);
+  safeText('tierDesc', data.tierInfo.desc);
+
+  safeHTML('ageRankText', data.ageRankText);
+
+  /* Render 4 Sub-Stats */
+  safeText('statIncomeGrade', data.subStats.incomeGrade);
+  safeText('statSavingsGrade', data.subStats.savingsGrade);
+  safeText('statExpenseGrade', data.subStats.expenseGrade);
   
-  const tierInfo = get15TierInfo(savings, monthlyAvailable, carPoorIndex, annualIncome);
-  const subStats = calculateSubStats(annualIncome, savings, fixedExpenses, carPoorIndex);
+  const carPoorEl = document.getElementById('statCarPoorGrade');
+  if (carPoorEl) {
+    carPoorEl.innerText = data.subStats.carPoorStatus;
+    if (data.subStats.dangerClass) carPoorEl.classList.add('danger');
+    else carPoorEl.classList.remove('danger');
+  }
 
-  const ageRankText = getAgeRankText(userAge, annualIncome);
+  safeText('monthlyNetPay', `${data.monthlyNet.toLocaleString()}만 원`);
+  safeText('monthlyAvailable', `${data.monthlyAvailable.toLocaleString()}만 원`);
+  safeText('carPoorIndex', `${data.carPoorIndex}%`);
 
-  const coffeeCount = Math.max(0, Math.floor((monthlyAvailable * 10000 * 0.4) / 4500));
-  const deliveryCount = Math.max(0, Math.floor((monthlyAvailable * 10000 * 0.4) / 28000));
+  safeText('recommendedCar', data.carInfo.title);
+  safeText('carNote', data.carInfo.note);
+  safeText('recommendedHouse', data.houseInfo.title);
+  safeText('houseNote', data.houseInfo.note);
+  safeText('lifestyleFunStat', `스벅 아메리카노 ${data.coffeeCount}잔 / 배달 ${data.deliveryCount}회`);
 
-  renderResults({ annualIncome, savings, fixedExpenses, monthlyNet, monthlyAvailable, carPoorIndex, carInfo, houseInfo, tierInfo, subStats, ageRankText, coffeeCount, deliveryCount, lifestyle });
+  renderDeepReport(data);
+  renderFinancialRecipes(data.lifestyle, data.savings, data.monthlyAvailable);
+}
 
-  document.getElementById('formSection').classList.add('hidden');
-  document.getElementById('resultSection').classList.remove('hidden');
-  window.scrollTo({ top: 0, behavior: 'smooth' });
+function calculateResult() {
+  try {
+    const ageEl = document.getElementById('userAge') || document.getElementById('age');
+    const userAge = ageEl ? (parseInt(ageEl.value) || 29) : 29;
+    
+    const incomeEl = document.getElementById('annualIncome');
+    const annualIncome = incomeEl ? (parseInt(incomeEl.value) || 4500) : 4500;
+    
+    const savingsEl = document.getElementById('savings');
+    const savings = savingsEl ? (parseInt(savingsEl.value) || 3000) : 3000;
+    
+    const expEl = document.getElementById('fixedExpenses') || document.getElementById('monthlyExpense');
+    const fixedExpenses = expEl ? (parseInt(expEl.value) || 70) : 70;
+    
+    const radioChecked = document.querySelector('input[name="lifestyle"]:checked');
+    const lifestyle = radioChecked ? radioChecked.value : 'frugal';
+
+    const monthlyNet = calculateMonthlyNetPay(annualIncome);
+    const monthlyAvailable = Math.max(0, monthlyNet - fixedExpenses);
+
+    let carBudgetRate = 0.25;
+    if (lifestyle === 'frugal') carBudgetRate = 0.15;
+    if (lifestyle === 'yolo') carBudgetRate = 0.40;
+    const monthlyCarBudget = Math.max(0, monthlyAvailable * carBudgetRate);
+
+    const carInfo = getCarRecommendation(monthlyCarBudget, monthlyAvailable);
+    const houseInfo = getHousingRecommendation(savings, monthlyAvailable);
+    const carPoorIndex = Math.min(100, Math.max(5, Math.round((fixedExpenses + monthlyCarBudget * 1.5) / Math.max(1, monthlyNet) * 100)));
+    
+    const tierInfo = get15TierInfo(savings, monthlyAvailable, carPoorIndex, annualIncome);
+    const subStats = calculateSubStats(annualIncome, savings, fixedExpenses, carPoorIndex);
+
+    const ageRankText = getAgeRankText(userAge, annualIncome);
+
+    const coffeeCount = Math.max(0, Math.floor((monthlyAvailable * 10000 * 0.4) / 4500));
+    const deliveryCount = Math.max(0, Math.floor((monthlyAvailable * 10000 * 0.4) / 28000));
+
+    renderResults({ annualIncome, savings, fixedExpenses, monthlyNet, monthlyAvailable, carPoorIndex, carInfo, houseInfo, tierInfo, subStats, ageRankText, coffeeCount, deliveryCount, lifestyle });
+
+    document.getElementById('formSection').classList.add('hidden');
+    document.getElementById('resultSection').classList.remove('hidden');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  } catch (err) {
+    console.error("calculateResult Error:", err);
+    document.getElementById('formSection').classList.add('hidden');
+    document.getElementById('resultSection').classList.remove('hidden');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
 }
 
 function getCarRecommendation(monthlyCarBudget, monthlyAvailable) {
