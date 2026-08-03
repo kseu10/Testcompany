@@ -87,9 +87,10 @@ def main():
         safe_print(f"[오류] 이미지 파일을 찾을 수 없습니다: {image_path}")
         return
 
-    DEFAULT_USERNAME = "info.test1234"
-    username_input = input(f"\n인스타그램 아이디 입력 [기본값: {DEFAULT_USERNAME}]: ").strip()
-    username = username_input if username_input else DEFAULT_USERNAME
+    username = input("\n인스타그램 로그인 아이디(이메일 또는 전화번호/사용자명) 입력: ").strip()
+    if not username:
+        print("❌ 아이디를 입력해야 진행할 수 있습니다!")
+        return
 
     session_file = f"session_{username}.json"
     cl = Client()
