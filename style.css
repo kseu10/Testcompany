@@ -745,4 +745,74 @@ body.theme-today .orb-3 { background: #fbbf24; opacity: 0.2; }
   color: #0f172a;
 }
 
+/* 하단 친구들과 함께 진단하기 공유 카드 전용 고급 버튼 스타일 */
+.bottom-share-card {
+  text-align: center;
+  margin-top: 24px;
+  padding: 24px 20px;
+  border-radius: var(--radius-lg);
+  background: #ffffff !important;
+  border: 2px solid #e2e8f0 !important;
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.06);
+}
+.bottom-share-card h3 {
+  font-size: 1.15rem;
+  font-weight: 900;
+  color: #0f172a;
+  margin-bottom: 6px;
+}
+.bottom-share-card p {
+  font-size: 0.88rem;
+  color: #64748b;
+  font-weight: 600;
+}
+.share-buttons {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 18px;
+}
+.share-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.92rem;
+  font-weight: 900;
+  padding: 14px 22px;
+  border-radius: 100px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+.share-btn.kakao {
+  background: #fee500;
+  color: #191919;
+  box-shadow: 0 4px 14px rgba(254, 229, 0, 0.5);
+}
+.share-btn.kakao:hover {
+  transform: translateY(-2px);
+  background: #fada0a;
+  box-shadow: 0 8px 20px rgba(254, 229, 0, 0.7);
+}
+.share-btn.link {
+  background: #0f172a;
+  color: #ffffff;
+  box-shadow: 0 4px 14px rgba(15, 23, 42, 0.2);
+}
+.share-btn.link:hover {
+  transform: translateY(-2px);
+  background: #1e293b;
+  box-shadow: 0 8px 20px rgba(15, 23, 42, 0.35);
+}
+.share-btn.story {
+  background: linear-gradient(135deg, #833ab4 0%, #fd1d1d 50%, #fcb045 100%);
+  color: #ffffff;
+  box-shadow: 0 4px 14px rgba(253, 29, 29, 0.3);
+}
+.share-btn.story:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(253, 29, 29, 0.5);
+}
+
 .app-footer { text-align: center; font-size: 0.75rem; color: var(--text-dim); padding: 20px 0; }

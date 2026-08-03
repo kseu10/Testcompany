@@ -152,7 +152,7 @@ function renderDeepReport(data) {
   const { annualIncome, savings, fixedExpenses, monthlyNet, monthlyAvailable, carPoorIndex } = data;
   
   const annualNet = monthlyNet * 12;
-  const taxDeductions = (annualIncome * 10000) - (annualNet * 10000);
+  const taxDeductions = Math.max(0, (annualIncome * 10000) - (annualNet * 10000));
   const expRatio = Math.round((fixedExpenses / Math.max(1, monthlyNet)) * 100);
 
   safeText('repAnnualIncome', `${annualIncome.toLocaleString()} 만 원`);
@@ -264,7 +264,7 @@ function renderResults(data) {
   renderFinancialRecipes(data.lifestyle, data.savings, data.monthlyAvailable);
 }
 
-function calculateResult() {
+function calculateResult(isSilent = false) {
   try {
     const ageEl = document.getElementById('userAge') || document.getElementById('age');
     const userAge = ageEl ? (parseInt(ageEl.value) || 29) : 29;
@@ -303,16 +303,25 @@ function calculateResult() {
 
     renderResults({ annualIncome, savings, fixedExpenses, monthlyNet, monthlyAvailable, carPoorIndex, carInfo, houseInfo, tierInfo, subStats, ageRankText, coffeeCount, deliveryCount, lifestyle });
 
-    document.getElementById('formSection').classList.add('hidden');
-    document.getElementById('resultSection').classList.remove('hidden');
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    if (!isSilent) {
+      document.getElementById('formSection').classList.add('hidden');
+      document.getElementById('resultSection').classList.remove('hidden');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
   } catch (err) {
     console.error("calculateResult Error:", err);
-    document.getElementById('formSection').classList.add('hidden');
-    document.getElementById('resultSection').classList.remove('hidden');
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    if (!isSilent) {
+      document.getElementById('formSection').classList.add('hidden');
+      document.getElementById('resultSection').classList.remove('hidden');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
   }
 }
+
+// 페이지 로드 시 기본값으로 심층 리포트 데이터 미리 계산
+document.addEventListener('DOMContentLoaded', () => {
+  calculateResult(true);
+});
 
 function getCarRecommendation(monthlyCarBudget, monthlyAvailable) {
   if (monthlyAvailable < 30 || monthlyCarBudget < 15) return { title: "따릉이 & 지하철/버스 패스", note: "차량 구매 시 카푸어 직행! 대중교통이 최고의 재테크" };
