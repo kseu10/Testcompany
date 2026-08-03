@@ -2,28 +2,11 @@ import os
 import sys
 from instagrapi import Client
 
-def main():
-    print("=" * 60)
-    print("🚀 2026 연봉계급도 인스타그램 무인 자동 업로더 (instagrapi)")
-    print("=" * 60)
-
-    # 1. 인스타그램 로그인 정보 설정
-    username = input("인스타그램 아이디 입력 (예: info.test1234): ").strip()
-    password = input("인스타그램 비밀번호 입력: ").strip()
-
-    if not username or not password:
-        print("❌ 아이디와 비밀번호를 모두 입력해야 합니다!")
-        return
-
-    image_path = os.path.join(os.path.expanduser("~"), "OneDrive", "바탕 화면", "insta_day1_salary_kr.jpg")
-    if not os.path.exists(image_path):
-        image_path = os.path.join(os.path.dirname(__file__), "insta_day1_salary_kr.jpg")
-
-    if not os.path.exists(image_path):
-        print(f"❌ 이미지 파일을 찾을 수 없습니다: {image_path}")
-        return
-
-    caption = """🚨 2026년 내 연봉은 대한민국 상위 몇 %일까?
+POSTS = {
+    "1": {
+        "title": "Day 1: 2026 연봉 세부계급 & 소득 팩트 분석",
+        "image": "insta_day1_salary_kr.jpg",
+        "caption": """🚨 2026년 내 연봉은 대한민국 상위 몇 %일까?
 
 통계청 & 고용노동부 최신 소득 데이터를 바탕으로 계산한 
 2026 현실 연봉·자산 15단계 계급도 공개! 🔥
@@ -39,6 +22,59 @@ def main():
 [ 프로필 링크 클릭 👉 @info.test1234 ]
 
 #2026연봉계급도 #현실연봉시뮬레이터 #연봉순위 #30대연봉 #카푸어지수 #갓생시뮬레이터 #재테크"""
+    },
+    "2": {
+        "title": "Day 2: 2026 연봉별 현실 자동차 추천 가이드",
+        "image": "insta_day2_car_kr.jpg",
+        "caption": """🚗 "내 연봉에 그랜저/제네시스 타도 카푸어 안 당할까?"
+
+실수령액 대비 고정비와 유지비를 다 따져본 
+2026 현실 자동차 권장 가이드!
+
+🚗 월 여유자금 30만 원 이하: 따릉이 & 버스/지하철 (대중교통이 최고의 재테크)
+🚗 월 여유자금 35만 원 선: 캐스퍼 / 레이 (경차)
+🚗 월 여유자금 50만 원 선: 아반떼 CN7 / 셀토스 (가성비 갓생 조합)
+🚗 월 여유자금 100만 원 이상: 그랜저 GN7 / 제네시스 GV70
+
+내 연봉과 자산으로 숨 쉬고 탈 수 있는 차 수준이 궁금하다면?
+
+👇 지금 3초 만에 확인하기
+[ 프로필 링크 클릭 👉 @info.test1234 ]
+
+#카푸어지수 #2026신차 #아반떼CN7 #그랜저GN7 #제네시스G80 #연봉별자동차 #내집마련"""
+    }
+}
+
+def main():
+    print("=" * 60)
+    print("🚀 2026 연봉계급도 인스타그램 무인 자동 업로더 (instagrapi)")
+    print("=" * 60)
+    print(" 1) Day 1: 2026 연봉 세부계급 & 소득 팩트 분석")
+    print(" 2) Day 2: 2026 연봉별 현실 자동차 추천 가이드")
+    print("=" * 60)
+
+    choice = input("발행할 콘텐츠 번호 선택 (기본 1): ").strip()
+    if choice not in POSTS:
+        choice = "1"
+
+    post_info = POSTS[choice]
+    print(f"\n선택된 콘텐츠: {post_info['title']}")
+
+    image_filename = post_info["image"]
+    image_path = os.path.join(os.path.expanduser("~"), "OneDrive", "바탕 화면", image_filename)
+    if not os.path.exists(image_path):
+        image_path = os.path.join(os.path.dirname(__file__), image_filename)
+
+    if not os.path.exists(image_path):
+        print(f"❌ 이미지 파일을 찾을 수 없습니다: {image_path}")
+        return
+
+    username = input("\n인스타그램 아이디 입력 (예: info.test1234): ").strip()
+    password = input("인스타그램 비밀번호 입력: ").strip()
+
+    if not username or not password:
+        print("❌ 아이디와 비밀번호를 모두 입력해야 합니다!")
+        return
 
     print(f"\n🔑 계정 (@{username}) 로그인 중...")
     cl = Client()
@@ -61,8 +97,8 @@ def main():
 
     print(f"\n📸 이미지 업로드 중: {os.path.basename(image_path)}")
     try:
-        media = cl.photo_upload(image_path, caption)
-        print("🎉 [100% 성공] 인스타그램 게시물이 자동으로 성공적으로 발행되었습니다!")
+        media = cl.photo_upload(image_path, post_info["caption"])
+        print("\n🎉 [100% 성공] 인스타그램 게시물이 성공적으로 발행되었습니다!")
         print(f"🔗 게시물 URL: https://www.instagram.com/p/{media.code}/")
     except Exception as e:
         print(f"❌ 업로드 중 오류 발생: {e}")
