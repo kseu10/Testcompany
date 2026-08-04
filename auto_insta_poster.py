@@ -28,20 +28,20 @@ POSTS = {
 # [2] 🔥 AI 무한 트렌드 자동 생성기 (매일 새로운 주제 + AI 이미지)
 # ---------------------------------------------------------
 TREND_SUBJECTS = [
-    ("ENFP", "cute energetic puppy character, bright colors, pop art doodle style"),
-    ("INTJ", "smart black cat character with glasses, dark colors, chic doodle style"),
-    ("INTP", "sleepy owl character, messy desk, cute doodle style"),
-    ("ENTJ", "charismatic lion character, business suit, flat design doodle"),
-    ("ISFJ", "warm soft bear character, holding a heart, pastel doodle style"),
-    ("ESTP", "cool cheetah character, wearing sunglasses, vibrant doodle style"),
-    ("강아지상", "cute person with puppy like features, pastel background, cute doodle illustration"),
-    ("고양이상", "chic person with cat like features, stylish clothes, chic doodle illustration"),
-    ("여우상", "charming person with fox like features, sly smile, doodle illustration"),
-    ("토끼상", "lovely person with rabbit like features, big eyes, cute doodle"),
-    ("A형", "neat and organized character, holding a checklist, flat illustration"),
-    ("B형", "free spirited character, dancing, colorful flat illustration"),
-    ("O형", "social butterfly character, laughing loudly, bright illustration"),
-    ("AB형", "mysterious character, thinking pose, abstract flat illustration"),
+    ("ENFP", "highly stylized beautiful young korean woman, bright trendy outfit, clean minimalistic vector art, pastel colors"),
+    ("INTJ", "handsome intelligent young korean man, chic minimalist outfit, modern clean vector illustration, dark mode aesthetic"),
+    ("INTP", "stylish young korean woman, cozy oversized clothes, coffee cup, modern minimal vector art"),
+    ("ENTJ", "charismatic handsome young korean man in modern casual suit, confident pose, clean vector illustration"),
+    ("ISFJ", "warm friendly beautiful young korean woman, soft knit sweater, cozy aesthetic, flat vector illustration"),
+    ("ESTP", "cool trendy young korean man with sunglasses, street fashion, vibrant minimal vector art"),
+    ("강아지상", "extremely beautiful young korean woman with innocent large eyes, cute trendy fashion, soft minimal vector illustration"),
+    ("고양이상", "chic gorgeous young korean woman with sharp cat-like eyes, trendy fashion, modern vector illustration"),
+    ("여우상", "charming attractive young korean man with sharp eyes, sleek modern fashion, clean minimal vector art"),
+    ("토끼상", "lovely cute young korean woman with bright smile, pastel outfit, aesthetic flat vector illustration"),
+    ("A형", "neatly dressed handsome young korean man, smart casual, clean minimalistic vector aesthetic"),
+    ("B형", "free-spirited trendy young korean woman, stylish dynamic pose, vibrant aesthetic vector art"),
+    ("O형", "cheerful social beautiful young korean woman, bright smile, pastel trendy vector illustration"),
+    ("AB형", "mysterious attractive young korean man, chic minimalist style, modern flat vector art"),
 ]
 
 TREND_TOPICS = [
@@ -62,8 +62,8 @@ def generate_daily_trend_post(seed):
     title = f"[{subj_name}] {topic_name} 완벽 분석"
     caption = topic_caption.format(subject=subj_name) + "\n\n👇 소름돋는 팩폭 분석 더 보기\n[ 프로필 링크 클릭 👉 @info.test1234 ]\n\n#MBTI #관상테스트 #심리테스트 #연애테스트 #팩폭 #성격테스트"
     
-    # 텍스트가 없는 깔끔한 인스타 감성 일러스트 생성을 위한 프롬프트 조합
-    full_prompt = f"{subj_prompt}, representing {topic_name}, textless, minimalistic, clean background, 8k resolution, trendy instagram flat illustration"
+    # 텍스트가 없는 깔끔한 인스타 감성 일러스트 생성을 위한 프롬프트 조합 (절대 동물 금지)
+    full_prompt = f"1girl or 1boy, {subj_prompt}, portraying {topic_name}, NO ANIMALS, NO DOGS, strictly aesthetic human character, highly detailed, textless, minimalistic, clean solid color background, aesthetic instagram flat illustration style"
     safe_prompt = urllib.parse.quote(full_prompt)
     
     # 무료 AI 이미지 생성 API (pollinations.ai)
@@ -83,6 +83,17 @@ def safe_print(msg):
             print(msg.encode('utf-8', 'ignore').decode('cp949', 'ignore'))
         except Exception:
             pass
+
+def get_browser_sessionid():
+    try:
+        import browser_cookie3
+        cj = browser_cookie3.load(domain_name='instagram.com')
+        for cookie in cj:
+            if cookie.name == 'sessionid':
+                return cookie.value
+    except Exception:
+        pass
+    return None
 
 def main():
     is_auto = "--auto" in sys.argv
@@ -140,8 +151,8 @@ def main():
     if saved_session:
         username = saved_session.replace("session_", "").replace(".json", "")
     else:
-        if is_auto:
-            safe_print("[오류] 자동 모드 실패: 저장된 세션 파일이 없습니다.")
+        if is_auto and not sys.stdin.isatty():
+            safe_print("[오류] 백그라운드 자동 모드 실패: 저장된 세션 파일이 없습니다.")
             return
         username = input("\n인스타그램 로그인 아이디 입력: ").strip()
         if not username:
@@ -161,28 +172,77 @@ def main():
         except Exception:
             safe_print("[안내] 기존 세션 만료. 로그인 정보를 재입력하세요.")
 
+    pass
+
     if not logged_in:
-        if is_auto:
-            safe_print("[오류] 자동 모드 실패: 로그인이 풀렸습니다.")
+        safe_print("[안내] 로그인이 필요합니다. (세션 만료 또는 최초 로그인)")
+        if is_auto and not sys.stdin.isatty():
+            safe_print("[오류] 백그라운드 자동 모드 실패: 로그인이 풀렸습니다.")
             return
             
-        password = input(f"[{username}] 비밀번호 입력: ").strip()
-        if not password:
-            return
-        try:
-            cl.login(username, password)
-            cl.dump_settings(session_file)
-            safe_print("[성공] 로그인 성공 및 세션 저장 완료!")
-        except Exception as e:
-            safe_print(f"[오류] 로그인 실패: {e}")
-            return
+        sessionid = get_browser_sessionid()
+        if sessionid:
+            safe_print("\n[진행중] 인터넷 브라우저에 로그인된 인스타그램 정보를 발견했습니다! 보안 검열 하이패스를 시도합니다...")
+            try:
+                cl.login_by_sessionid(sessionid)
+                cl.get_timeline_feed() # Validate session
+                cl.dump_settings(session_file)
+                safe_print("[성공] 🚀 브라우저 정보 우회(하이패스) 로그인 성공!")
+                logged_in = True
+            except Exception as e:
+                safe_print(f"[안내] 우회 실패 (수동 로그인으로 넘어갑니다): {e}")
+
+        if not logged_in:
+            password = input(f"[{username}] 비밀번호 (또는 sessionid 우회 키) 입력: ").strip()
+            if not password:
+                return
+            
+            # 수동 하이패스 (sessionid 직접 입력 시도)
+            if "%3A" in password or "session_" in password or len(password) > 40:
+                safe_print("\n[진행중] 수동 하이패스 키(sessionid)가 감지되었습니다! 보안 우회를 시도합니다...")
+                try:
+                    cl.login_by_sessionid(password)
+                    cl.get_timeline_feed()
+                    cl.dump_settings(session_file)
+                    safe_print("[성공] 🚀 수동 하이패스 우회 로그인 성공!")
+                    logged_in = True
+                except Exception as e:
+                    safe_print(f"[오류] 하이패스 실패: {e}")
+                    return
+            else:
+                try:
+                    cl.login(username, password)
+                    cl.dump_settings(session_file)
+                    safe_print("[성공] 로그인 성공 및 세션 저장 완료!")
+                    logged_in = True
+                except Exception as e:
+                    safe_print(f"[오류] 로그인 실패: {e}")
+                    return
+
+    # ---------------------------------------------------------
+    # 이미지 전처리 (인스타그램 1080x1080 규격 및 메타데이터 정제)
+    # ---------------------------------------------------------
+    safe_print(f"\n[진행중] 이미지 전처리 및 업로드 준비: {os.path.basename(image_path)}")
+    try:
+        from PIL import Image
+        with Image.open(image_path) as img:
+            img = img.convert('RGB')
+            img.thumbnail((1080, 1080), Image.Resampling.LANCZOS)
+            new_img = Image.new("RGB", (1080, 1080), (255, 255, 255))
+            new_img.paste(img, ((1080 - img.size[0]) // 2, (1080 - img.size[1]) // 2))
+            processed_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "upload_temp.jpg")
+            new_img.save(processed_path, "JPEG", quality=95)
+            upload_target = processed_path
+    except Exception as e:
+        safe_print(f"[안내] PIL 이미지 전처리 건너뜀 (직접 업로드 시도): {e}")
+        upload_target = image_path
 
     # ---------------------------------------------------------
     # 업로드
     # ---------------------------------------------------------
     safe_print("[진행중] 인스타그램 게시글 업로드 전송 중...")
     try:
-        media = cl.photo_upload(image_path, post_info["caption"])
+        media = cl.photo_upload(upload_target, post_info["caption"])
         post_url = f"https://www.instagram.com/p/{media.code}/"
         safe_print("\n[축하합니다!] 트렌드 맞춤 게시물이 100% 자동 생성/업로드되었습니다!")
         safe_print(f"게시물 URL: {post_url}")

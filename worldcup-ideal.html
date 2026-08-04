@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>절대 포기 못하는 이상형 16강 월드컵 | 2026 밸런스 게임</title>
+  <meta name="description" content="외모 천재 빚 1억 vs 평범 자산 10억! 당신의 진짜 이상형을 16강 밸런스 게임으로 가려보세요!">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+  <!-- 구글 애드센스 자동 광고 코드 -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8915258891613707" crossorigin="anonymous"></script>
+</head>
+<body class="theme-worldcup">
+  <div class="bg-glow-container">
+    <div class="glow-orb orb-1"></div>
+    <div class="glow-orb orb-2"></div>
+    <div class="bg-grid"></div>
+  </div>
+
+  <div class="app-container">
+    <header class="app-header">
+      <div class="badge-tag" style="background: rgba(236, 72, 153, 0.15); color: #ec4899; border-color: rgba(236, 72, 153, 0.3);"><i class="fa-solid fa-heart"></i> 2026 IDEAL TYPE BALANCE GAME</div>
+      <h1 class="main-title">내 진짜 <span class="gradient-text" style="background: linear-gradient(135deg, #ec4899 0%, #db2777 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">이상형 16강 월드컵</span></h1>
+      <p class="sub-title">얼굴 천재 빚 1억 vs 평범 자산 10억! <b>16강 이상형 밸런스 게임</b>으로 확인해보세요!</p>
+      
+      <div class="header-quick-nav">
+        <a href="index.html" class="nav-chip chip-asset"><i class="fa-solid fa-won-sign"></i> 💰 연봉·자산 계급도</a>
+        <a href="love.html" class="nav-chip chip-love"><i class="fa-solid fa-heart"></i> ❤️ 연애 성향</a>
+        <a href="work.html" class="nav-chip chip-work"><i class="fa-solid fa-briefcase"></i> 💼 직장생활 유형</a>
+        <a href="worldcup-ideal.html" class="nav-chip" style="background: #fce7f3; border-color: #fbcfe8; color: #db2777;"><i class="fa-solid fa-heart-pulse"></i> 💖 이상형 월드컵</a>
+        <a href="worldcup-boss.html" class="nav-chip" style="background: #fef2f2; border-color: #fecdd3; color: #dc2626;"><i class="fa-solid fa-user-ninja"></i> 👿 상사 월드컵</a>
+        <a href="worldcup-travel.html" class="nav-chip" style="background: #fff7ed; border-color: #ffedd5; color: #c2410c;"><i class="fa-solid fa-plane"></i> ✈️ 여행 월드컵</a>
+        <a href="worldcup-movie.html" class="nav-chip" style="background: #e0f2fe; border-color: #bae6fd; color: #0284c7;"><i class="fa-solid fa-film"></i> 🎬 영화 월드컵</a>
+        <a href="worldcup-petty.html" class="nav-chip" style="background: #fef3c7; border-color: #fde68a; color: #d97706;"><i class="fa-solid fa-bolt"></i> ⚡ 짜증 월드컵</a>
+      </div>
+    </header>
+
+    <div class="adsense-slot adsense-header">
+      <div class="ad-label"><i class="fa-solid fa-rectangle-ad"></i> SPONSORED ADVERTISEMENT</div>
+      <div class="ad-content"><span class="ad-placeholder-text">구글 애드센스 디스플레이 광고 영역</span></div>
+    </div>
+
+    <main class="main-content">
+      <!-- 1. 게임 시작 화면 -->
+      <section id="startSection" class="glass-card form-card text-center">
+        <h2 style="font-size: 1.4rem; font-weight: 900; margin-bottom: 10px; color: #0f172a;">이상형 16강 밸런스 토너먼트</h2>
+        <p style="font-size: 0.9rem; color: #475569; line-height: 1.6; margin-bottom: 20px;">
+          완벽할 수 없는 두 선택지 중에서<br>절대 포기할 수 없는 당신의 진짜 취향을 골라주세요!
+        </p>
+        <button type="button" class="btn-primary" style="background: linear-gradient(135deg, #ec4899 0%, #db2777 100%); margin-top: 10px;" onclick="startWorldCup()">
+          <span>🏆 16강 월드컵 시작하기 <i class="fa-solid fa-play"></i></span>
+        </button>
+      </section>
+
+      <!-- 2. 월드컵 게임 진행 섹션 -->
+      <section id="gameSection" class="glass-card quiz-card hidden">
+        <div class="dashboard-header" style="border-bottom-color: #fbcfe8;">
+          <h3 id="roundTitle" style="color: #db2777;"><i class="fa-solid fa-trophy"></i> 16강 (1/8)</h3>
+          <span id="matchProgress" class="report-badge" style="background: #fce7f3; color: #db2777; border-color: #fbcfe8;">Match 1</span>
+        </div>
+
+        <div class="worldcup-vs-container">
+          <!-- 후보 A -->
+          <div class="candidate-card" onclick="selectCandidate(0)">
+            <div class="candidate-icon" id="candAIcon"></div>
+            <h4 class="candidate-title" id="candATitle"></h4>
+            <p class="candidate-desc" id="candADesc"></p>
+            <button type="button" class="btn-select">선택하기 <i class="fa-solid fa-check"></i></button>
+          </div>
+
+          <div class="vs-badge">VS</div>
+
+          <!-- 후보 B -->
+          <div class="candidate-card" onclick="selectCandidate(1)">
+            <div class="candidate-icon" id="candBIcon"></div>
+            <h4 class="candidate-title" id="candBTitle"></h4>
+            <p class="candidate-desc" id="candBDesc"></p>
+            <button type="button" class="btn-select">선택하기 <i class="fa-solid fa-check"></i></button>
+          </div>
+        </div>
+      </section>
+
+      <!-- 3. 우승 결과 및 랭킹 섹션 -->
+      <section id="resultSection" class="result-section hidden">
+        <div class="share-button-suite">
+          <button class="share-btn-item copy" onclick="copyWorldCupLink()"><i class="fa-solid fa-link"></i> 링크 복사</button>
+          <button class="share-btn-item story" onclick="captureStoryCard()"><i class="fa-brands fa-instagram"></i> 스토리 저장</button>
+          <button class="share-btn-item kakao" onclick="shareKakao()"><i class="fa-solid fa-comment"></i> 카톡 공유</button>
+        </div>
+
+        <div id="storyCardContainer" class="story-card-wrapper">
+          <div class="story-card">
+            <div class="card-brand">
+              <span class="brand-name">2026 IDEAL TYPE BALANCE GAME</span>
+              <span class="brand-tag">@2026_IDEAL_TEST</span>
+            </div>
+
+            <div class="archetype-img-frame" style="background: linear-gradient(135deg, #fdf2f8 0%, #fce7f3 100%); padding: 24px; text-align: center; border-color: #fbcfe8;">
+              <div id="winnerIcon" style="font-size: 5rem; filter: drop-shadow(0 8px 16px rgba(0,0,0,0.15)); margin-bottom: 6px;">💖</div>
+              <span class="tier-badge" style="background: #db2777 !important; color: #ffffff !important;">🏆 16강 최종 선택 이상형</span>
+            </div>
+
+            <div class="tier-banner tier-sss-plus" style="background: linear-gradient(135deg, #fdf2f8 0%, #fce7f3 100%); border: 2px solid #fbcfe8;">
+              <h3 class="tier-title" id="winnerTitle" style="color: #be185d !important;"></h3>
+              <p class="tier-desc" id="winnerDesc" style="color: #475569 !important;"></p>
+            </div>
+
+            <div class="saju-quote-box" style="border-left-color: #ec4899; background: #fdf2f8; margin-bottom: 16px;">
+              <p style="font-size: 0.88rem; color: #be185d; font-weight: 700;">"과연 내 친구들은 이 극단적인 밸런스 게임에서 어떤 선택을 할까요? 공유해서 물어보세요!"</p>
+            </div>
+
+            <div class="card-footer">
+              <span>#이상형월드컵 #밸런스게임 #연애테스트 #2026테스트</span>
+              <span class="watermark-url">real-asset-2026.app</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 실시간 랭킹 통계 레전드 -->
+        <div class="glass-card feature-links-card" style="margin-top: 16px;">
+          <h3><i class="fa-solid fa-chart-pie"></i> 📊 실시간 대중 랭킹 TOP 5</h3>
+          <p class="card-sub-desc">다른 사람들이 선택한 이상형 랭킹입니다.</p>
+          <div id="rankingContainer" class="solution-steps" style="margin-top: 14px;">
+            <!-- JS 랭킹 통계 렌더링 -->
+          </div>
+        </div>
+
+        <div class="glass-card feature-links-card" style="margin-top: 16px;">
+          <h3><i class="fa-solid fa-fire"></i> 2026 다른 인싸 테스트 & 월드컵도 해보기</h3>
+          <div class="btn-cluster">
+            <a href="index.html" class="link-btn btn-asset"><i class="fa-solid fa-won-sign"></i> 💰 2026 연봉·자산 계급도 테스트</a>
+            <a href="love.html" class="link-btn btn-love"><i class="fa-solid fa-heart"></i> ❤️ 2026 연애 성향 테스트</a>
+            <a href="worldcup-boss.html" class="link-btn" style="background: linear-gradient(135deg, #ef4444 0%, #b91c1c 100%); color: #fff;"><i class="fa-solid fa-user-ninja"></i> 👿 상사 월드컵</a>
+            <a href="worldcup-travel.html" class="link-btn" style="background: linear-gradient(135deg, #ea580c 0%, #c2410c 100%); color: #fff;"><i class="fa-solid fa-plane"></i> ✈️ 여행 가기 싫은 동료 월드컵</a>
+            <a href="worldcup-movie.html" class="link-btn" style="background: linear-gradient(135deg, #0284c7 0%, #2563eb 100%); color: #fff;"><i class="fa-solid fa-film"></i> 🎬 영화관 극혐 민폐 월드컵</a>
+            <a href="worldcup-petty.html" class="link-btn" style="background: linear-gradient(135deg, #d97706 0%, #b45309 100%); color: #fff;"><i class="fa-solid fa-bolt"></i> ⚡ 사소한 딥빡 짜증 월드컵</a>
+          </div>
+        </div>
+
+        <div class="adsense-slot adsense-footer">
+          <div class="ad-label"><i class="fa-solid fa-rectangle-ad"></i> SPONSORED ADVERTISEMENT</div>
+          <div class="ad-content">
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-client="ca-pub-8915258891613707"
+                 data-ad-slot="auto"
+                 data-ad-format="auto"
+                 data-full-width-responsive="true"></ins>
+            <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="worldcup-ideal.js"></script>
+</body>
+</html>
