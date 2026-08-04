@@ -1,20 +1,20 @@
 const idealCandidates = [
-  { id: 1, title: "얼굴 천재 빛 1억 💸", desc: "차은우 뺨치는 얼굴 천재지만 빚이 1억 있는 이상형", icon: "💸", img: "이상형월드컵_2장_외모재력.jpg", badge: "💎 얼굴 천재", votes: 8420 },
-  { id: 2, title: "평범 외모 자산 10억 💰", desc: "외모는 지극히 평범하지만 자산이 10억인 이상형", icon: "💰", img: "이상형월드컵_2장_외모재력.jpg", badge: "🏦 재력 만렙", votes: 7890 },
-  { id: 3, title: "1분마다 칼답 초집착 📱", desc: "1분마다 뭐하냐고 카톡하고 칼답하는 초집착형", icon: "📱", img: "이상형월드컵_3장_연락빈도.jpg", badge: "💖 숨막히는 집착", votes: 6150 },
-  { id: 4, title: "하루 1번 생존신고 방목 🦅", desc: "연락 안 돼서 걱정하면 밤에 하루 1번 카톡하는 방목형", icon: "🦅", img: "이상형월드컵_3장_연락빈도.jpg", badge: "🦅 외로운 방목", votes: 4780 },
-  { id: 5, title: "핵노잼 바른생활 😇", desc: "너무 착하고 바른데 개그 코드가 1도 안 맞는 핵노잼", icon: "😇", img: "", badge: "🥱 바른생활 노잼", votes: 5320 },
-  { id: 6, title: "배꼽도둑 나쁜남자 😈", desc: "너무 웃기고 재밌는데 가끔 나쁜 짓을 하는 배꼽도둑", icon: "😈", img: "", badge: "🤣 마성의 개그", votes: 4950 },
-  { id: 7, title: "패션 테러리스트 👕", desc: "성격 좋고 잘생겼는데 패션 감각이 0에 수렴하는 테러리스트", icon: "👕", img: "", badge: "😱 패션 파괴자", votes: 5110 },
-  { id: 8, title: "풀세팅 명품 콜렉터 💎", desc: "항상 완벽하게 풀세팅하지만 데이트 비용 다 명품에 쓰는 사람", icon: "💎", img: "", badge: "💸 명품 집착", votes: 3450 },
-  { id: 9, title: "스킨십 제로 철벽 ❄️", desc: "플라토닉 사랑만 추구하는 스킨십 제로 철벽형", icon: "❄️", img: "", badge: "🧊 철벽 수비", votes: 3120 },
-  { id: 10, title: "스킨십 몬스터 🐙", desc: "때와 장소를 가리지 않고 달라붙는 스킨십 몬스터", icon: "🐙", img: "", badge: "🐙 끈적 몬스터", votes: 2890 },
-  { id: 11, title: "남사친/여사친 부자 👫", desc: "주변에 이성 친구가 바글바글해서 불안하게 만드는 타입", icon: "👫", img: "", badge: "👫 이성친구 폭발", votes: 4670 },
-  { id: 12, title: "친구 0명 은둔형 🏠", desc: "친구가 단 1명도 없어서 나만 바라보는 은둔형 외톨이", icon: "🏠", img: "", badge: "🏠 나만 바라봄", votes: 4210 },
-  { id: 13, title: "맞춤법 파괴자 📝", desc: "완벽한데 카톡할 때마다 '일해라 절해라' 맞춤법 다 틀리는 사람", icon: "📝", img: "", badge: "😱 한글 파괴", votes: 3980 },
-  { id: 14, title: "문법경찰 훈수러 👮", desc: "띄어쓰기 하나 틀릴 때마다 가르치려 드는 문법경찰", icon: "👮", img: "", badge: "👮 깐깐한 경찰", votes: 4340 },
-  { id: 15, title: "애교 만렙 투머치 💖", desc: "말끝마다 혀 짧은 소리 내는 애교 투머치", icon: "💖", img: "", badge: "🤮 닭살 애교", votes: 2540 },
-  { id: 16, title: "무뚝뚝 로봇 🤖", desc: "사랑한단 말 절대 안 하는 감정 없는 AI 로봇", icon: "🤖", img: "", badge: "🤖 감정 메마름", votes: 5670 }
+  { id: 1, title: "얼굴 천재 빚 1억 💸", desc: "차은우 뺨치는 얼굴 천재지만 빚이 1억 있는 이상형", icon: "💸", img: "wc_ideal_1.jpg", badge: "💎 얼굴 천재", votes: 8420 },
+  { id: 2, title: "평범 외모 자산 10억 💰", desc: "외모는 지극히 평범하지만 자산이 10억인 이상형", icon: "💰", img: "wc_ideal_2.jpg", badge: "🏦 재력 만렙", votes: 7890 },
+  { id: 3, title: "1분마다 칼답 초집착 📱", desc: "1분마다 뭐하냐고 카톡하고 칼답하는 초집착형", icon: "📱", img: "wc_ideal_3.jpg", badge: "💖 숨막히는 집착", votes: 6150 },
+  { id: 4, title: "하루 1번 생존신고 방목 🦅", desc: "연락 안 돼서 걱정하면 밤에 하루 1번 카톡하는 방목형", icon: "🦅", img: "wc_ideal_4.jpg", badge: "🦅 외로운 방목", votes: 4780 },
+  { id: 5, title: "핵노잼 바른생활 😇", desc: "너무 착하고 바른데 개그 코드가 1도 안 맞는 핵노잼", icon: "😇", img: "wc_ideal_5.jpg", badge: "🥱 바른생활 노잼", votes: 5320 },
+  { id: 6, title: "배꼽도둑 나쁜남자 😈", desc: "너무 웃기고 재밌는데 가끔 나쁜 짓을 하는 배꼽도둑", icon: "😈", img: "wc_ideal_6.jpg", badge: "🤣 마성의 개그", votes: 4950 },
+  { id: 7, title: "패션 테러리스트 👕", desc: "성격 좋고 잘생겼는데 패션 감각이 0에 수렴하는 테러리스트", icon: "👕", img: "wc_ideal_7.jpg", badge: "😱 패션 파괴자", votes: 5110 },
+  { id: 8, title: "풀세팅 명품 콜렉터 💎", desc: "항상 완벽하게 풀세팅하지만 데이트 비용 다 명품에 쓰는 사람", icon: "💎", img: "wc_ideal_8.jpg", badge: "💸 명품 집착", votes: 3450 },
+  { id: 9, title: "스킨십 제로 철벽 ❄️", desc: "플라토닉 사랑만 추구하는 스킨십 제로 철벽형", icon: "❄️", img: "wc_ideal_9.jpg", badge: "🧊 철벽 수비", votes: 3120 },
+  { id: 10, title: "스킨십 몬스터 🐙", desc: "때와 장소를 가리지 않고 달라붙는 스킨십 몬스터", icon: "🐙", img: "wc_ideal_10.jpg", badge: "🐙 끈적 몬스터", votes: 2890 },
+  { id: 11, title: "남사친/여사친 부자 👫", desc: "주변에 이성 친구가 바글바글해서 불안하게 만드는 타입", icon: "👫", img: "wc_ideal_11.jpg", badge: "👫 이성친구 폭발", votes: 4670 },
+  { id: 12, title: "친구 0명 은둔형 🏠", desc: "친구가 단 1명도 없어서 나만 바라보는 은둔형 외톨이", icon: "🏠", img: "wc_ideal_12.jpg", badge: "🏠 나만 바라봄", votes: 4210 },
+  { id: 13, title: "맞춤법 파괴자 📝", desc: "완벽한데 카톡할 때마다 '일해라 절해라' 맞춤법 다 틀리는 사람", icon: "📝", img: "wc_ideal_13.jpg", badge: "😱 한글 파괴", votes: 3980 },
+  { id: 14, title: "문법경찰 훈수러 👮", desc: "띄어쓰기 하나 틀릴 때마다 가르치려 드는 문법경찰", icon: "👮", img: "wc_ideal_14.jpg", badge: "👮 깐깐한 경찰", votes: 4340 },
+  { id: 15, title: "애교 만렙 투머치 💖", desc: "말끝마다 혀 짧은 소리 내는 애교 투머치", icon: "💖", img: "wc_ideal_15.jpg", badge: "🤮 닭살 애교", votes: 2540 },
+  { id: 16, title: "무뚝뚝 로봇 🤖", desc: "사랑한단 말 절대 안 하는 감정 없는 AI 로봇", icon: "🤖", img: "wc_ideal_16.jpg", badge: "🤖 감정 메마름", votes: 5670 }
 ];
 
 let roundList = [];
