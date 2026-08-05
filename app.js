@@ -486,7 +486,7 @@ function renderResults(data) {
   
   const charImg = document.getElementById('tierCharImg');
   if (charImg) {
-    charImg.src = `img/tier_char_${data.tierInfo.imgId}.jpg`;
+    charImg.src = `img/tier_card_${data.tierInfo.imgId}.jpg`;
   }
 
   safeText('tierBadge', data.tierInfo.badge);
