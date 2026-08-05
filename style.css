@@ -191,6 +191,17 @@ body.theme-today .orb-3 { background: #fbbf24; opacity: 0.2; }
 .tier-ss { background: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 100%) !important; border: 2px solid #7dd3fc !important; }
 .tier-s-plus { background: linear-gradient(135deg, #f3e8ff 0%, #ddd6fe 100%) !important; border: 2px solid #c084fc !important; }
 .tier-s { background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%) !important; border: 2px solid #6ee7b7 !important; }
+.tier-a-plus { background: linear-gradient(135deg, #ecfccb 0%, #d9f99d 100%) !important; border: 2px solid #bef264 !important; }
+.tier-a { background: linear-gradient(135deg, #dcfce7 0%, #bbf7d0 100%) !important; border: 2px solid #86efac !important; }
+.tier-a-minus { background: linear-gradient(135deg, #ccfbf1 0%, #99f6e4 100%) !important; border: 2px solid #5eead4 !important; }
+.tier-b-plus { background: linear-gradient(135deg, #fef9c3 0%, #fef08a 100%) !important; border: 2px solid #fde047 !important; }
+.tier-b { background: linear-gradient(135deg, #ffedd5 0%, #fed7aa 100%) !important; border: 2px solid #fdba74 !important; }
+.tier-b-minus { background: linear-gradient(135deg, #ffedd5 0%, #ffcdd2 100%) !important; border: 2px solid #fca5a5 !important; }
+.tier-c-plus { background: linear-gradient(135deg, #fae8ff 0%, #f5d0fe 100%) !important; border: 2px solid #e879f9 !important; }
+.tier-c { background: linear-gradient(135deg, #f3e8ff 0%, #e9d5ff 100%) !important; border: 2px solid #d8b4fe !important; }
+.tier-c-minus { background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%) !important; border: 2px solid #cbd5e1 !important; }
+.tier-d { background: linear-gradient(135deg, #e2e8f0 0%, #cbd5e1 100%) !important; border: 2px solid #94a3b8 !important; }
+.tier-f { background: linear-gradient(135deg, #cbd5e1 0%, #94a3b8 100%) !important; border: 2px solid #64748b !important; }
 
 .tier-badge {
   display: inline-block;

@@ -72,37 +72,42 @@ function getAgeRankText(ageVal, annualIncome) {
   return `만 <strong>${age}세</strong> 소득 위치: <strong>${percentile}</strong> (${age}세 평균/중위 연봉 ${stats.median.toLocaleString()}만 원 대비 ${ratio}배)`;
 }
 
-function get15TierInfo(savings, monthlyAvailable, carPoorIndex, annualIncome) {
-  if (savings >= 300000 || (savings >= 150000 && monthlyAvailable >= 1000)) {
-    return { badge: "SSS+ TIER", class: "tier-sss-plus", title: "👑 재벌집 막내아들 & 불로소득 수호자", desc: "압도적 다이아 자산! 숨만 쉬어도 불로소득이 쌓입니다." };
-  } else if (savings >= 150000 || monthlyAvailable >= 700) {
-    return { badge: "SSS TIER", class: "tier-sss", title: "💎 상위 0.1% 한강뷰 아파트 대기자", desc: "현금 흐름 최상위권! 강남/상급지 진입 프리패스." };
-  } else if (savings >= 80000 || monthlyAvailable >= 500) {
-    return { badge: "SS TIER", class: "tier-ss", title: "⚡ 영앤리치 갓생 수호자", desc: "탄탄한 자산과 막강한 현금창출력을 보유했습니다." };
-  } else if (savings >= 40000 || monthlyAvailable >= 350) {
-    return { badge: "S+ TIER", class: "tier-s-plus", title: "🌟 수도권 상급지 수호자", desc: "상위 10%대 현금 흐름으로 자산 증식이 매우 빠릅니다." };
-  } else if (savings >= 25000 || monthlyAvailable >= 250) {
+function get16TierInfo(savings, monthlyAvailable, carPoorIndex, annualIncome) {
+  // 16단계 엄격한 계급도 산출 (모은 자산과 월 여유자금 모두 고려)
+  // 너무 쉽게 높은 티어가 나오지 않도록 &&(AND)와 빡센 ||(OR) 조합 사용
+
+  if (savings >= 100000 || (savings >= 50000 && annualIncome >= 20000)) {
+    return { badge: "SSS+ TIER", class: "tier-sss-plus", title: "👑 재벌집 막내아들", desc: "압도적 다이아 자산! 숨만 쉬어도 불로소득이 쌓입니다." };
+  } else if (savings >= 50000 || (savings >= 30000 && annualIncome >= 15000)) {
+    return { badge: "SSS TIER", class: "tier-sss", title: "💎 0.1% 찐부자 한강뷰", desc: "현금 흐름 최상위권! 강남/상급지 진입 프리패스." };
+  } else if (savings >= 30000 || annualIncome >= 15000) {
+    return { badge: "SS TIER", class: "tier-ss", title: "⚡ 영앤리치 갓생", desc: "탄탄한 자산과 막강한 현금창출력을 보유했습니다." };
+  } else if (savings >= 15000 || (savings >= 8000 && annualIncome >= 10000)) {
+    return { badge: "S+ TIER", class: "tier-s-plus", title: "🌟 수도권 상급지 수호자", desc: "상위 5%대 자산 증식 속도를 자랑합니다." };
+  } else if (savings >= 8000 && monthlyAvailable >= 400) {
     return { badge: "S TIER", class: "tier-s", title: "🥇 통장 튼튼 갓생 1황", desc: "안정적인 자산 기반과 여유 있는 생활 수준입니다." };
-  } else if (savings >= 15000 || monthlyAvailable >= 200) {
-    return { badge: "A+ TIER", class: "tier-a-plus", title: "🚀 자산 형성 속도 5G", desc: "갓생 엘리트 코스를 밟고 있는 우수한 현금 흐름!" };
-  } else if (savings >= 9000 || monthlyAvailable >= 150) {
-    return { badge: "A TIER", class: "tier-a", title: "🛡️ 평화로운 통장 수호자", desc: "통장이 튼튼하며 카푸어 위험에서 멀리 떨어져 있습니다." };
-  } else if (savings >= 5000 || monthlyAvailable >= 120) {
-    return { badge: "B+ TIER", class: "tier-b-plus", title: "🏠 내 집 마련 궤도 진입자", desc: "안정적 저축으로 내 집 마련 꿈에 직진 중입니다." };
-  } else if (savings >= 3000 || monthlyAvailable >= 80) {
-    return { badge: "B TIER", class: "tier-b", title: "⚖️ 무난무난 표준 직장인", desc: "대한민국 표준 직장인! 밸런스를 잘 지키고 있습니다." };
-  } else if (savings >= 1500 || monthlyAvailable >= 50) {
-    return { badge: "B- TIER", class: "tier-b-minus", title: "🌱 모으기 시작한 갓생 뉴비", desc: "시드머니 3,000만 원을 향해 힘차게 달리는 중!" };
-  } else if (monthlyAvailable >= 30) {
-    return { badge: "C+ TIER", class: "tier-c-plus", title: "⚠️ 고정비 다이어트 주의보", desc: "월세 및 필수 고정비를 줄이면 자산 속도가 빨라집니다." };
+  } else if (savings >= 5000 && monthlyAvailable >= 300) {
+    return { badge: "A+ TIER", class: "tier-a-plus", title: "🚀 자산 형성 속도 5G", desc: "엘리트 코스를 밟고 있는 우수한 현금 흐름!" };
+  } else if (savings >= 3000 && monthlyAvailable >= 200) {
+    return { badge: "A TIER", class: "tier-a", title: "🛡️ 평화로운 통장 수호자", desc: "기본기가 탄탄하며 안정적인 재테크가 가능합니다." };
+  } else if (savings >= 2000 && monthlyAvailable >= 150) {
+    return { badge: "A- TIER", class: "tier-a-minus", title: "🌤️ 상승 기류 탑승객", desc: "꾸준한 저축으로 우상향 중인 아름다운 계좌!" };
+  } else if (savings >= 1000 && monthlyAvailable >= 100) {
+    return { badge: "B+ TIER", class: "tier-b-plus", title: "🏠 내 집 마련 궤도 진입", desc: "시드머니를 굴리기 시작한 성실한 직장인!" };
+  } else if (savings >= 500 && monthlyAvailable >= 70) {
+    return { badge: "B TIER", class: "tier-b", title: "⚖️ 밸런스형 표준 직장인", desc: "대한민국 표준 평균! 무난하게 잘 살고 있습니다." };
+  } else if (savings >= 300 && monthlyAvailable >= 50) {
+    return { badge: "B- TIER", class: "tier-b-minus", title: "🌱 갓생 시작하는 뉴비", desc: "이제 막 돈 모으는 재미를 알아가는 단계입니다." };
+  } else if (savings >= 100 && monthlyAvailable >= 30) {
+    return { badge: "C+ TIER", class: "tier-c-plus", title: "⚠️ 텅장 주의보 발령", desc: "조금만 방심하면 적자로 돌아설 수 있습니다." };
   } else if (monthlyAvailable >= 20) {
-    return { badge: "C TIER", class: "tier-c", title: "💸 월급이 통장을 스쳐가는 찰나", desc: "통장 잔고 유지가 아슬아슬! 짠테크 전환 권장." };
-  } else if (monthlyAvailable >= 0) {
-    return { badge: "D TIER", class: "tier-d", title: "🔋 숨만 쉬어도 통장 방전", desc: "여유 자금이 부족합니다. 비상금 펀드 구축이 시급합니다." };
-  } else if (carPoorIndex < 80) {
-    return { badge: "F TIER", class: "tier-f", title: "🚨 차 할부금에 뼈 맞추는 중", desc: "지출이 소득을 초과함! 무리한 소비 다이어트 필수." };
+    return { badge: "C TIER", class: "tier-c", title: "💸 월급 스쳐가는 찰나", desc: "통장 잔고 유지가 아슬아슬! 짠테크 전환 권장." };
+  } else if (monthlyAvailable > 0) {
+    return { badge: "C- TIER", class: "tier-c-minus", title: "🪫 숨만 쉬어도 방전", desc: "월급이 들어오자마자 고정비로 다 빠져나갑니다." };
+  } else if (monthlyAvailable <= 0 && carPoorIndex < 80) {
+    return { badge: "D TIER", class: "tier-d", title: "🚨 적자 생존 모드", desc: "지출이 소득을 초과함! 무조건 소비 다이어트 필수." };
   } else {
-    return { badge: "FFF TIER", class: "tier-fff", title: "💥 언데드 마이너스 통장", desc: "숨 쉴 때마다 마이너스 적자! 통장 긴급 구조 조치 필요." };
+    return { badge: "F TIER", class: "tier-f", title: "💥 언데드 마이너스 통장", desc: "빚으로 연명 중! 카푸어 거나 욜로병 중증입니다." };
   }
 }
 
@@ -293,7 +298,7 @@ function calculateResult(isSilent = false) {
     const houseInfo = getHousingRecommendation(savings, monthlyAvailable);
     const carPoorIndex = Math.min(100, Math.max(5, Math.round((fixedExpenses + monthlyCarBudget * 1.5) / Math.max(1, monthlyNet) * 100)));
     
-    const tierInfo = get15TierInfo(savings, monthlyAvailable, carPoorIndex, annualIncome);
+    const tierInfo = get16TierInfo(savings, monthlyAvailable, carPoorIndex, annualIncome);
     const subStats = calculateSubStats(annualIncome, savings, fixedExpenses, carPoorIndex);
 
     const ageRankText = getAgeRankText(userAge, annualIncome);
