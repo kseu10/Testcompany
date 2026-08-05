@@ -508,6 +508,17 @@ function renderResults(data) {
   safeText('monthlyAvailable', `${data.monthlyAvailable.toLocaleString()}만 원`);
   safeText('carPoorIndex', `${data.carPoorIndex}%`);
 
+  const carTierGraphic = document.getElementById('carTierGraphic');
+  if (carTierGraphic) {
+    if (data.carPoorIndex >= 80) {
+      carTierGraphic.src = "img/car_poor.jpg";
+      carTierGraphic.alt = "카푸어 경고 인포그래픽";
+    } else {
+      carTierGraphic.src = "img/car_tier.jpg";
+      carTierGraphic.alt = "2026 연봉별 현실 차 추천";
+    }
+  }
+
   safeText('recommendedCar', data.carInfo.title);
   safeText('carNote', data.carInfo.note);
   safeText('recommendedHouse', data.houseInfo.title);
