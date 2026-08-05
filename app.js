@@ -480,32 +480,34 @@ function renderDeepReport(data) {
 
 function renderResults(data) {
   const banner = document.getElementById('tierBanner');
-  banner.className = `tier-banner ${data.tierInfo.class}`;
-  document.getElementById('tierBadge').innerText = data.tierInfo.badge;
-  document.getElementById('tierTitle').innerText = data.tierInfo.title;
-  document.getElementById('tierDesc').innerText = data.tierInfo.desc;
+  if (banner) banner.className = `tier-banner ${data.tierInfo.class}`;
+  safeText('tierBadge', data.tierInfo.badge);
+  safeText('tierTitle', data.tierInfo.title);
+  safeText('tierDesc', data.tierInfo.desc);
 
-  document.getElementById('ageRankText').innerHTML = data.ageRankText;
+  safeHTML('ageRankText', data.ageRankText);
 
   /* Render 4 Sub-Stats */
-  document.getElementById('statIncomeGrade').innerText = data.subStats.incomeGrade;
-  document.getElementById('statSavingsGrade').innerText = data.subStats.savingsGrade;
-  document.getElementById('statExpenseGrade').innerText = data.subStats.expenseGrade;
+  safeText('statIncomeGrade', data.subStats.incomeGrade);
+  safeText('statSavingsGrade', data.subStats.savingsGrade);
+  safeText('statExpenseGrade', data.subStats.expenseGrade);
   
   const carPoorEl = document.getElementById('statCarPoorGrade');
-  carPoorEl.innerText = data.subStats.carPoorStatus;
-  if (data.subStats.dangerClass) carPoorEl.classList.add('danger');
-  else carPoorEl.classList.remove('danger');
+  if (carPoorEl) {
+    carPoorEl.innerText = data.subStats.carPoorStatus;
+    if (data.subStats.dangerClass) carPoorEl.classList.add('danger');
+    else carPoorEl.classList.remove('danger');
+  }
 
-  document.getElementById('monthlyNetPay').innerText = `${data.monthlyNet.toLocaleString()}만 원`;
-  document.getElementById('monthlyAvailable').innerText = `${data.monthlyAvailable.toLocaleString()}만 원`;
-  document.getElementById('carPoorIndex').innerText = `${data.carPoorIndex}%`;
+  safeText('monthlyNetPay', `${data.monthlyNet.toLocaleString()}만 원`);
+  safeText('monthlyAvailable', `${data.monthlyAvailable.toLocaleString()}만 원`);
+  safeText('carPoorIndex', `${data.carPoorIndex}%`);
 
-  document.getElementById('recommendedCar').innerText = data.carInfo.title;
-  document.getElementById('carNote').innerText = data.carInfo.note;
-  document.getElementById('recommendedHouse').innerText = data.houseInfo.title;
-  document.getElementById('houseNote').innerText = data.houseInfo.note;
-  document.getElementById('lifestyleFunStat').innerText = `스벅 아메리카노 ${data.coffeeCount}잔 / 배달 ${data.deliveryCount}회`;
+  safeText('recommendedCar', data.carInfo.title);
+  safeText('carNote', data.carInfo.note);
+  safeText('recommendedHouse', data.houseInfo.title);
+  safeText('houseNote', data.houseInfo.note);
+  safeText('lifestyleFunStat', `스벅 아메리카노 ${data.coffeeCount}잔 / 배달 ${data.deliveryCount}회`);
 
   renderDeepReport(data);
   renderFinancialRecipes(data.lifestyle, data.savings, data.monthlyAvailable);
