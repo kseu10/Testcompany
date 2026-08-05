@@ -76,35 +76,35 @@ function get16TierInfo(savings, monthlyAvailable, carPoorIndex, annualIncome) {
   if (savings >= 100000 || (savings >= 50000 && annualIncome >= 20000)) {
     return { badge: "SSS+ TIER", class: "tier-sss-plus", imgId: 1, title: "👑 재벌집 막내아들", desc: "압도적 다이아 자산! 숨만 쉬어도 불로소득이 쌓입니다." };
   } else if (savings >= 50000 || (savings >= 30000 && annualIncome >= 15000)) {
-    return { badge: "SSS TIER", class: "tier-sss", imgId: 1, title: "💎 0.1% 찐부자 한강뷰", desc: "현금 흐름 최상위권! 강남/상급지 진입 프리패스." };
+    return { badge: "SSS TIER", class: "tier-sss", imgId: 9, title: "💎 0.1% 찐부자 한강뷰", desc: "현금 흐름 최상위권! 강남/상급지 진입 프리패스." };
   } else if (savings >= 30000 || annualIncome >= 15000) {
     return { badge: "SS TIER", class: "tier-ss", imgId: 2, title: "⚡ 영앤리치 갓생", desc: "탄탄한 자산과 막강한 현금창출력을 보유했습니다." };
   } else if (savings >= 15000 || (savings >= 8000 && annualIncome >= 10000)) {
     return { badge: "S+ TIER", class: "tier-s-plus", imgId: 3, title: "🌟 수도권 상급지 수호자", desc: "상위 5%대 자산 증식 속도를 자랑합니다." };
   } else if (savings >= 8000 && monthlyAvailable >= 400) {
-    return { badge: "S TIER", class: "tier-s", imgId: 3, title: "🥇 통장 튼튼 갓생 1황", desc: "안정적인 자산 기반과 여유 있는 생활 수준입니다." };
+    return { badge: "S TIER", class: "tier-s", imgId: 10, title: "🥇 통장 튼튼 갓생 1황", desc: "안정적인 자산 기반과 여유 있는 생활 수준입니다." };
   } else if (savings >= 5000 && monthlyAvailable >= 300) {
     return { badge: "A+ TIER", class: "tier-a-plus", imgId: 4, title: "🚀 자산 형성 속도 5G", desc: "엘리트 코스를 밟고 있는 우수한 현금 흐름!" };
   } else if (savings >= 3000 && monthlyAvailable >= 200) {
-    return { badge: "A TIER", class: "tier-a", imgId: 4, title: "🛡️ 평화로운 통장 수호자", desc: "기본기가 탄탄하며 안정적인 재테크가 가능합니다." };
+    return { badge: "A TIER", class: "tier-a", imgId: 11, title: "🛡️ 평화로운 통장 수호자", desc: "기본기가 탄탄하며 안정적인 재테크가 가능합니다." };
   } else if (savings >= 2000 && monthlyAvailable >= 150) {
     return { badge: "A- TIER", class: "tier-a-minus", imgId: 5, title: "🌤️ 상승 기류 탑승객", desc: "꾸준한 저축으로 우상향 중인 아름다운 계좌!" };
   } else if (savings >= 1000 && monthlyAvailable >= 100) {
-    return { badge: "B+ TIER", class: "tier-b-plus", imgId: 5, title: "🏠 내 집 마련 궤도 진입", desc: "시드머니를 굴리기 시작한 성실한 직장인!" };
+    return { badge: "B+ TIER", class: "tier-b-plus", imgId: 12, title: "🏠 내 집 마련 궤도 진입", desc: "시드머니를 굴리기 시작한 성실한 직장인!" };
   } else if (savings >= 500 && monthlyAvailable >= 70) {
     return { badge: "B TIER", class: "tier-b", imgId: 6, title: "⚖️ 밸런스형 표준 직장인", desc: "대한민국 표준 평균! 무난하게 잘 살고 있습니다." };
   } else if (savings >= 300 && monthlyAvailable >= 50) {
-    return { badge: "B- TIER", class: "tier-b-minus", imgId: 6, title: "🌱 갓생 시작하는 뉴비", desc: "이제 막 돈 모으는 재미를 알아가는 단계입니다." };
+    return { badge: "B- TIER", class: "tier-b-minus", imgId: 13, title: "🌱 갓생 시작하는 뉴비", desc: "이제 막 돈 모으는 재미를 알아가는 단계입니다." };
   } else if (savings >= 100 && monthlyAvailable >= 30) {
     return { badge: "C+ TIER", class: "tier-c-plus", imgId: 7, title: "⚠️ 텅장 주의보 발령", desc: "조금만 방심하면 적자로 돌아설 수 있습니다." };
   } else if (monthlyAvailable >= 20) {
-    return { badge: "C TIER", class: "tier-c", imgId: 7, title: "💸 월급 스쳐가는 찰나", desc: "통장 잔고 유지가 아슬아슬! 짠테크 전환 권장." };
+    return { badge: "C TIER", class: "tier-c", imgId: 14, title: "💸 월급 스쳐가는 찰나", desc: "통장 잔고 유지가 아슬아슬! 짠테크 전환 권장." };
   } else if (monthlyAvailable > 0) {
-    return { badge: "C- TIER", class: "tier-c-minus", imgId: 8, title: "🪫 숨만 쉬어도 방전", desc: "월급이 들어오자마자 고정비로 다 빠져나갑니다." };
+    return { badge: "C- TIER", class: "tier-c-minus", imgId: 15, title: "🪫 숨만 쉬어도 방전", desc: "월급이 들어오자마자 고정비로 다 빠져나갑니다." };
   } else if (monthlyAvailable <= 0 && carPoorIndex < 80) {
     return { badge: "D TIER", class: "tier-d", imgId: 8, title: "🚨 적자 생존 모드", desc: "지출이 소득을 초과함! 무조건 소비 다이어트 필수." };
   } else {
-    return { badge: "F TIER", class: "tier-f", imgId: 8, title: "💥 언데드 마이너스 통장", desc: "빚으로 연명 중! 카푸어 거나 욜로병 중증입니다." };
+    return { badge: "F TIER", class: "tier-f", imgId: 16, title: "💥 언데드 마이너스 통장", desc: "빚으로 연명 중! 카푸어 거나 욜로병 중증입니다." };
   }
 }
 
@@ -326,13 +326,13 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 function getCarRecommendation(monthlyCarBudget, monthlyAvailable) {
-  if (monthlyAvailable < 30 || monthlyCarBudget < 15) return { title: "따릉이 & 지하철/버스 패스", note: "차량 구매 시 카푸어 직행! 대중교통이 최고의 재테크" };
-  else if (monthlyCarBudget < 35) return { title: "현대 캐스퍼 / 기아 레이 (경차)", note: "월 할부/유지비 약 25~35만 원선" };
-  else if (monthlyCarBudget < 55) return { title: "현대 아반떼 CN7 / 기아 셀토스", note: "월 유지비 약 40~50만 원선 (가성비 갓생 조합)" };
-  else if (monthlyCarBudget < 85) return { title: "기아 K5 / 스포티지 / KG 토레스", note: "월 유지비 약 65~80만 원선" };
-  else if (monthlyCarBudget < 130) return { title: "현대 그랜저 GN7 / 제네시스 GV70", note: "월 유지비 약 100~120만 원선" };
-  else if (monthlyCarBudget < 200) return { title: "제네시스 G80 / 벤츠 E-Class / BMW 5시리즈", note: "월 유지비 약 150~180만 원선" };
-  else return { title: "포르쉐 타이칸 / 911 / 파나메라", note: "월 유지비 250만 원 이상 감당 가능!" };
+  if (monthlyAvailable < 30 || monthlyCarBudget < 15) return { title: "따릉이 & 지하철/버스 패스", note: "차량 구매 시 카푸어 직행! 대중교통이 최고의 재테크", carImgId: 1 };
+  else if (monthlyCarBudget < 35) return { title: "현대 캐스퍼 / 기아 레이 (경차)", note: "월 할부/유지비 약 25~35만 원선", carImgId: 2 };
+  else if (monthlyCarBudget < 55) return { title: "현대 아반떼 CN7 / 기아 셀토스", note: "월 유지비 약 40~50만 원선 (가성비 갓생 조합)", carImgId: 3 };
+  else if (monthlyCarBudget < 85) return { title: "기아 K5 / 스포티지 / KG 토레스", note: "월 유지비 약 65~80만 원선", carImgId: 4 };
+  else if (monthlyCarBudget < 130) return { title: "현대 그랜저 GN7 / 제네시스 GV70", note: "월 유지비 약 100~120만 원선", carImgId: 5 };
+  else if (monthlyCarBudget < 200) return { title: "제네시스 G80 / 벤츠 E-Class / BMW 5시리즈", note: "월 유지비 약 150~180만 원선", carImgId: 6 };
+  else return { title: "포르쉐 타이칸 / 911 / 파나메라", note: "월 유지비 250만 원 이상 감당 가능!", carImgId: 7 };
 }
 
 function getHousingRecommendation(savings, monthlyAvailable) {
@@ -512,14 +512,12 @@ function renderResults(data) {
   safeText('carPoorIndex', `${data.carPoorIndex}%`);
 
   const carTierGraphic = document.getElementById('carTierGraphic');
-  if (carTierGraphic) {
-    if (data.carPoorIndex >= 80) {
-      carTierGraphic.src = "img/car_poor.jpg";
-      carTierGraphic.alt = "카푸어 경고 인포그래픽";
-    } else {
-      carTierGraphic.src = "img/car_tier.jpg";
-      carTierGraphic.alt = "2026 연봉별 현실 차 추천";
-    }
+  if (carTierGraphic && data.carInfo.carImgId) {
+    carTierGraphic.src = `img/car_img_${data.carInfo.carImgId}.jpg`;
+    carTierGraphic.alt = "추천 차량 이미지";
+  } else if (carTierGraphic) {
+    carTierGraphic.src = "img/car_tier.jpg";
+    carTierGraphic.alt = "2026 연봉별 현실 차 추천";
   }
 
   safeText('recommendedCar', data.carInfo.title);
