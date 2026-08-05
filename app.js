@@ -522,6 +522,8 @@ function renderResults(data) {
 
   safeText('recommendedCar', data.carInfo.title);
   safeText('carNote', data.carInfo.note);
+  safeText('carTierTitle', data.carInfo.title);
+  safeText('carTierBadge', data.carInfo.note);
   safeText('recommendedHouse', data.houseInfo.title);
   safeText('houseNote', data.houseInfo.note);
   safeText('lifestyleFunStat', `스벅 아메리카노 ${data.coffeeCount}잔 / 배달 ${data.deliveryCount}회`);
