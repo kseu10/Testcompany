@@ -1,6 +1,7 @@
 import os
 import sys
 import random
+import time
 import urllib.request
 import urllib.parse
 from datetime import datetime
@@ -220,6 +221,15 @@ def main():
                     return
 
     # ---------------------------------------------------------
+    # 로그인 직후 즉시 업로드는 계정 정지 위험이 큰 봇 패턴입니다.
+    # 사람처럼 몇 분 정도 쉬었다가 올리도록 랜덤 지연을 둡니다.
+    # ---------------------------------------------------------
+    if is_auto:
+        wait_sec = random.randint(180, 900)
+        safe_print(f"[대기중] 계정 보호를 위해 {wait_sec // 60}분 {wait_sec % 60}초 대기 후 업로드합니다...")
+        time.sleep(wait_sec)
+
+    # ---------------------------------------------------------
     # 이미지 전처리 (인스타그램 1080x1080 규격 및 메타데이터 정제)
     # ---------------------------------------------------------
     safe_print(f"\n[진행중] 이미지 전처리 및 업로드 준비: {os.path.basename(image_path)}")
@@ -246,12 +256,22 @@ def main():
         post_url = f"https://www.instagram.com/p/{media.code}/"
         safe_print("\n[축하합니다!] 트렌드 맞춤 게시물이 100% 자동 생성/업로드되었습니다!")
         safe_print(f"게시물 URL: {post_url}")
-        
+
         if not is_auto:
             import webbrowser
             webbrowser.open(post_url)
     except Exception as e:
-        safe_print(f"[오류] 업로드 중 예외 발생: {e}")
+        err_name = type(e).__name__
+        if "Challenge" in err_name or "challenge_required" in str(e):
+            safe_print("\n[경고] 인스타그램이 본인 인증(챌린지)을 요구하고 있습니다!")
+            safe_print("[조치 필요] 이 스크립트를 더 돌리지 말고, 휴대폰 인스타그램 앱에 직접 로그인해서")
+            safe_print("           본인 인증(문자/이메일 코드 등)을 먼저 완료해주세요.")
+            safe_print("           인증 없이 자동 재시도하면 계정이 정지될 위험이 커집니다.")
+        elif "LoginRequired" in err_name:
+            safe_print("\n[경고] 세션이 만료되어 로그인이 풀렸습니다. 저장된 session_*.json 파일을 지우고")
+            safe_print("           다시 수동으로 로그인해주세요.")
+        else:
+            safe_print(f"[오류] 업로드 중 예외 발생: {e}")
 
 if __name__ == "__main__":
     main()
